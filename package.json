@@ -1,0 +1,64 @@
+{
+	"name": "kristiansmurds",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build --modern",
+		"lint": "vue-cli-service lint"
+	},
+	"dependencies": {
+		"decimal.js": "^10.2.0",
+		"vue": "^2.6.10",
+		"vue-router": "^3.0.7",
+		"vuex": "^3.1.1"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "^3.9.2",
+		"@vue/cli-plugin-eslint": "^3.9.2",
+		"@vue/cli-service": "^3.9.3",
+		"babel-eslint": "^10.0.2",
+		"eslint": "^5.16.0",
+		"eslint-plugin-vue": "^5.2.3",
+		"node-sass": "^4.12.0",
+		"sass-loader": "^7.1.0",
+		"vue-template-compiler": "^2.6.10"
+	},
+	"eslintConfig": {
+		"root": true,
+		"env": {
+			"node": true
+		},
+		"extends": [
+			"plugin:vue/essential",
+			"eslint:recommended"
+		],
+		"rules": {
+			"indent": [
+				"error",
+				"tab",
+				{
+					"SwitchCase": 1
+				}
+			],
+			"no-tabs": 0,
+			"linebreak-style": [
+				"warn",
+				"windows"
+			]
+		},
+		"parserOptions": {
+			"parser": "babel-eslint"
+		}
+	},
+	"postcss": {
+		"plugins": {
+			"autoprefixer": {}
+		}
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not ie <= 11"
+	]
+}
