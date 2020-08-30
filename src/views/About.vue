@@ -1,6 +1,6 @@
 <template>
-	<div data-page="About">
-		<GridContainer id="heroBlock" class="st_fullPageContainer">
+	<div data-page="About"> 
+		<GridContainer id="heroBlock" class="st_fullPageContainer" data-aos="fade-in">
 			<GridRow>
 				<GridCol :small="12" :start="1" :medium="6" :mediumStart="4">
 					<h1 id="heroTitle">Kristiāns Murds</h1>
@@ -15,7 +15,7 @@
 				</GridCol>
 			</GridRow>
 		</GridContainer>
-		<PageScroller @click="scrollToSkills" />
+		<PageScroller @click="scrollToSkills"/>
 		<!--<GridContainer id="skillsBlock" class="st_hexBackground bg1" :isFull="true">-->
 		<GridContainer id="skillsBlock" :isFull="true">
 			<GridContainer>
@@ -26,7 +26,7 @@
 			</GridRow>
 			<GridRow>
 				<GridCol :small="12" :medium="6" :large="4" :largeStart="3">
-					<div class="techBlock">
+					<div class="techBlock" data-aos="fade-in">
 						<h2>front-end web development</h2>
 						<ul>
 							<li>HTML</li>
@@ -71,6 +71,7 @@
 			</GridRow>
 			</GridContainer>
 		</GridContainer>
+		<skills/>
 		<!--<PageScroller :hideOnMobile="true" @click="scrollToProjects" />
 		<GridContainer id="projectsBlock" class="st_hexBackground bg2" :isFull="true">
 			<GridContainer>
@@ -139,25 +140,27 @@
 			</GridRow>
 			<GridRow>
 				<GridCol id="contactLinksCol" class="st_inlineHexLinks" :small="10" :start="2" :medium="6" :mediumStart="4">
-					<a id="link_email" class="st_hexButton" href="mailto:contact@samueltrimble.com" target="_blank">email</a>
-					<a id="link_cell" class="st_hexButton" href="tel:+14255010074" target="_blank">cell</a>
-					<a id="link_linkedin" class="st_hexButton" href="https://www.linkedin.com/in/samueltrimble/" target="_blank">linkedin</a>
-					<a id="link_github" class="st_hexButton" href="https://github.com/SamuelTrimble" target="_blank">github</a>
+					<a id="link_email" class="st_hexButton" href="mailto:murdskristians@gmail.com" target="_blank">email</a>
+					<a id="link_cell" class="st_hexButton" href="tel:+37129886177" target="_blank">phone</a>
+					<a id="link_linkedin" class="st_hexButton" href="https://www.linkedin.com/in/kristians-murds-ab091384/" target="_blank">linkedin</a>
+					<a id="link_github" class="st_hexButton" href="https://github.com/murdskristians" target="_blank">github</a>
 				</GridCol>
 			</GridRow>
-			<div id="copyright">© 2019 Samuel Trimble. All Rights Reserved.</div>
 		</GridContainer>
 		<PageScroller id="backToTop" :flip="true" :hideOnMobile="true" @click="scrollToHero" />
 	</div>
 </template>
 
 <script>
-import PageScroller from '@/components/page/PageScroller'
+import PageScroller from '@/components/page/PageScroller';
+import Skills from "@/components/page/Skills";
+import AOS from 'aos';
 
 export default {
 	name: 'About',
 	components: {
-		PageScroller
+		PageScroller,
+		Skills
 	},
 	data() {
 		return {
@@ -167,6 +170,7 @@ export default {
 	},
 	mounted: function() {
 		this.$st.CurPage = this;
+		AOS.refresh()
 	},
 	methods: {
 		gotoPage: function(path) {
@@ -321,16 +325,6 @@ export default {
 	}
 	#contactLinksCol {
 		margin-top: 20px;
-	}
-	#copyright {
-		position: absolute;
-		bottom: 20px;
-		left: 0;
-		width: 100%;
-
-		color: $white;
-		font-size: .5rem;
-		text-align: center;
 	}
 
 	.comingSoonBlock {
