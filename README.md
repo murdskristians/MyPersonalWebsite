@@ -1,4 +1,4 @@
 # MyPersonalWebsite
-yarn run v1.17.3
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
-# MyPersonalWebsite
+
+to launch, type in terminal:
+npm run serve
