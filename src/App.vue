@@ -8,7 +8,6 @@
 
 <script>
 import { HexNav, StaticBackground } from '@/components/page/'
-import AOS from 'aos'
 
 export default {
 	name: 'App',
@@ -16,13 +15,9 @@ export default {
 		HexNav,
 		StaticBackground
 	},
-	created ( ) {
-		AOS.init()
-	},
 	mounted: function() {
 		this.$st.App = this;
 		this.$nextTick(this.init);
-		import('aos').then(AOS => AOS.init());
 	},
 	computed: {
 		menuOpen() {

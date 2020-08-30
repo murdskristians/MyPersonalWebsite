@@ -26,7 +26,7 @@
 			</GridRow>
 			<GridRow>
 				<GridCol :small="12" :medium="6" :large="4" :largeStart="3">
-					<div class="techBlock" data-aos="fade-in">
+					<div class="techBlock">
 						<h2>front-end web development</h2>
 						<ul>
 							<li>HTML</li>
@@ -154,7 +154,6 @@
 <script>
 import PageScroller from '@/components/page/PageScroller';
 import Skills from "@/components/page/Skills";
-import AOS from 'aos';
 
 export default {
 	name: 'About',
@@ -170,7 +169,6 @@ export default {
 	},
 	mounted: function() {
 		this.$st.CurPage = this;
-		AOS.refresh()
 	},
 	methods: {
 		gotoPage: function(path) {
