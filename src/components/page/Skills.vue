@@ -1,20 +1,20 @@
 <template>
-  <div id="skills" class="bg-dark text-light py-5">
-    <div class="container mt-4">
+  <div id="skills">
+    <div class="container">
       <div class="row">
-        <div class="col mb-4">
+       
           <div class="text-center">
             <h3>Technical Skills</h3>
-            <hr class="primary short" />
+            <hr class="line"/>
           </div>
-        </div>
+	
       </div>
       <div class="row">
-        <div class="col-md-8 mb-4">
+        <div class="col col_chart">
           <chart />
         </div>
         <div
-          class="col-md-4 text-center text-md-left mb-4"
+          class="col col_text"
         >
           <dl>
             <div v-for="(obj, index) in skills" :key="index">
@@ -23,7 +23,7 @@
                 <span
                   v-for="skill in obj.skillset"
                   :key="skill"
-                  class="badge badge-pill bg-white text-dark mr-1 my-1"
+                  class="badge"
                   >{{ skill }}</span
                 >
               </dd>
@@ -83,3 +83,53 @@ export default {
 	},
 };
 </script>
+<style lang="scss" scoped>
+.container {
+	position: relative;
+	margin: 0 10% 0 10%;
+}
+.row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 5%;
+
+}
+.col {
+	display: flex;
+	flex-direction: column;
+	&_chart{
+		flex: 0 0 66.6%;
+	}
+	&_flex {
+		flex: 0 0 33.3%;
+	}
+}
+.text-center {
+	text-align: center;
+	width: 100vw;
+	margin-bottom: 4vw;
+}
+.line {
+	border-color: #64ffda;
+    max-width: 80px;
+    border-top-width: 3px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.badge {
+	color: #263238;
+	padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+	display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+	background-color: #fff;
+}
+</style>
