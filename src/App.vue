@@ -140,7 +140,7 @@ p {
 }
 
 .st_sectionHeader {
-	margin: 100px 0 40px 0;
+	margin: 66px 0 40px 0;
 
 	font-size: 2rem;
 	text-align: center;

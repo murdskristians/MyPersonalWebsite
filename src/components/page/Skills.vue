@@ -3,18 +3,18 @@
     <div class="container">
       <div class="row">
        
-          <div class="text-center">
+          <div class="text-center" v-scroll-reveal.reset="{ origin: 'top' }">
             <h3>Technical Skills</h3>
             <hr class="line"/>
           </div>
 	
       </div>
       <div class="row">
-        <div class="col col_chart">
+        <div class="col col_chart"  v-scroll-reveal.reset="{ origin: 'left' }">
           <chart />
         </div>
         <div
-          class="col col_text"
+          class="col col_text"  v-scroll-reveal.reset="{ origin: 'right' }"
         >
           <dl>
             <div v-for="(obj, index) in skills" :key="index">

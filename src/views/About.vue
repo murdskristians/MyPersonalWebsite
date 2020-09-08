@@ -26,7 +26,7 @@
     <PageScroller @click="scrollToSkills" />
 
 
-    <skills id="skillsBlock" v-scroll-reveal.reset />
+    <skills id="skillsBlock" />
 
 
     <!-- <PageScroller :hideOnMobile="true" @click="scrollToProjects" />
@@ -87,12 +87,12 @@
     <GridContainer id="contactBlock" :isFull="true">
       <GridRow>
         <GridCol :small="10" :start="2">
-          <h1 class="st_sectionHeader" v-scroll-reveal.reset>Contact</h1>
+          <h1 class="st_sectionHeader" v-scroll-reveal.reset="{origin: 'left'}">Contact</h1>
         </GridCol>
       </GridRow>
       <GridRow>
         <GridCol :small="10" :start="2" :medium="6" :mediumStart="4">
-          <h3 v-scroll-reveal.reset="{delay: 150}">I'm always up for hearing about interesting opportunities.</h3>
+          <h3 v-scroll-reveal.reset="{delay: 150, origin: 'right'}">I'm always up for hearing about interesting opportunities.</h3>
         </GridCol>
       </GridRow>
       <GridRow>
@@ -105,7 +105,7 @@
           :mediumStart="4"
         >
           <a
-			v-scroll-reveal.reset="{delay: 0}"
+			v-scroll-reveal.reset="{delay: 0, scale: 0.2}"
             id="link_email"
             class="st_hexButton"
             href="mailto:murdskristians@gmail.com"
@@ -113,7 +113,7 @@
             >email</a
           >
           <a
-			v-scroll-reveal.reset="{delay: 100}"
+			v-scroll-reveal.reset="{delay: 100, scale: 0.2}"
             id="link_cell"
             class="st_hexButton"
             href="tel:+37129886177"
@@ -121,7 +121,7 @@
             >phone</a
           >
           <a
-			v-scroll-reveal.reset="{delay: 200}"
+			v-scroll-reveal.reset="{delay: 200, scale: 0.2}"
             id="link_linkedin"
             class="st_hexButton"
             href="https://www.linkedin.com/in/kristians-murds-ab091384/"
@@ -129,7 +129,7 @@
             >linkedin</a
           >
           <a
-			v-scroll-reveal.reset="{delay: 300}"
+			v-scroll-reveal.reset="{delay: 300, scale: 0.2}"
             id="link_github"
             class="st_hexButton"
             href="https://github.com/murdskristians"
