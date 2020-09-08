@@ -1,10 +1,10 @@
 import { Bar } from "vue-chartjs";
 let yLabels = {
 	20: "Slow & Steady",
-	40: "Rookie",
-	60: "Pretty Good",
-	80: "Smokin`",
-	100: "Rockstar ★"
+	40: "Some knowledge",
+	60: "Good",
+	80: "Great",
+	100: "Best ★"
 };
 let defaults = {
 	fontColor: "white",
@@ -18,17 +18,17 @@ export default {
 		return {
 			chartData: {
 				labels: [
-					"UX/UI Design",
+					"JavaScript/ Typescript",
 					"HTML/CSS",
-					"JavaScript",
+					"Vue.js",
+					"Laravel",
+					"Photoshop",
 					"PHP",
-					"Java",
-					"SQL",
-					"Photoshop"
+					"mySQL",
 				],
 				datasets: [
 					{
-						data: [90, 100, 78, 87, 45, 75, 92],
+						data: [90, 100, 90, 45, 95, 50, 70],
 						backgroundColor: [
 							"rgba(29,233,182, 0.9)",
 							"rgba(167,255,235, 0.9)",

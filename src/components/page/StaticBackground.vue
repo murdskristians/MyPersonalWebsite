@@ -12,6 +12,7 @@ export default {
 @import "../../styles/_globals";
 
 #st_staticBackground {
+	position: fixed;
 	background-image: url(./../../assets/images/hero/hero_mobile.png);
 	background-position: center center;
 	background-repeat: no-repeat;

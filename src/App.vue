@@ -56,7 +56,6 @@ body {
 	padding: 0;
 	width: 100%;
 	min-height: 100vh;
-
 	color: $white;
 	@include font-regular();
 	font-size: 100%;
@@ -229,17 +228,14 @@ p {
 }
 
 #app {
-	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-
 	background: $black;
 }
 
 #page {
-	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -247,19 +243,19 @@ p {
 
 	background: rgba($black, 0.5);
 
-	//overflow-x: hidden;
+	overflow-x: hidden;
 	overflow-y: auto;
-
-	&::-webkit-scrollbar {
-		width: 8px;
-	}
-	&::-webkit-scrollbar-track {
-		background-color: rgba($blue, .25);
-		border-radius: $border-radius;
-	}
-	&::-webkit-scrollbar-thumb {
-		background-color: rgba($blue, .75);
-		border-radius: $border-radius;
-	}
+}
+//Custom scrollbar style
+::-webkit-scrollbar {
+	width: 8px;
+}
+::-webkit-scrollbar-track {
+	background-color: rgba($blue, .25);
+	border-radius: $border-radius;
+}
+::-webkit-scrollbar-thumb {
+	background-color: rgba($blue, .75);
+	border-radius: $border-radius;
 }
 </style>

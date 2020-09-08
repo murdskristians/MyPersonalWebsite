@@ -49,38 +49,34 @@ export default {
 					name: "Front-end",
 					skillset: [
 						"HTML5",
-						"CSS3",
+						"CSS (SASS & SCSS)",
 						"SCSS",
 						"Bootstrap",
 						"Javascript",
+						"Typescript",
 						"Vue.js",
 						"jQuery",
 					],
 				},
 				{
 					name: "Back-end",
-					skillset: ["PHP", "Laravel", "REST APIs", "Devops", "SQL"],
+					skillset: ["PHP", "Laravel", "mySQL"],
 				},
-				{
-					name: "CMS",
-					skillset: ["October", "Wordpress"],
-				},
+				// {
+				// 	name: "CMS",
+				// 	skillset: ["October", "Wordpress"],
+				// },
 				{
 					name: "Cloud",
-					skillset: ["AWS", "Google", "Firebase"],
+					skillset: ["AWS", "Google"],
 				},
-				{
-					name: "E-Commerce",
-					skillset: ["Woocommerce", "Magento"],
-				},
+				// {
+				// 	name: "E-Commerce",
+				// 	skillset: ["Woocommerce", "Magento"],
+				// },
 			],
 		};
-	},
-	methods: {
-		visibilityChanged(isVisible) {
-			this.isVisible = isVisible;
-		},
-	},
+	}
 };
 </script>
 <style lang="scss" scoped>
@@ -93,7 +89,6 @@ export default {
 	flex-direction: row;
 	justify-content: space-between;
 	gap: 5%;
-
 }
 .col {
 	display: flex;

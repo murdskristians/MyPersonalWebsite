@@ -7,9 +7,9 @@
     >
       <GridRow>
         <GridCol :small="12" :start="1" :medium="6" :mediumStart="4">
-          <h1 id="heroTitle">Kristiāns Murds</h1>
-          <h2 id="heroSubTitle">front-end web developer</h2>
-          <p id="heroSummary">
+          <h1 id="heroTitle" v-scroll-reveal.reset>Kristiāns Murds</h1>
+          <h2 id="heroSubTitle"  v-scroll-reveal.reset="{delay: 150}">front-end web developer</h2>
+          <p id="heroSummary"  v-scroll-reveal.reset="{delay: 250}">
             Final year Bachalor student with most of experience and practice in
             front end development. I also have some experience working with back
             end and my goal is to become a full stack developer.
@@ -24,61 +24,11 @@
       </GridRow>
     </GridContainer>
     <PageScroller @click="scrollToSkills" />
-    <GridContainer class="st_hexBackground bg1" :isFull="true">
-		<GridContainer id="skillsBlock" :isFull="true">
-			<GridRow>
-				<GridCol :small="12">
-				<h1 class="st_sectionHeader">Skills</h1>
-				</GridCol>
-			</GridRow>
-			<GridRow>
-				<GridCol :small="12" :medium="6" :large="4" :largeStart="3">
-				<div class="techBlock">
-					<h2>front-end web development</h2>
-					<ul>
-					<li>HTML</li>
-					<li>CSS, SCSS</li>
-					<li>Javascript</li>
-					<li>Vue.js, Vuex, Vue Router</li>
-					<li>Node.js</li>
-					<li>Webpack</li>
-					</ul>
-					<ul>
-					<li>Visual Studio Code</li>
-					<li>Figma</li>
-					<li>Invision</li>
-					<li>Photoshop</li>
-					<li>Illustrator</li>
-					<li>Git, GitHub, Bitbucket</li>
-					</ul>
-				</div>
-				</GridCol>
-				<GridCol :small="12" :medium="6" :large="4">
-				<div class="techBlock" :class="{ active: backEndActive }">
-					<h2>back-end web development</h2>
-					<ul>
-					<li>C#</li>
-					<li>ASP.NET MVC</li>
-					<li>Razor</li>
-					<li>Entity Framework</li>
-					<li>LINQ</li>
-					<li>SQL</li>
-					</ul>
-					<ul>
-					<li>Visual Studio</li>
-					<li>Azure</li>
-					<li>MS SQL Server</li>
-					<li>Lucidchart</li>
-					<li>SSMS</li>
-					<li>IIS</li>
-					<li>Git, GitHub, Bitbucket</li>
-					</ul>
-				</div>
-				</GridCol>
-			</GridRow>
-		</GridContainer>
-    </GridContainer>
-    <skills />
+
+
+    <skills id="skillsBlock" v-scroll-reveal.reset />
+
+
     <!-- <PageScroller :hideOnMobile="true" @click="scrollToProjects" />
 		<GridContainer id="projectsBlock" class="st_hexBackground bg2" :isFull="true">
 			<GridContainer>
@@ -137,12 +87,12 @@
     <GridContainer id="contactBlock" :isFull="true">
       <GridRow>
         <GridCol :small="10" :start="2">
-          <h1 class="st_sectionHeader">Contact</h1>
+          <h1 class="st_sectionHeader" v-scroll-reveal.reset>Contact</h1>
         </GridCol>
       </GridRow>
       <GridRow>
         <GridCol :small="10" :start="2" :medium="6" :mediumStart="4">
-          <h3>I'm always up for hearing about interesting opportunities.</h3>
+          <h3 v-scroll-reveal.reset="{delay: 150}">I'm always up for hearing about interesting opportunities.</h3>
         </GridCol>
       </GridRow>
       <GridRow>
@@ -155,6 +105,7 @@
           :mediumStart="4"
         >
           <a
+			v-scroll-reveal.reset="{delay: 0}"
             id="link_email"
             class="st_hexButton"
             href="mailto:murdskristians@gmail.com"
@@ -162,6 +113,7 @@
             >email</a
           >
           <a
+			v-scroll-reveal.reset="{delay: 100}"
             id="link_cell"
             class="st_hexButton"
             href="tel:+37129886177"
@@ -169,6 +121,7 @@
             >phone</a
           >
           <a
+			v-scroll-reveal.reset="{delay: 200}"
             id="link_linkedin"
             class="st_hexButton"
             href="https://www.linkedin.com/in/kristians-murds-ab091384/"
@@ -176,6 +129,7 @@
             >linkedin</a
           >
           <a
+			v-scroll-reveal.reset="{delay: 300}"
             id="link_github"
             class="st_hexButton"
             href="https://github.com/murdskristians"
@@ -318,11 +272,6 @@ export default {
     right: 20px;
   }
 
-  #skillsBlock {
-    min-height: 100vh;
-	width: 80%;
-	//background-position: right;
-  }
   .techBlock {
     width: 100%;
     height: 100%;
