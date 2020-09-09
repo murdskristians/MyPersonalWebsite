@@ -1,5 +1,5 @@
 <template>
-	<nav id="st_mainNav" @click.stop="toggleOpen" :class="{ open : menuOpen }" v-bind:style="{ top: navY, left: navX }">
+	<nav id="st_mainNav" @click.stop="toggleOpen" :class="{ open : menuOpen }" v-bind:style="{ top: navY, right: navX }">
 		<a id="st_mainNav-about" @click="gotoPage('/', 'about')" class="nav_link">about</a>
 		<a id="st_mainNav-projects" @click="gotoPage('/projects', 'projects')" class="nav_link">projects</a>
 		<a id="st_mainNav-blog" @click="gotoPage('/blog', 'blog')" class="nav_link">blog</a>
@@ -19,7 +19,7 @@ export default {
 			return this.$store.state.menuOpen;
 		},
 		navX() {
-			return this.floatX + "px";
+			return (0 - this.floatX + "px");
 		},
 		navY() {
 			return this.floatY + "px";
@@ -71,9 +71,9 @@ export default {
 
 #st_mainNav {
 	position: fixed;
-	margin: 10px 0 0 0px;
+	margin: 10px 40px 0 0;
 	top: 0px;
-	left: 0px;
+	right: 0px;
 	width: 100px;
 	height: 100px;
 
@@ -83,7 +83,7 @@ export default {
 	background-size: contain;
 
 	transition: top 200ms linear,
-				left 200ms linear;
+				right 200ms linear;
 
 	&:hover,
 	&:active {
@@ -91,7 +91,7 @@ export default {
 	}
 
 	@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
-		margin: 60px 0 0 50px;
+		margin: 60px 50px 0 0;
 	}
 
 	> .nav_link {
@@ -129,10 +129,10 @@ export default {
 		pointer-events: auto;
 	}
 	&.open > #st_mainNav-about {
-		left: 80px;
+		left: -80px;
 		
 		@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
-			left: 80px;
+			left: -80px;
 		}
 	}
 	&.open > #st_mainNav-projects {
