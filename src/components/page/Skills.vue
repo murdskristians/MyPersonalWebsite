@@ -2,20 +2,16 @@
   <div id="skills">
     <div class="container">
       <div class="row">
-       
-          <div class="text-center" v-scroll-reveal.reset="{ origin: 'top' }">
-            <h3>Technical Skills</h3>
-            <hr class="line"/>
-          </div>
-	
+        <div class="text-center" v-scroll-reveal.reset="{ origin: 'top' }">
+          <h3>Technical Skills</h3>
+          <hr class="line" />
+        </div>
       </div>
-      <div class="row">
-        <div class="col col_chart"  v-scroll-reveal.reset="{ origin: 'left' }">
+      <div class="bridge">
+        <div class="col col_chart" v-scroll-reveal.reset="{ origin: 'left' }">
           <chart />
         </div>
-        <div
-          class="col col_text"  v-scroll-reveal.reset="{ origin: 'right' }"
-        >
+        <div class="col col_text" v-scroll-reveal.reset="{ origin: 'right' }">
           <dl>
             <div v-for="(obj, index) in skills" :key="index">
               <dt>{{ obj.name }}</dt>
@@ -76,55 +72,65 @@ export default {
 				// },
 			],
 		};
-	}
+	},
 };
 </script>
 <style lang="scss" scoped>
+@import "../../styles/_globals";
 .container {
-	position: relative;
-	margin: 0 10% 0 10%;
+  position: relative;
+  margin: 0 10% 0 10%;
+}
+.bridge {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5%;
+  @media only screen and (min-width: 970px){
+	flex-direction: row;
+  }
 }
 .row {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	gap: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5%;
 }
 .col {
-	display: flex;
-	flex-direction: column;
-	&_chart{
-		flex: 0 0 66.6%;
-	}
-	&_flex {
-		flex: 0 0 33.3%;
-	}
+  display: flex;
+  flex-direction: column;
+  &_chart {
+    flex: 0 0 66.6%;
+  }
+  &_flex {
+    flex: 0 0 33.3%;
+  }
 }
 .text-center {
-	text-align: center;
-	width: 100vw;
-	margin-bottom: 4vw;
+  text-align: center;
+  width: 100vw;
+  margin-bottom: 4vw;
 }
 .line {
-	border-color: #64ffda;
-    max-width: 80px;
-    border-top-width: 3px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  border-color: #64ffda;
+  max-width: 80px;
+  border-top-width: 3px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .badge {
-	color: #263238;
-	padding-right: .6em;
-    padding-left: .6em;
-    border-radius: 10rem;
-	display: inline-block;
-    padding: .25em .4em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-	background-color: #fff;
+  color: #263238;
+  padding-right: 0.6em;
+  padding-left: 0.6em;
+  border-radius: 10rem;
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #fff;
 }
 </style>
