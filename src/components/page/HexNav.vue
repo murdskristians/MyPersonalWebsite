@@ -136,7 +136,7 @@ export default {
 		}
 	}
 	&.open > #st_mainNav-projects {
-		left: 160px;
+		left: -160px;
 		
 		@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
 			top: 71px;
@@ -144,7 +144,7 @@ export default {
 		}
 	}
 	&.open > #st_mainNav-blog {
-		left: 240px;
+		left: -240px;
 		
 		@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
 			top: 71px;
