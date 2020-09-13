@@ -2,7 +2,7 @@
 	<nav id="st_mainNav" @click.stop="toggleOpen" :class="{ open : menuOpen }" v-bind:style="{ top: navY, right: navX }">
 		<a id="st_mainNav-about" @click="gotoPage('/', 'about')" class="nav_link">about</a>
 		<a id="st_mainNav-projects" @click="gotoPage('/projects', 'projects')" class="nav_link">projects</a>
-		<a id="st_mainNav-blog" @click="gotoPage('/blog', 'blog')" class="nav_link">blog</a>
+		<!-- <a id="st_mainNav-blog" @click="gotoPage('/blog', 'blog')" class="nav_link">blog</a> -->
 		<img class="preloadHoverImage" src='../../assets/images/icons/menu_hover.png'>
 		<img class="preloadHoverImage" src='../../assets/images/icons/link-hex_hover.png'>
 	</nav>
@@ -135,16 +135,16 @@ export default {
 			left: -80px;
 		}
 	}
-	&.open > #st_mainNav-projects {
-		left: -160px;
+	&.open > #st_mainNav-blog {
+		left: -240px;
 		
 		@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
 			top: 71px;
 			left: 40px;
 		}
 	}
-	&.open > #st_mainNav-blog {
-		left: -240px;
+	&.open > #st_mainNav-projects {
+		left: -160px;
 		
 		@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
 			top: 71px;
