@@ -87,7 +87,7 @@ export default {
   justify-content: space-between;
   gap: 5%;
   @media only screen and (min-width: 970px){
-	flex-direction: row;
+    flex-direction: row;
   }
 }
 .row {

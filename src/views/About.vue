@@ -23,8 +23,8 @@
         </GridCol>
       </GridRow>
     </GridContainer>
-    <PageScroller @click="scrollToSkills" />
 
+    <PageScroller @click="scrollToSkills" />
 
     <skills id="skillsBlock" />
 
@@ -83,7 +83,7 @@
 			</GridRow>
 			</GridContainer>
 		</GridContainer> -->
-    <PageScroller :hideOnMobile="true" @click="scrollToContact" />
+    <PageScroller id="secondScroller" :hideOnMobile="true" @click="scrollToContact" />
     <GridContainer id="contactBlock" :isFull="true">
       <GridRow>
         <GridCol :small="10" :start="2">
@@ -341,6 +341,9 @@ export default {
     background-color: rgba($black, 0.5);
     border: 2px solid rgba($white, 0.5);
     border-radius: $border-radius;
+  }
+  #secondScroller {
+    top: 2vh;
   }
 }
 </style>
