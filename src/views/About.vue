@@ -313,8 +313,7 @@ export default {
 
   #contactBlock {
     position: relative;
-    height: 100vh;
-
+    padding-bottom: 30vw;
     background: url(../assets/images/footer/profile_mobile.png) left bottom
       no-repeat;
     background-size: 100% auto;
