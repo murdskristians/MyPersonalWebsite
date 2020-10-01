@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 /*#region Colors*/
 $white: #F2F2F2;
 $grey: #BDBDBD;
@@ -24,15 +26,15 @@ $breakpoint-xl: 1920px + $grid-gutters;
 
 /*#region Typography*/
 @mixin font-light() {
-	font-family: 'Muli', Verdana, sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-weight: 200;
 }
 @mixin font-regular() {
-	font-family: 'Muli', Verdana, sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
 }
 @mixin font-bold() {
-	font-family: 'Muli', Verdana, sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-weight: 800;
 }
 /*#endregion*/

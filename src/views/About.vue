@@ -237,6 +237,7 @@ export default {
 
 #page[data-page="About"] {
   #heroTitle {
+    @include font-bold;
     font-size: 2rem;
 
     @media only screen and (min-width: $breakpoint-m + $grid-gutters) {

@@ -49,10 +49,9 @@ h1,
 h2,
 h3,
 h4 {
+  @include font-regular;
   margin: 0;
   color: #f2f2f2;
-  font-family: "Muli", Verdana, sans-serif;
-  font-weight: 400;
   line-height: 1.2em;
   text-align: center;
 }
