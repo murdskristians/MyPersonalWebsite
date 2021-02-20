@@ -10,9 +10,9 @@
           <h1 id="heroTitle" v-scroll-reveal.reset>Kristiāns Murds</h1>
           <h2 id="heroSubTitle"  v-scroll-reveal.reset="{delay: 150}">front-end web developer</h2>
           <p id="heroSummary"  v-scroll-reveal.reset="{delay: 250}">
-            Final year Bachalor student with most of experience and practice in
-            front end development. I also have some experience working with back
-            end and my goal is to become a full stack developer.
+            Final year Bachelor student with most of experience and practice 
+            in front-end development. I also have some experience working with 
+            back-end and my goal is to become a full-stack developer.
           </p>
           <!--<div id="heroLinks" class="st_inlineHexLinks">
 						<a id="link_skills" class="st_hexButton" @click="scrollToSkills">skills</a>
