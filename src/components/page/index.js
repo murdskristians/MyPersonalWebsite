@@ -1,9 +1,9 @@
 import HexNav from './HexNav'
 import PageScroller from './PageScroller'
-import StaticBackground from './StaticBackground'
+import DynamicBackground from './DynamicBackground'
 
 export {
 	HexNav,
 	PageScroller,
-	StaticBackground
+	DynamicBackground
 }
