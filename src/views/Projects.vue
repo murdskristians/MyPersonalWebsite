@@ -6,15 +6,16 @@
           <h1 id="heroTitle">Recent Projects</h1>
           <GridContainer>
             <GridRow>
-				<project title="Rock, paper, scisors game" id="rockGame" live="gifted-goldberg-c10d0b" source="Rock-Paper-Scissors-Game"/>
-				<project title="Currency Selector" id="currencySelection" live="currencyselectiondemo" source="CurrencySelectionDemo"/>
-				<project title="Flex and Grid Cheatsheet" id="cheatSheet" live="flexgridcheatsheet" source="Flex-Grid-Cheat-Sheet"/>
-				<project title="Week for a student" id="weekAsStudent" live="webdesign" source="WeekAsStudent"/>
-				<project title="Computer science quiz" id="quiz" live="happy-kepler-4ce477" source="OpenDB_API_Quiz"/>
-				<project title="Chip & Dice game demo" id="rockGame" live="chipanddicegame" source="dice-chip-game"/>
-				<project title="The Snake game" id="snakeGame" live="upbeat-ptolemy-8e8db8" source="Snake-game"/>
-				<project title="Tic, tac, toe game" id="ticTacToeGame" live="elastic-goldwasser-559708" source="Tic-Tac-Toe-Game"/>
-				<project title="Online Todo live list" id="toDo" live="inisev-test" source="Switzerland-Trial-Task"/>
+              <project title="Algorithm Visualization" id="algoViz" live="algoritmuvizualizacijasriks" source="bakalaurs"/>
+              <project title="Rock, paper, scisors game" id="rockGame" live="gifted-goldberg-c10d0b" source="Rock-Paper-Scissors-Game"/>
+              <project title="Currency Selector" id="currencySelection" live="currencyselectiondemo" source="CurrencySelectionDemo"/>
+              <project title="Flex and Grid Cheatsheet" id="cheatSheet" live="flexgridcheatsheet" source="Flex-Grid-Cheat-Sheet"/>
+              <project title="Week for a student" id="weekAsStudent" live="webdesign" source="WeekAsStudent"/>
+              <project title="Computer science quiz" id="quiz" live="happy-kepler-4ce477" source="OpenDB_API_Quiz"/>
+              <project title="Chip & Dice game demo" id="rockGame" live="chipanddicegame" source="dice-chip-game"/>
+              <project title="The Snake game" id="snakeGame" live="upbeat-ptolemy-8e8db8" source="Snake-game"/>
+              <project title="Tic, tac, toe game" id="ticTacToeGame" live="elastic-goldwasser-559708" source="Tic-Tac-Toe-Game"/>
+              <project title="Online Todo live list" id="toDo" live="inisev-test" source="Switzerland-Trial-Task"/>
             </GridRow>
           </GridContainer>
         </GridCol>
