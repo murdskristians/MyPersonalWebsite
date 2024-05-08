@@ -50,6 +50,7 @@ export default {
 						"Bootstrap",
 						"Javascript",
 						"Typescript",
+            "Shopify",
 						"Vue.js",
 						"jQuery",
 					],
