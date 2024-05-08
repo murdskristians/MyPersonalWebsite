@@ -22,21 +22,19 @@ export default {
 					"HTML/CSS",
 					"Vue.js",
 					"Laravel",
-					"Photoshop",
 					"PHP",
 					"mySQL",
 				],
 				datasets: [
 					{
-						data: [90, 100, 90, 45, 95, 50, 70],
+						data: [90, 100, 90, 45, 70, 70],
 						backgroundColor: [
 							"rgba(29,233,182, 0.9)",
 							"rgba(167,255,235, 0.9)",
 							"rgba(29,233,182, 0.9)",
 							"rgba(167,255,235, 0.9)",
 							"rgba(29,233,182, 0.9)",
-							"rgba(167,255,235, 0.9)",
-							"rgba(29,233,182, 0.9)"
+							"rgba(167,255,235, 0.9)"
 						]
 					}
 				]

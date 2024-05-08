@@ -8,11 +8,9 @@
       <GridRow>
         <GridCol :small="12" :start="1" :medium="6" :mediumStart="4">
           <h1 id="heroTitle" v-scroll-reveal.reset>Kristiāns Murds</h1>
-          <h2 id="heroSubTitle"  v-scroll-reveal.reset="{delay: 150}">front-end web developer</h2>
+          <h2 id="heroSubTitle"  v-scroll-reveal.reset="{delay: 150}">Full-stack web developer</h2>
           <p id="heroSummary"  v-scroll-reveal.reset="{delay: 250}">
-            Final year Bachelor student with most of experience and practice in
-            front-end development. I also have some experience working with back-end 
-            and my goal is to become a full-stack developer.
+            Explore my portfolio to see the range of projects I've developed. If you have an idea or a challenge, let's connect. I'm ready to help you build your next innovative and efficient digital solution. Tell me what you need, and let's make it happen!
           </p>
           <!--<div id="heroLinks" class="st_inlineHexLinks">
 						<a id="link_skills" class="st_hexButton" @click="scrollToSkills">skills</a>
@@ -93,6 +91,8 @@
       <GridRow>
         <GridCol :small="10" :start="2" :medium="6" :mediumStart="4">
           <h3 v-scroll-reveal.reset="{delay: 150, origin: 'right'}">I'm always up for hearing about interesting opportunities.</h3>
+          <h3 v-scroll-reveal.reset="{delay: 150, origin: 'right'}"><a href="mailto:murdskristians@gmail.com" style="text-decoration: none; color: inherit;">murdskristians@gmail.com</a></h3>
+          <h3 v-scroll-reveal.reset="{delay: 150, origin: 'right'}"><a href="tel:+37129886177" style="text-decoration: none; color: inherit;">+371 29886177</a></h3>
         </GridCol>
       </GridRow>
       <GridRow>
