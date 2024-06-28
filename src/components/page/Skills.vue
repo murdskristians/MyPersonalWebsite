@@ -46,7 +46,6 @@ export default {
 					skillset: [
 						"HTML5",
 						"CSS (SASS & SCSS)",
-						"SCSS",
 						"Bootstrap",
 						"Javascript",
 						"Typescript",
