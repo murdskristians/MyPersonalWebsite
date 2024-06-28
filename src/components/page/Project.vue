@@ -7,16 +7,17 @@
           <a
             :id="id"
             class="st_hexButton"
-            :href=" 'https://' + this.live + '.netlify.app/' "
+            :href="this.live"
             target="_blank"
           >
             Try!
           </a>
 
           <a
+            v-if="this.source"
             :id="id"
             class="st_hexButton"
-            :href=" 'https://github.com/murdskristians/' + this.source"
+            :href="'https://github.com/murdskristians/' + this.source"
             target="_blank"
           >
             GitHub

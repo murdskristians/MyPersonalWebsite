@@ -6,18 +6,28 @@
           <h1 id="heroTitle">Recent Projects</h1>
           <GridContainer>
             <GridRow>
-              <project title="Algorithm Visualization" id="algoViz" live="algoritmuvizualizacijasriks" source="bakalaurs"/>
-              <project title="Rock, paper, scisors game" id="rockGame" live="gifted-goldberg-c10d0b" source="Rock-Paper-Scissors-Game"/>
-              <project title="Currency Selector" id="currencySelection" live="currencyselectiondemo" source="CurrencySelectionDemo"/>
-              <project title="Flex and Grid Cheatsheet" id="cheatSheet" live="flexgridcheatsheet" source="Flex-Grid-Cheat-Sheet"/>
-              <project title="Week for a student" id="weekAsStudent" live="webdesign" source="WeekAsStudent"/>
-              <project title="Computer science quiz" id="quiz" live="happy-kepler-4ce477" source="OpenDB_API_Quiz"/>
-              <project title="Chip & Dice game demo" id="rockGame" live="chipanddicegame" source="dice-chip-game"/>
-              <project title="The Snake game" id="snakeGame" live="upbeat-ptolemy-8e8db8" source="Snake-game"/>
-              <project title="Tic, tac, toe game" id="ticTacToeGame" live="elastic-goldwasser-559708" source="Tic-Tac-Toe-Game"/>
-              <project title="Online Todo live list" id="toDo" live="inisev-test" source="Switzerland-Trial-Task"/>
+              <!-- namnam -->
+              <project title="Salons Arka" id="arka" live="https://export.salonsarka.lv" source=""/>
+              <project title="Atslēdzinieks" id="keyMaster" live="https://atsledznieks.lv" source=""/>
+              <project title="Peso Paks" id="peso" live="https://pp.shopdev.lv" source=""/>
+              <!-- <project title="NamNam" id="namnam" live="https://namnam.lv" source=""/> -->
+              <project title="KP Pro" id="kppro" live="http://kppro.lv" source=""/>
+              <project title="Elements" id="elements" live="http://elements-inc.infinityfreeapp.com" source=""/>
+              <project title="Juicy Grow" id="juicy" live="http://juicy-grow.infinityfreeapp.com/?i=1" source=""/>
+              <project title="Algorithm Visualization" id="algoViz" live="https://algoritmuvizualizacijasriks.netlify.app" source="bakalaurs"/>
+              <project title="Rock, paper, scisors" id="rockGame" live="https://gifted-goldberg-c10d0b.netlify.app" source="Rock-Paper-Scissors-Game"/>
+              <project title="Currency Selector" id="currencySelection" live="https://currencyselectiondemo.netlify.app" source="CurrencySelectionDemo"/>
+              <project title="Flex & Grid Cheatsheet" id="cheatSheet" live="https://flexgridcheatsheet.netlify.app" source="Flex-Grid-Cheat-Sheet"/>
+              <project title="Week for a student" id="weekAsStudent" live="https://webdesign.netlify.app" source="WeekAsStudent"/>
+              <project title="Computer science quiz" id="quiz" live="https://happy-kepler-4ce477" source="OpenDB_API_Quiz"/>
+              <project title="Chip & Dice game demo" id="rockGame" live="https://chipanddicegame.netlify.app" source="dice-chip-game"/>
+              <project title="The Snake game" id="snakeGame" live="https://upbeat-ptolemy-8e8db8.netlify.app" source="Snake-game"/>
+              <project title="Tic, tac, toe game" id="ticTacToeGame" live="https://elastic-goldwasser-559708.netlify.app" source="Tic-Tac-Toe-Game"/>
+              <!-- <project title="Online Todo live list" id="toDo" live="https://inisev-test.netlify.app" source="Switzerland-Trial-Task"/> -->
             </GridRow>
           </GridContainer>
+          <h3 id="footerTitle">For more, check my GitHub account</h3>
+          <h3 id="footerTitle2">Happy coding!</h3>
         </GridCol>
       </GridRow>
     </GridContainer>
@@ -47,8 +57,27 @@ export default {
     margin-bottom: 5vh;
     font-size: 2rem;
 
-    @media only screen and (min-width: $breakpoint-m + $grid-gutters) {
+    @media only screen and (min-width: $breakpoint-m) {
       font-size: 4rem;
+    }
+  }
+
+  #footerTitle {
+    margin-top: 7vh;
+    margin-bottom: 7vh;
+    font-size: 1.5rem;
+
+    @media only screen and (min-width: $breakpoint-m) {
+      font-size: 3rem;
+    }
+  }
+
+  #footerTitle2 {
+    margin-bottom: 7vh;
+    font-size: 1rem;
+
+    @media only screen and (min-width: $breakpoint-m) {
+      font-size: 2rem;
     }
   }
 
