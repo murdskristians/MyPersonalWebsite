@@ -46,7 +46,7 @@ export default {
 		margin-bottom: 40px;
 		font-size: 2rem;
 
-		@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
+		@media only screen and (min-width: $breakpoint-m) {
 			font-size: 4rem;
 		}
 	}

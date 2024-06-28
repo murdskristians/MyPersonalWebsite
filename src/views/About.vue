@@ -240,14 +240,14 @@ export default {
     @include font-bold;
     font-size: 2rem;
 
-    @media only screen and (min-width: $breakpoint-m + $grid-gutters) {
+    @media only screen and (min-width: $breakpoint-m ) {
       font-size: 4rem;
     }
   }
   #heroSubTitle {
     font-size: 1.5rem;
 
-    @media only screen and (min-width: $breakpoint-m + $grid-gutters) {
+    @media only screen and (min-width: $breakpoint-m ) {
       font-size: 2rem;
     }
   }
@@ -257,7 +257,7 @@ export default {
     font-size: 1.125rem;
     text-align: center;
 
-    @media only screen and (min-width: $breakpoint-m + $grid-gutters) {
+    @media only screen and (min-width: $breakpoint-m ) {
       font-size: 1.5rem;
     }
   }
@@ -287,7 +287,7 @@ export default {
 
       border-bottom: 2px solid $white;
 
-      @media only screen and (min-width: $breakpoint-m + $grid-gutters) {
+      @media only screen and (min-width: $breakpoint-m ) {
         font-size: 1.75rem;
       }
     }
@@ -319,10 +319,10 @@ export default {
       no-repeat;
     background-size: 100% auto;
 
-    @media only screen and (min-width: $breakpoint-l + $grid-gutters) {
+    @media only screen and (min-width: $breakpoint-l ) {
       background-image: url(../assets/images/footer/profile_hd.png);
     }
-    @media only screen and (min-width: $breakpoint-xl + $grid-gutters) {
+    @media only screen and (min-width: $breakpoint-xl ) {
       background-image: url(../assets/images/footer/profile_uhd.png);
     }
   }
