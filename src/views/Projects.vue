@@ -8,7 +8,7 @@
             <GridRow>
               <!-- namnam -->
               <project title="Salons Arka" id="arka" live="https://export.salonsarka.lv" source=""/>
-              <project title="Atslēdzinieks" id="keyMaster" live="https://atsledznieks.lv" source=""/>
+              <project title="Atslēdznieks" id="keyMaster" live="https://atsledznieks.lv" source=""/>
               <project title="Peso Paks" id="peso" live="https://pp.shopdev.lv" source=""/>
               <!-- <project title="NamNam" id="namnam" live="https://namnam.lv" source=""/> -->
               <project title="KP Pro" id="kppro" live="http://kppro.lv" source=""/>
