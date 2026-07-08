@@ -15,12 +15,11 @@
               <project title="Elements" id="elements" live="http://elements-inc.infinityfreeapp.com" source=""/>
               <project title="Juicy Grow" id="juicy" live="http://juicy-grow.infinityfreeapp.com/?i=1" source=""/>
               <project title="Algorithm Visualization" id="algoViz" live="https://algoritmuvizualizacijasriks.netlify.app" source="bakalaurs"/>
-              <project title="Rock, paper, scisors" id="rockGame" live="https://gifted-goldberg-c10d0b.netlify.app" source="Rock-Paper-Scissors-Game"/>
+              <project title="Rock, paper, scissors" id="rockGame" live="https://gifted-goldberg-c10d0b.netlify.app" source="Rock-Paper-Scissors-Game"/>
               <project title="Currency Selector" id="currencySelection" live="https://currencyselectiondemo.netlify.app" source="CurrencySelectionDemo"/>
               <project title="Flex & Grid Cheatsheet" id="cheatSheet" live="https://flexgridcheatsheet.netlify.app" source="Flex-Grid-Cheat-Sheet"/>
               <project title="Week for a student" id="weekAsStudent" live="https://webdesign.netlify.app" source="WeekAsStudent"/>
-              <project title="Computer science quiz" id="quiz" live="https://happy-kepler-4ce477" source="OpenDB_API_Quiz"/>
-              <project title="Chip & Dice game demo" id="rockGame" live="https://chipanddicegame.netlify.app" source="dice-chip-game"/>
+              <project title="Chip & Dice game demo" id="chipDice" live="https://chipanddicegame.netlify.app" source="dice-chip-game"/>
               <project title="The Snake game" id="snakeGame" live="https://upbeat-ptolemy-8e8db8.netlify.app" source="Snake-game"/>
               <project title="Tic, tac, toe game" id="ticTacToeGame" live="https://elastic-goldwasser-559708.netlify.app" source="Tic-Tac-Toe-Game"/>
               <!-- <project title="Online Todo live list" id="toDo" live="https://inisev-test.netlify.app" source="Switzerland-Trial-Task"/> -->
@@ -53,11 +52,13 @@ export default {
 
 #page[data-page="Projects"] {
   #heroTitle {
-    margin-top: 7vh;
+    // Clear the fixed nav hex in the top-right corner on small screens.
+    margin-top: 100px;
     margin-bottom: 5vh;
     font-size: 2rem;
 
     @media only screen and (min-width: $breakpoint-m) {
+      margin-top: 7vh;
       font-size: 4rem;
     }
   }
