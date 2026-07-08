@@ -9,15 +9,16 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'pinia'
+import { useUiStore } from '@/plugins/store'
+
 export default {
 	name: 'HexNav',
 	mounted: function() {
 		this.$nextTick(this.init);
 	},
 	computed: {
-		menuOpen() {
-			return this.$store.state.menuOpen;
-		},
+		...mapState(useUiStore, ['menuOpen']),
 		navX() {
 			return (0 - this.floatX + "px");
 		},
@@ -32,6 +33,7 @@ export default {
 		};
 	},
 	methods: {
+		...mapActions(useUiStore, ['setMenuOpen']),
 		init: function() {
 			//Watch cursor position, float menu around slightly to follow
 			document.addEventListener('mousemove', this.$st.throttle((evt) => {
@@ -48,8 +50,7 @@ export default {
 			this.$router.push(path);
 		},
 		toggleOpen: function() {
-			let open = this.menuOpen;
-			this.$store.commit('menuOpen', !open);
+			this.setMenuOpen(!this.menuOpen);
 		// 	if (open) {
 		// 		gtag('event', 'mainnav_toggle', {
 		// 			'event_category' : 'engagement',
@@ -67,7 +68,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../styles/_globals';
+@use '../../styles/_globals' as *;
 
 #st_mainNav {
 	position: fixed;

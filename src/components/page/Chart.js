@@ -1,19 +1,34 @@
+import { h } from "vue";
 import { Bar } from "vue-chartjs";
-let yLabels = {
+import {
+	Chart as ChartJS,
+	Title,
+	Tooltip,
+	Legend,
+	BarElement,
+	CategoryScale,
+	LinearScale
+} from "chart.js";
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
+
+const yLabels = {
 	20: "Slow & Steady",
 	40: "Some knowledge",
 	60: "Good",
 	80: "Great",
 	100: "Best ★"
 };
-let defaults = {
+
+const defaults = {
 	fontColor: "white",
 	gridColor: "#314149",
 	fontSize: 12,
 	fontFamily: '"Varela Round", sans-serif'
 };
+
 export default {
-	extends: Bar,
+	name: "SkillsChart",
 	data() {
 		return {
 			chartData: {
@@ -24,7 +39,7 @@ export default {
 					"mySQL",
 					"Vue.js",
 					"Laravel",
-					"AWS",
+					"AWS"
 				],
 				datasets: [
 					{
@@ -44,41 +59,46 @@ export default {
 			chartOptions: {
 				responsive: true,
 				maintainAspectRatio: false,
-				legend: {
-					display: false
+				plugins: {
+					legend: {
+						display: false
+					}
 				},
 				scales: {
-					yAxes: [
-						{
-							gridLines: {
-								color: defaults.gridColor
+					y: {
+						beginAtZero: true,
+						grid: {
+							color: defaults.gridColor
+						},
+						ticks: {
+							color: defaults.fontColor,
+							font: {
+								size: defaults.fontSize,
+								family: defaults.fontFamily
 							},
-							ticks: {
-								fontColor: defaults.fontColor,
-								fontSize: defaults.fontSize,
-								fontFamily: defaults.fontFamily,
-								beginAtZero: true,
-								callback: value => yLabels[value]
+							callback: value => yLabels[value]
+						}
+					},
+					x: {
+						grid: {
+							color: defaults.gridColor
+						},
+						ticks: {
+							color: defaults.fontColor,
+							font: {
+								size: defaults.fontSize,
+								family: defaults.fontFamily
 							}
 						}
-					],
-					xAxes: [
-						{
-							gridLines: {
-								color: defaults.gridColor
-							},
-							ticks: {
-								fontColor: defaults.fontColor,
-								fontSize: defaults.fontSize,
-								fontFamily: defaults.fontFamily
-							}
-						}
-					]
+					}
 				}
 			}
 		};
 	},
-	mounted() {
-		this.renderChart(this.chartData, this.chartOptions);
+	render() {
+		return h(Bar, {
+			data: this.chartData,
+			options: this.chartOptions
+		});
 	}
 };

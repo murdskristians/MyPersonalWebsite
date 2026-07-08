@@ -149,8 +149,8 @@
 </template>
 
 <script>
-import PageScroller from "@/components/page/PageScroller";
-import Skills from "@/components/page/Skills";
+import PageScroller from "@/components/page/PageScroller.vue";
+import Skills from "@/components/page/Skills.vue";
 
 export default {
 	name: "About",
@@ -233,7 +233,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../styles/_globals";
+@use "../styles/_globals" as *;
 
 #page[data-page="About"] {
   #heroTitle {

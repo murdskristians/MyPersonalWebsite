@@ -5,10 +5,12 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
+
 export default {
 	name: 'ProjectDetails',
 	components: {
-		'yip': () => import(/*webpackChunkName: "ProjectYIP" */ './projects/YIP.vue')
+		'yip': defineAsyncComponent(() => import('./projects/YIP.vue'))
 	},
 	data() {
 		return {
@@ -34,7 +36,7 @@ export default {
 			if (this.allowedProjects.includes(safeId)) {
 				this.curProjectId = safeId;
 			} else {
-				this.$router.push({ name : 'NotFound', params : { pathMatch : `/projects/${safeId}` }});
+				this.$router.push({ name : 'NotFound', params : { pathMatch : ['projects', safeId] }});
 			}
 		}
 	}
@@ -42,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../styles/_globals";
+@use "../styles/_globals" as *;
 
 #page[data-page="ProjectDetails"] {
 	#project {

@@ -1,15 +1,13 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { defineStore } from 'pinia'
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
-	state: {
+// Global UI state (Pinia is the recommended store for Vue 3).
+export const useUiStore = defineStore('ui', {
+	state: () => ({
 		menuOpen: false
-	},
-	mutations: {
-		menuOpen(state, data) {
-			state.menuOpen = data;
+	}),
+	actions: {
+		setMenuOpen(value) {
+			this.menuOpen = value;
 		}
 	}
 });

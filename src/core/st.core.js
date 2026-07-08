@@ -13,13 +13,14 @@ export default class ST_Core {
 		return this;
 	}
 
-	install(vue) {
-		vue.prototype.$st = this;
+	// Vue 3 plugin install hook — expose this instance as `this.$st` on every component.
+	install(app) {
+		app.config.globalProperties.$st = this;
 	}
 
 	log(msg) {
-		if (process.env.NODE_ENV !== "production") {
-			//eslint-disable-next-line
+		if (import.meta.env.DEV) {
+			 
 			console.log(msg);
 		}
 	}
