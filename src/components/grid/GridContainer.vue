@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../styles/_globals";
+@use "../../styles/_globals" as *;
 
 .st_gridContainer {
 	width: calc(100% - #{$grid-gutters});

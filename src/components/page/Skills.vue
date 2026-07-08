@@ -75,7 +75,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../styles/_globals";
+@use "../../styles/_globals" as *;
 .container {
   position: relative;
   margin: 0 10% 0 10%;

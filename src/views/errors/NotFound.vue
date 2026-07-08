@@ -4,8 +4,8 @@
 			<GridRow>
 				<GridCol :small="12">
 					<h1 id="heroTitle">Oh no!</h1>
-					<h2 id="heroSummary">The page at the location: "{{ $router.currentRoute.params.pathMatch }}" could not be found!</h2>
-					<a id="heroReturn" @click="gotoPage('/', '404_return')" class="st_hexButton">go home</a>
+					<h2 id="heroSummary">The page at the location: "{{ notFoundPath }}" could not be found!</h2>
+					<a id="heroReturn" @click="gotoPage('/')" class="st_hexButton">go home</a>
 				</GridCol>
 			</GridRow>
 		</GridContainer>
@@ -15,30 +15,25 @@
 <script>
 export default {
 	name: 'NotFound',
+	computed: {
+		notFoundPath() {
+			const p = this.$route.params.pathMatch;
+			return '/' + (Array.isArray(p) ? p.join('/') : (p || ''));
+		}
+	},
 	mounted: function() {
 		this.$st.CurPage = this;
-		this.$nextTick(this.init);
 	},
-	// methods: {
-	// 	init: function() {
-	// 		gtag('event', '404', {
-	// 			'event_category' : 'error',
-	// 			'event_label' : this.$router.currentRoute.params.pathMatch
-	// 		});
-	// 	},
-	// 	gotoPage: function(path, from) {
-	// 		gtag('event', 'page_link', {
-	// 			'event_category' : 'engagement',
-	// 			'event_label' : from
-	// 		});
-	// 		this.$router.push(path);
-	// 	}
-	// }
+	methods: {
+		gotoPage: function(path) {
+			this.$router.push(path);
+		}
+	}
 }
 </script>
 
 <style lang="scss">
-@import "../../styles/_globals";
+@use "../../styles/_globals" as *;
 
 #page[data-page="NotFound"] {
 	#heroTitle {

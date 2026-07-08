@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../src/styles/_globals.scss";
+@use "../../styles/_globals" as *;
 
 h1,
 h2,

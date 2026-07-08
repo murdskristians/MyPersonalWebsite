@@ -1,6 +1,6 @@
-import HexNav from './HexNav'
-import PageScroller from './PageScroller'
-import DynamicBackground from './DynamicBackground'
+import HexNav from './HexNav.vue'
+import PageScroller from './PageScroller.vue'
+import DynamicBackground from './DynamicBackground.vue'
 
 export {
 	HexNav,
