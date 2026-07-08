@@ -72,11 +72,11 @@ export default {
 
 #st_mainNav {
 	position: fixed;
-	margin: 10px 40px 0 0;
+	margin: 10px 16px 0 0;
 	top: 0px;
 	right: 0px;
-	width: 100px;
-	height: 100px;
+	width: 76px;
+	height: 76px;
 
 	/*cursor: pointer;*/
 
@@ -93,6 +93,8 @@ export default {
 
 	@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
 		margin: 60px 50px 0 0;
+		width: 100px;
+		height: 100px;
 	}
 
 	> .nav_link {
