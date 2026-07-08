@@ -12,7 +12,7 @@
           <p id="heroSummary"  v-scroll-reveal.reset="{delay: 250}">
             Explore my portfolio to see the range of projects I've developed. If you have an idea or a challenge, let's connect. 
             I'm ready to help you build your next innovative and efficient digital solution. 
-            Tell me what you need, and let's make it happen!.
+            Tell me what you need, and let's make it happen!
           </p>
           <!--<div id="heroLinks" class="st_inlineHexLinks">
 						<a id="link_skills" class="st_hexButton" @click="scrollToSkills">skills</a>
@@ -236,6 +236,13 @@ export default {
 @use "../styles/_globals" as *;
 
 #page[data-page="About"] {
+  // Keep the hero legible over the animated background (especially on mobile,
+  // where the hero is the whole first screen).
+  #heroTitle,
+  #heroSubTitle,
+  #heroSummary {
+    text-shadow: 0 2px 18px rgba($black, 0.9), 0 0 4px rgba($black, 0.8);
+  }
   #heroTitle {
     @include font-bold;
     font-size: 2rem;
