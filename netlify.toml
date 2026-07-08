@@ -1,0 +1,13 @@
+[build]
+  command = "pnpm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Single-page app: vue-router uses HTML5 history mode, so every deep link
+# (e.g. /projects, /projects/yip) must fall back to index.html instead of 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
