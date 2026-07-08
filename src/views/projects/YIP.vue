@@ -153,7 +153,6 @@ export default {
 			const year = document.getElementById("yearAverage");
 
 			let total = 0;
-			let average = 0;
 			let count = 0;
 			this.yearData.forEach((month) => {
 				month.forEach((dayValue) => {
@@ -161,7 +160,7 @@ export default {
 					count++;
 				});
 			});
-			average = new Decimal(total).dividedBy(count);
+			const average = new Decimal(total).dividedBy(count);
 
 			year.innerHTML = `<span class="tooltip" data-value="${average.floor()}" data-tooltip="(${total}&nbsp;/&nbsp;${count})&nbsp;=&nbsp;${average.toFixed(2)}"></span>`;
 		},
@@ -393,7 +392,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../styles/_globals";
+@use "../../styles/_globals" as *;
 
 $yip-red: #B92727;
 $yip-orange: #B96C27;

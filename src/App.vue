@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'pinia'
+import { useUiStore } from '@/plugins/store'
 import { HexNav } from '@/components/page/'
 
 export default {
@@ -25,16 +27,15 @@ export default {
 		this.$nextTick(this.init);
 	},
 	computed: {
-		menuOpen() {
-			return this.$store.state.menuOpen;
-		}
+		...mapState(useUiStore, ['menuOpen'])
 	},
 	methods: {
+		...mapActions(useUiStore, ['setMenuOpen']),
 		init: function() {
 			//Close navigation if clicked outside of it
 			document.addEventListener('click', () => {
-				if (this.$store.state.menuOpen) {
-					this.$store.commit('menuOpen', false);
+				if (this.menuOpen) {
+					this.setMenuOpen(false);
 				}
 			});
 		}
@@ -43,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "styles/_globals";
+@use "styles/_globals" as *;
 
 *:not(input):not(textarea) {
 	outline: none !important;

@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+/* Fonts are loaded via <link> tags in index.html (avoids a render-blocking
+   @import being duplicated into every component's compiled CSS). */
 
 /*#region Colors*/
 $white: #F2F2F2;
