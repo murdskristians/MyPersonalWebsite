@@ -5,20 +5,23 @@
         <h2>{{ title }}</h2>
         <div class="options">
           <a
+            v-if="live"
             :id="id"
             class="st_hexButton"
-            :href="this.live"
+            :href="live"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Try!
           </a>
 
           <a
-            v-if="this.source"
-            :id="id"
+            v-if="source"
+            :id="id + '-src'"
             class="st_hexButton"
-            :href="'https://github.com/murdskristians/' + this.source"
+            :href="'https://github.com/murdskristians/' + source"
             target="_blank"
+            rel="noopener noreferrer"
           >
             GitHub
           </a>
