@@ -8,11 +8,10 @@
           <div class="projectSection">
             <h2 class="sectionTitle">AI &amp; LLM Applications</h2>
             <GridContainer>
-              <GridRow>
+              <GridRow class="projectGrid">
                 <project title="AI Studio" id="aiStudio" live="https://ai-studio-agent-creator.netlify.app" source="ai-studio"/>
                 <project title="BigQuery AI Chat" id="bigqueryChat" live="https://bigqueryaichat.netlify.app" source=""/>
                 <project title="SmartSuite AI Search" id="ragSearch" live="https://ragvectorsearchaichat.netlify.app" source=""/>
-                <project title="Database Chatbot" id="dbChat" live="https://databasechat.netlify.app" source=""/>
                 <project title="Weather Chatbot" id="weatherChat" live="https://wheatherchat.netlify.app" source="weather-chatbot"/>
                 <project title="Text-to-SQL Agent" id="text2sql" live="" source="text2sql-chat"/>
               </GridRow>
@@ -22,7 +21,7 @@
           <div class="projectSection">
             <h2 class="sectionTitle">Full-Stack &amp; Web Apps</h2>
             <GridContainer>
-              <GridRow>
+              <GridRow class="projectGrid">
                 <project title="E-Store Demo" id="eStore" live="https://e-store-demo-e1d0348a.netlify.app" source="e-store-demo"/>
                 <project title="BIM / 3D Viewer" id="bimViewer" live="https://3dbuildingviewer.netlify.app" source="bim-viewer"/>
                 <project title="Calendar (Module Federation)" id="calendarMF" live="https://calendarmodule.netlify.app" source="React-Calendar-module-federation"/>
@@ -36,7 +35,7 @@
           <div class="projectSection">
             <h2 class="sectionTitle">Client &amp; Production Work</h2>
             <GridContainer>
-              <GridRow>
+              <GridRow class="projectGrid">
                 <project title="Salons Arka" id="arka" live="https://export.salonsarka.lv" source=""/>
                 <project title="Atslēdznieks" id="keyMaster" live="https://atsledznieks.lv" source=""/>
                 <project title="Peso Paks" id="peso" live="https://pp.shopdev.lv" source=""/>
@@ -50,7 +49,7 @@
           <div class="projectSection">
             <h2 class="sectionTitle">Fundamentals &amp; Practice</h2>
             <GridContainer>
-              <GridRow>
+              <GridRow class="projectGrid">
                 <project title="Algorithm Visualization" id="algoViz" live="https://algoritmuvizualizacijasriks.netlify.app" source="bakalaurs"/>
                 <project title="Currency Selector" id="currencySelection" live="https://currencyselectiondemo.netlify.app" source="CurrencySelectionDemo"/>
                 <project title="Flex &amp; Grid Cheatsheet" id="cheatSheet" live="https://flexgridcheatsheet.netlify.app" source="Flex-Grid-Cheat-Sheet"/>
@@ -142,6 +141,24 @@ export default {
 
     @media only screen and (min-width: $breakpoint-m) {
       font-size: 2rem;
+    }
+  }
+
+  // Cards sit 3-up on desktop. Flex rather than the 12-column grid, because a
+  // grid always packs the last row into the leftmost tracks — a row of one or
+  // two cards would hug the left edge instead of staying centered.
+  .projectGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $grid-row-gap $grid-col-gap;
+
+    > .st_gridCol {
+      width: 100%;
+
+      @media only screen and (min-width: $breakpoint-m + $grid-gutters) {
+        width: calc((100% - #{$grid-col-gap * 2}) / 3);
+      }
     }
   }
 

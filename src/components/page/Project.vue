@@ -2,7 +2,7 @@
   <GridCol :small="12" :medium="4">
     <div class="comingSoonBlock st_inlineHexLinks">
       <GridCol :small="12" :medium="4">
-        <h2>{{ title }}</h2>
+        <h2 class="projectTitle" :title="title">{{ title }}</h2>
         <div class="options">
           <a
             v-if="live"
@@ -58,6 +58,17 @@ h4 {
   color: #f2f2f2;
   line-height: 1.2em;
   text-align: center;
+}
+// The card lays its column out as a flex row, so the column needs to be
+// allowed to shrink below its content width for the title to ellipse.
+.comingSoonBlock > .st_gridCol {
+  min-width: 0;
+}
+.projectTitle {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .options {
   display: flex;
