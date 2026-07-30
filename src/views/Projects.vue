@@ -13,7 +13,7 @@
                 <project title="BigQuery AI Chat" id="bigqueryChat" live="https://bigqueryaichat.netlify.app" source=""/>
                 <project title="SmartSuite AI Search" id="ragSearch" live="https://ragvectorsearchaichat.netlify.app" source=""/>
                 <project title="Weather Chatbot" id="weatherChat" live="https://wheatherchat.netlify.app" source="weather-chatbot"/>
-                <project title="Text-to-SQL Agent" id="text2sql" live="" source="text2sql-chat"/>
+                <project title="Text-to-SQL Agent" id="text2sql" live="https://text2sql-chat.netlify.app" source="text2sql-chat"/>
               </GridRow>
             </GridContainer>
           </div>
