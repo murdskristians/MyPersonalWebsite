@@ -33,17 +33,17 @@ export default {
 		return {
 			chartData: {
 				labels: [
-					"HTML / CSS / SCSS",
-					"JavaScript / Typescript",
-					"PHP",
-					"mySQL",
-					"Vue.js",
-					"Laravel",
-					"AWS"
+					"React / Vue.js",
+					"JavaScript",
+					"Python",
+					".NET / C#",
+					"AI / LLMs",
+					"PostgreSQL",
+					"Docker"
 				],
 				datasets: [
 					{
-						data: [90, 100, 80, 70, 75, 50, 40],
+						data: [90, 95, 85, 75, 85, 80, 75],
 						backgroundColor: [
 							"rgba(29,233,182, 0.9)",
 							"rgba(167,255,235, 0.9)",

@@ -9,7 +9,9 @@
       </div>
       <div class="bridge">
         <div class="col col_chart" v-scroll-reveal.reset="{ origin: 'left' }">
-          <chart />
+          <div class="chartWrap">
+            <chart />
+          </div>
         </div>
         <div class="col col_text" v-scroll-reveal.reset="{ origin: 'right' }">
           <dl>
@@ -44,31 +46,49 @@ export default {
 				{
 					name: "Front-end",
 					skillset: [
-						"HTML5",
-						"CSS (SASS & SCSS)",
-						"Bootstrap",
-						"Javascript",
-						"Typescript",
-						"Vue.js",
-						"jQuery",
+						"React / Vue.js",
+						"TypeScript",
+						"Web Components",
+						"MobX",
+						"Material UI",
 					],
 				},
 				{
 					name: "Back-end",
-					skillset: ["PHP", "Laravel", "mySQL"],
+					skillset: [
+						".NET / C#",
+						"Python",
+						"Node",
+						"FastAPI",
+						"gRPC",
+						"GraphQL",
+						"REST",
+					],
 				},
-				// {
-				// 	name: "CMS",
-				// 	skillset: ["October", "Wordpress"],
-				// },
 				{
-					name: "Cloud",
-					skillset: ["AWS", "Google"],
+					name: "AI & Data",
+					skillset: [
+						"LLMs",
+						"LangGraph",
+						"LangChain",
+						"RAG",
+						"PostgreSQL / pgvector",
+						"MongoDB",
+						"Firebase",
+						"RabbitMQ",
+						"Redis",
+					],
 				},
-				// {
-				// 	name: "E-Commerce",
-				// 	skillset: ["Woocommerce", "Magento"],
-				// },
+				{
+					name: "DevOps",
+					skillset: [
+						"Docker",
+						"Microservices",
+						"Keycloak",
+						"CI/CD",
+						"Electron",
+					],
+				},
 			],
 		};
 	},
@@ -99,10 +119,26 @@ export default {
   display: flex;
   flex-direction: column;
   &_chart {
-    flex: 0 0 66.6%;
+    // Full width when stacked (mobile); a 2/3 column when the bridge is a row.
+    flex: 0 0 auto;
+    width: 100%;
+    @media only screen and (min-width: 970px) {
+      flex: 0 0 66.6%;
+      width: auto;
+    }
   }
   &_flex {
     flex: 0 0 33.3%;
+  }
+}
+// Chart.js needs a sized parent (responsive + maintainAspectRatio:false); without
+// one the canvas overflows its column and only the first bar stays visible.
+.chartWrap {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  @media only screen and (min-width: 970px) {
+    height: 360px;
   }
 }
 .text-center {
