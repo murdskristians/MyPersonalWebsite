@@ -6,19 +6,6 @@
           <h1 id="heroTitle">Projects</h1>
 
           <div class="projectSection">
-            <h2 class="sectionTitle">AI &amp; LLM Applications</h2>
-            <GridContainer>
-              <GridRow class="projectGrid">
-                <project title="AI Studio" id="aiStudio" live="https://ai-studio-agent-creator.netlify.app" source="ai-studio"/>
-                <project title="BigQuery AI Chat" id="bigqueryChat" live="https://bigqueryaichat.netlify.app" source="BigQueryAIChat"/>
-                <project title="SmartSuite AI Search" id="ragSearch" live="https://ragvectorsearchaichat.netlify.app" source="RAG-VectorSearchAIChat"/>
-                <project title="Weather Chatbot" id="weatherChat" live="https://wheatherchat.netlify.app" source="weather-chatbot"/>
-                <project title="Text-to-SQL Agent" id="text2sql" live="https://text2sql-chat.netlify.app" source="text2sql-chat"/>
-              </GridRow>
-            </GridContainer>
-          </div>
-
-          <div class="projectSection">
             <h2 class="sectionTitle">Full-Stack &amp; Web Apps</h2>
             <GridContainer>
               <GridRow class="projectGrid">
@@ -33,15 +20,26 @@
           </div>
 
           <div class="projectSection">
+            <h2 class="sectionTitle">AI &amp; LLM Applications</h2>
+            <GridContainer>
+              <GridRow class="projectGrid">
+                <project title="AI Studio" id="aiStudio" live="https://ai-studio-agent-creator.netlify.app" source="ai-studio"/>
+                <project title="BigQuery AI Chat" id="bigqueryChat" live="https://bigqueryaichat.netlify.app" source="BigQueryAIChat"/>
+                <project title="SmartSuite AI Search" id="ragSearch" live="https://ragvectorsearchaichat.netlify.app" source="RAG-VectorSearchAIChat"/>
+                <project title="Weather Chatbot" id="weatherChat" live="https://wheatherchat.netlify.app" source="weather-chatbot"/>
+                <project title="Text-to-SQL Agent" id="text2sql" live="https://text2sql-chat.netlify.app" source="text2sql-chat"/>
+              </GridRow>
+            </GridContainer>
+          </div>
+
+          <div class="projectSection">
             <h2 class="sectionTitle">Client &amp; Production Work</h2>
             <GridContainer>
               <GridRow class="projectGrid">
+                <project title="Reltek" id="reltek" live="https://reltek.lv" source=""/>
                 <project title="Salons Arka" id="arka" live="https://export.salonsarka.lv" source=""/>
                 <project title="Atslēdznieks" id="keyMaster" live="https://atsledznieks.lv" source=""/>
-                <project title="Peso Paks" id="peso" live="https://pp.shopdev.lv" source=""/>
                 <project title="KP Pro" id="kppro" live="http://kppro.lv" source=""/>
-                <project title="Elements" id="elements" live="http://elements-inc.infinityfreeapp.com" source=""/>
-                <project title="Juicy Grow" id="juicy" live="http://juicy-grow.infinityfreeapp.com/?i=1" source=""/>
               </GridRow>
             </GridContainer>
           </div>
@@ -60,9 +58,6 @@
               </GridRow>
             </GridContainer>
           </div>
-
-          <h3 id="footerTitle">For more, check my GitHub account</h3>
-          <h3 id="footerTitle2">Happy coding!</h3>
         </GridCol>
       </GridRow>
     </GridContainer>
