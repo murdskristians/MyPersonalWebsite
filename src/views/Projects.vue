@@ -9,9 +9,9 @@
             <h2 class="sectionTitle">Full-Stack Web Apps</h2>
             <GridContainer>
               <GridRow class="projectGrid">
-                <project title="E-Store Demo" id="eStore" live="https://e-store-demo-e1d0348a.netlify.app" source="e-store-demo"/>
-                <project title="Calendar App" id="calendarMF" live="https://calendarmodule.netlify.app" source="React-Calendar-module-federation"/>
-                <project title="Firebase Chat" id="fbChat" live="https://module-chat.netlify.app" source="module-REACT-FIREBASE-CHAT-APP-POC"/>
+                <project title="E-Store Demo" id="eStore" live="https://e-store-demo-e1d0348a.netlify.app" source="e-store-demo" details="e-store"/>
+                <project title="Calendar App" id="calendarMF" live="https://calendarmodule.netlify.app" source="React-Calendar-module-federation" details="calendar"/>
+                <project title="Firebase Chat" id="fbChat" live="https://module-chat.netlify.app" source="module-REACT-FIREBASE-CHAT-APP-POC" details="firebase-chat"/>
               </GridRow>
             </GridContainer>
           </div>
@@ -20,11 +20,11 @@
             <h2 class="sectionTitle">AI &amp; LLM Applications</h2>
             <GridContainer>
               <GridRow class="projectGrid">
-                <project title="AI Studio" id="aiStudio" live="https://ai-studio-agent-creator.netlify.app" source="ai-studio"/>
-                <project title="BigQuery AI Chat" id="bigqueryChat" live="https://bigqueryaichat.netlify.app" source="BigQueryAIChat"/>
-                <project title="SmartSuite AI Search" id="ragSearch" live="https://ragvectorsearchaichat.netlify.app" source="RAG-VectorSearchAIChat"/>
-                <project title="Weather Chatbot" id="weatherChat" live="https://wheatherchat.netlify.app" source="weather-chatbot"/>
-                <project title="Text-to-SQL Agent" id="text2sql" live="https://text2sql-chat.netlify.app" source="text2sql-chat"/>
+                <project title="AI Studio" id="aiStudio" live="https://ai-studio-agent-creator.netlify.app" source="ai-studio" details="ai-studio"/>
+                <project title="BigQuery AI Chat" id="bigqueryChat" live="https://bigqueryaichat.netlify.app" source="BigQueryAIChat" details="bigquery-chat"/>
+                <project title="SmartSuite AI Search" id="ragSearch" live="https://ragvectorsearchaichat.netlify.app" source="RAG-VectorSearchAIChat" details="smartsuite-search"/>
+                <project title="Weather Chatbot" id="weatherChat" live="https://wheatherchat.netlify.app" source="weather-chatbot" details="weather-chatbot"/>
+                <project title="Text-to-SQL Agent" id="text2sql" live="https://text2sql-chat.netlify.app" source="text2sql-chat" details="text2sql"/>
               </GridRow>
             </GridContainer>
           </div>
@@ -33,11 +33,11 @@
             <h2 class="sectionTitle">Client &amp; Production Work</h2>
             <GridContainer>
               <GridRow class="projectGrid">
-                <project title="Reltek" id="reltek" live="https://reltek.lv" source=""/>
-                <project title="Salons Arka" id="arka" live="https://export.salonsarka.lv" source=""/>
-                <project title="Atslēdznieks" id="keyMaster" live="https://atsledznieks.lv" source=""/>
-                <project title="KP Pro" id="kppro" live="http://kppro.lv" source=""/>
-                <project title="Elements" id="elements" live="https://elementsincwebsite.netlify.app" source=""/>
+                <project title="Reltek" id="reltek" live="https://reltek.lv" source="" details="reltek"/>
+                <project title="Salons Arka" id="arka" live="https://export.salonsarka.lv" source="" details="salons-arka"/>
+                <project title="Atslēdznieks" id="keyMaster" live="https://atsledznieks.lv" source="" details="atsledznieks"/>
+                <project title="KP Pro" id="kppro" live="http://kppro.lv" source="" details="kp-pro"/>
+                <project title="Elements" id="elements" live="https://elementsincwebsite.netlify.app" source="" details="elements"/>
               </GridRow>
             </GridContainer>
           </div>
@@ -46,17 +46,17 @@
             <h2 class="sectionTitle">Fundamentals &amp; Practice</h2>
             <GridContainer>
               <GridRow class="projectGrid">
-                <project title="BIM / 3D Viewer" id="bimViewer" live="https://3dbuildingviewer.netlify.app" source="bim-viewer"/>
-                <project title="Interactive File Tree" id="fileTree" live="https://interactive-file-tree-kristians.netlify.app" source="interactive-file-tree"/>
-                <project title="Markdown Preview" id="mdPreview" live="https://markdown-preview-kristians.netlify.app" source="markdown-preview"/>
-                <project title="Algorithm Visualization" id="algoViz" live="https://algoritmuvizualizacijasriks.netlify.app" source="bakalaurs"/>
-                <project title="Tic, tac, toe game" id="ticTacToeGame" live="https://elastic-goldwasser-559708.netlify.app" source="Tic-Tac-Toe-Game"/>
-                <project title="The Snake game" id="snakeGame" live="https://upbeat-ptolemy-8e8db8.netlify.app" source="Snake-game"/>
-                <project title="Flex &amp; Grid Cheatsheet" id="cheatSheet" live="https://flexgridcheatsheet.netlify.app" source="Flex-Grid-Cheat-Sheet"/>
-                <project title="Animal Adoption" id="animalAdoption" live="https://admiring-panini-741142.netlify.app" source="AnimalAdoption"/>
-                <project title="Chip &amp; Dice game demo" id="chipDice" live="https://chipanddicegame.netlify.app" source="dice-chip-game"/>
-                <project title="Week for a student" id="weekAsStudent" live="https://webdesign.netlify.app" source="WeekAsStudent"/>
-                <project title="Currency Selector" id="currencySelection" live="https://currencyselectiondemo.netlify.app" source="CurrencySelectionDemo"/>
+                <project title="BIM / 3D Viewer" id="bimViewer" live="https://3dbuildingviewer.netlify.app" source="bim-viewer" details="bim-viewer"/>
+                <project title="Interactive File Tree" id="fileTree" live="https://interactive-file-tree-kristians.netlify.app" source="interactive-file-tree" details="file-tree"/>
+                <project title="Markdown Preview" id="mdPreview" live="https://markdown-preview-kristians.netlify.app" source="markdown-preview" details="markdown-preview"/>
+                <project title="Algorithm Visualization" id="algoViz" live="https://algoritmuvizualizacijasriks.netlify.app" source="bakalaurs" details="algorithm-viz"/>
+                <project title="Tic, tac, toe game" id="ticTacToeGame" live="https://elastic-goldwasser-559708.netlify.app" source="Tic-Tac-Toe-Game" details="tic-tac-toe"/>
+                <project title="The Snake game" id="snakeGame" live="https://upbeat-ptolemy-8e8db8.netlify.app" source="Snake-game" details="snake"/>
+                <project title="Flex &amp; Grid Cheatsheet" id="cheatSheet" live="https://flexgridcheatsheet.netlify.app" source="Flex-Grid-Cheat-Sheet" details="flex-grid"/>
+                <project title="Animal Adoption" id="animalAdoption" live="https://admiring-panini-741142.netlify.app" source="AnimalAdoption" details="animal-adoption"/>
+                <project title="Chip &amp; Dice game demo" id="chipDice" live="https://chipanddicegame.netlify.app" source="dice-chip-game" details="chip-dice"/>
+                <project title="Week for a student" id="weekAsStudent" live="https://webdesign.netlify.app" source="WeekAsStudent" details="week-student"/>
+                <project title="Currency Selector" id="currencySelection" live="https://currencyselectiondemo.netlify.app" source="CurrencySelectionDemo" details="currency-selector"/>
               </GridRow>
             </GridContainer>
           </div>

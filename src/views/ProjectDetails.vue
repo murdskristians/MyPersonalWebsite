@@ -1,21 +1,27 @@
 <template>
 	<div data-page="ProjectDetails">
-		<component id="project" v-if="(curProjectId !== '')" v-bind:is="curProjectId" />
+		<!-- YIP is a bespoke interactive project page; everything else is a
+		     data-driven case study rendered by the shared CaseStudy component. -->
+		<component v-if="curProjectId === 'yip'" id="project" v-bind:is="curProjectId" />
+		<CaseStudy v-else-if="caseStudy" id="project" :data="caseStudy" />
 	</div>
 </template>
 
 <script>
 import { defineAsyncComponent } from 'vue'
+import CaseStudy from './projects/CaseStudy.vue'
+import { caseStudies } from './projects/caseStudies.js'
 
 export default {
 	name: 'ProjectDetails',
 	components: {
+		CaseStudy,
 		'yip': defineAsyncComponent(() => import('./projects/YIP.vue'))
 	},
 	data() {
 		return {
-			allowedProjects: ["yip"],
-			curProjectId: ""
+			curProjectId: "",
+			caseStudy: null
 		}
 	},
 	mounted: function() {
@@ -33,8 +39,12 @@ export default {
 		},
 		setCurrentProject(id) {
 			let safeId = id.replace(/[^0-9a-zA-Z.,_-]+/g, "");
-			if (this.allowedProjects.includes(safeId)) {
-				this.curProjectId = safeId;
+			this.curProjectId = "";
+			this.caseStudy = null;
+			if (safeId === "yip") {
+				this.curProjectId = "yip";
+			} else if (caseStudies[safeId]) {
+				this.caseStudy = caseStudies[safeId];
 			} else {
 				this.$router.push({ name : 'NotFound', params : { pathMatch : ['projects', safeId] }});
 			}

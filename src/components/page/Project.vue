@@ -25,7 +25,17 @@
           >
             GitHub
           </a>
+
         </div>
+
+        <router-link
+          v-if="details"
+          :id="id + '-details'"
+          class="detailsLink"
+          :to="{ name: 'ProjectDetails', params: { id: details } }"
+        >
+          View case study &rarr;
+        </router-link>
       </GridCol>
     </div>
   </GridCol>
@@ -41,7 +51,9 @@ export default {
 		title: String,
 		id: String,
 		live: String,
-		source: String
+		source: String,
+		// When set, renders a "Details" button linking to /projects/<details>.
+		details: String
 	},
 };
 </script>
@@ -110,6 +122,33 @@ h4 {
 
   .st_hexButton {
     margin: 20px 12px;
+  }
+}
+
+// Internal case-study link — deliberately styled apart from the external Try /
+// GitHub hexes, and a third hex won't fit the card width anyway.
+.detailsLink {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 22px;
+  padding: 0.5rem 1.15rem;
+
+  color: #64ffda;
+  font-size: 0.85rem;
+  text-decoration: none;
+
+  border: 1px solid rgba(100, 255, 218, 0.4);
+  border-radius: 6px;
+
+  transition: background 0.18s ease, transform 0.18s ease;
+
+  &:hover {
+    background: rgba(100, 255, 218, 0.12);
+    transform: translateY(-1px);
+  }
+  &:focus-visible {
+    outline: 2px solid #64ffda;
+    outline-offset: 3px;
   }
 }
 </style>
