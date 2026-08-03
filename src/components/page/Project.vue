@@ -72,7 +72,7 @@ h4 {
 }
 .options {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 .st_hexButton {
   display: inline-block;
@@ -109,7 +109,7 @@ h4 {
   justify-content: center;
 
   .st_hexButton {
-    margin: 20px -10px;
+    margin: 20px 12px;
   }
 }
 </style>

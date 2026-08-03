@@ -6,14 +6,11 @@
           <h1 id="heroTitle">Projects</h1>
 
           <div class="projectSection">
-            <h2 class="sectionTitle">Full-Stack &amp; Web Apps</h2>
+            <h2 class="sectionTitle">Full-Stack Web Apps</h2>
             <GridContainer>
               <GridRow class="projectGrid">
                 <project title="E-Store Demo" id="eStore" live="https://e-store-demo-e1d0348a.netlify.app" source="e-store-demo"/>
-                <project title="BIM / 3D Viewer" id="bimViewer" live="https://3dbuildingviewer.netlify.app" source="bim-viewer"/>
-                <project title="Calendar (Module Federation)" id="calendarMF" live="https://calendarmodule.netlify.app" source="React-Calendar-module-federation"/>
-                <project title="Interactive File Tree" id="fileTree" live="https://interactive-file-tree-kristians.netlify.app" source="interactive-file-tree"/>
-                <project title="Markdown Preview" id="mdPreview" live="https://markdown-preview-kristians.netlify.app" source="markdown-preview"/>
+                <project title="Calendar App" id="calendarMF" live="https://calendarmodule.netlify.app" source="React-Calendar-module-federation"/>
                 <project title="Firebase Chat" id="fbChat" live="https://module-chat.netlify.app" source="module-REACT-FIREBASE-CHAT-APP-POC"/>
               </GridRow>
             </GridContainer>
@@ -40,6 +37,7 @@
                 <project title="Salons Arka" id="arka" live="https://export.salonsarka.lv" source=""/>
                 <project title="Atslēdznieks" id="keyMaster" live="https://atsledznieks.lv" source=""/>
                 <project title="KP Pro" id="kppro" live="http://kppro.lv" source=""/>
+                <project title="Elements" id="elements" live="https://elementsincwebsite.netlify.app" source=""/>
               </GridRow>
             </GridContainer>
           </div>
@@ -48,13 +46,17 @@
             <h2 class="sectionTitle">Fundamentals &amp; Practice</h2>
             <GridContainer>
               <GridRow class="projectGrid">
+                <project title="BIM / 3D Viewer" id="bimViewer" live="https://3dbuildingviewer.netlify.app" source="bim-viewer"/>
+                <project title="Interactive File Tree" id="fileTree" live="https://interactive-file-tree-kristians.netlify.app" source="interactive-file-tree"/>
+                <project title="Markdown Preview" id="mdPreview" live="https://markdown-preview-kristians.netlify.app" source="markdown-preview"/>
                 <project title="Algorithm Visualization" id="algoViz" live="https://algoritmuvizualizacijasriks.netlify.app" source="bakalaurs"/>
-                <project title="Currency Selector" id="currencySelection" live="https://currencyselectiondemo.netlify.app" source="CurrencySelectionDemo"/>
-                <project title="Flex &amp; Grid Cheatsheet" id="cheatSheet" live="https://flexgridcheatsheet.netlify.app" source="Flex-Grid-Cheat-Sheet"/>
-                <project title="Week for a student" id="weekAsStudent" live="https://webdesign.netlify.app" source="WeekAsStudent"/>
-                <project title="Chip &amp; Dice game demo" id="chipDice" live="https://chipanddicegame.netlify.app" source="dice-chip-game"/>
-                <project title="The Snake game" id="snakeGame" live="https://upbeat-ptolemy-8e8db8.netlify.app" source="Snake-game"/>
                 <project title="Tic, tac, toe game" id="ticTacToeGame" live="https://elastic-goldwasser-559708.netlify.app" source="Tic-Tac-Toe-Game"/>
+                <project title="The Snake game" id="snakeGame" live="https://upbeat-ptolemy-8e8db8.netlify.app" source="Snake-game"/>
+                <project title="Flex &amp; Grid Cheatsheet" id="cheatSheet" live="https://flexgridcheatsheet.netlify.app" source="Flex-Grid-Cheat-Sheet"/>
+                <project title="Animal Adoption" id="animalAdoption" live="https://admiring-panini-741142.netlify.app" source="AnimalAdoption"/>
+                <project title="Chip &amp; Dice game demo" id="chipDice" live="https://chipanddicegame.netlify.app" source="dice-chip-game"/>
+                <project title="Week for a student" id="weekAsStudent" live="https://webdesign.netlify.app" source="WeekAsStudent"/>
+                <project title="Currency Selector" id="currencySelection" live="https://currencyselectiondemo.netlify.app" source="CurrencySelectionDemo"/>
               </GridRow>
             </GridContainer>
           </div>
@@ -183,7 +185,7 @@ export default {
   }
   .options {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
   }
   .st_hexButton {
     display: inline-block;
@@ -219,7 +221,7 @@ export default {
     justify-content: center;
 
     .st_hexButton {
-      margin: 20px -10px;
+      margin: 20px 12px;
     }
   }
 }
