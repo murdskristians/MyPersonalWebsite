@@ -8,11 +8,11 @@
       <GridRow>
         <GridCol :small="12" :start="1" :medium="6" :mediumStart="4">
           <h1 id="heroTitle" v-scroll-reveal.reset>Kristiāns Murds</h1>
-          <h2 id="heroSubTitle"  v-scroll-reveal.reset="{delay: 150}">Full-stack web developer</h2>
+          <h2 id="heroSubTitle"  v-scroll-reveal.reset="{delay: 150}">Full-Stack &amp; AI Developer</h2>
           <p id="heroSummary"  v-scroll-reveal.reset="{delay: 250}">
-            Explore my portfolio to see the range of projects I've developed. If you have an idea or a challenge, let's connect. 
-            I'm ready to help you build your next innovative and efficient digital solution. 
-            Tell me what you need, and let's make it happen!
+            I build full-stack products and the AI that powers them — React &amp; TypeScript
+            front-ends, .NET &amp; Python services, and LLM systems like LangGraph, RAG and agents.
+            Currently open to new opportunities.
           </p>
           <!--<div id="heroLinks" class="st_inlineHexLinks">
 						<a id="link_skills" class="st_hexButton" @click="scrollToSkills">skills</a>
@@ -27,6 +27,53 @@
     <PageScroller @click="scrollToSkills" />
 
     <skills id="skillsBlock" />
+
+    <GridContainer id="featuredBlock">
+      <GridRow>
+        <GridCol :small="12" :medium="10" :mediumStart="2">
+          <h1 class="st_sectionHeader" v-scroll-reveal.reset="{ origin: 'left' }">Featured Work</h1>
+          <div class="featuredGrid">
+            <router-link
+              v-for="p in featured"
+              :key="p.slug"
+              class="featuredCard"
+              :to="{ name: 'ProjectDetails', params: { id: p.slug } }"
+            >
+              <div class="featuredTags">
+                <span v-for="t in p.tags" :key="t" class="featuredTag">{{ t }}</span>
+              </div>
+              <h2 class="featuredTitle">{{ p.title }}</h2>
+              <p class="featuredLede">{{ p.lede }}</p>
+              <span class="featuredMore">View case study →</span>
+            </router-link>
+          </div>
+          <div class="featuredAll">
+            <a class="seeAll" @click="gotoPage('/projects')">See all projects →</a>
+          </div>
+        </GridCol>
+      </GridRow>
+    </GridContainer>
+
+    <GridContainer id="experienceBlock">
+      <GridRow>
+        <GridCol :small="12" :medium="10" :mediumStart="2">
+          <h1 class="st_sectionHeader" v-scroll-reveal.reset="{ origin: 'left' }">Experience</h1>
+          <div class="expList">
+            <div class="expItem" v-for="job in experience" :key="job.company">
+              <div class="expPeriod">{{ job.period }}</div>
+              <h2 class="expRole">
+                {{ job.role }} <span class="expCompany">· {{ job.company }}</span>
+              </h2>
+              <div class="expLoc" v-if="job.location">{{ job.location }}</div>
+              <ul class="expBullets">
+                <li v-for="(b, i) in job.bullets" :key="i">{{ b }}</li>
+              </ul>
+              <div class="expTech">{{ job.tech }}</div>
+            </div>
+          </div>
+        </GridCol>
+      </GridRow>
+    </GridContainer>
 
 
     <!-- <PageScroller :hideOnMobile="true" @click="scrollToProjects" />
@@ -151,6 +198,7 @@
 <script>
 import PageScroller from "@/components/page/PageScroller.vue";
 import Skills from "@/components/page/Skills.vue";
+import { caseStudies } from "@/views/projects/caseStudies.js";
 
 export default {
 	name: "About",
@@ -162,7 +210,65 @@ export default {
 		return {
 			frontEndActive: true,
 			backEndActive: false,
+			// Experience — mirrors the LinkedIn profile (titles, companies, dates).
+			experience: [
+				{
+					period: "Jan 2026 – Aug 2026",
+					role: "Web Developer",
+					company: "Epic5",
+					location: "Riga, Latvia · Remote",
+					bullets: [
+						"Built micro-frontend apps (team chat, contacts, company structure, AI assistant) in React + TypeScript as self-contained Web Components hosted by a central shell — migrating the front end from Module Federation.",
+						"Developed backend microservices in ASP.NET Core (.NET 9), containerized with Docker, over gRPC and an event-driven RabbitMQ bus; PostgreSQL, Redis and Keycloak auth.",
+						"Built the Python AI service with LangGraph & FastAPI — reusable agent 'factories', retrieval-augmented generation (pgvector), and pluggable LLMs (Anthropic, OpenAI, Gemini, Groq).",
+					],
+					tech: "React · TypeScript · .NET 9 · Python · LangGraph · Docker · PostgreSQL",
+				},
+				{
+					period: "Jul 2024 – Dec 2025",
+					role: "Web Developer",
+					company: "HotCode",
+					location: "Remote",
+					bullets: [
+						"Built React + TypeScript front-ends (MobX, Material UI) for a suite of web and Electron desktop apps: an AI chat, a contacts manager, and a collaborative spreadsheet.",
+						"Implemented real-time updates with SignalR, a virtualized grid for large datasets, and optimistic inserts.",
+						"Led the data-layer migration from MongoDB to Firebase, then identified GDPR / data-residency gaps that shaped the team's later architecture.",
+					],
+					tech: "React · TypeScript · MobX · SignalR · Firebase · Electron",
+				},
+				{
+					period: "Aug 2021 – Apr 2025",
+					role: "Full-Stack Web Developer",
+					company: "Sia Reltek · Freelance",
+					location: "Riga, Latvia · Hybrid",
+					bullets: [
+						"Delivered end-to-end web development for clients across retail, manufacturing and services — Salons Arka, Atslēdznieks, Elements, Reltek and more.",
+						"Built custom online stores and CMS-driven sites from scratch with PHP/MySQL and Shopify Liquid — multilingual (LV/EN) admin panels and EveryPay payment integration.",
+					],
+					tech: "PHP · MySQL · Shopify Liquid · JavaScript · SCSS",
+				},
+				{
+					period: "Jan 2019 – May 2019",
+					role: "Programmer Trainee",
+					company: "Mintos",
+					location: "Riga, Latvia",
+					bullets: [
+						"Front-end trainee building responsive, user-friendly UIs with Vue.js and modern web technologies.",
+						"Optimized performance against Google PageSpeed / Lighthouse audits and deployed to AWS.",
+					],
+					tech: "Vue.js · JavaScript · TypeScript · AWS",
+				},
+			],
 		};
+	},
+	computed: {
+		// The three projects surfaced on the home page. Edit these slugs to change
+		// what's featured — they read from the shared case-study data.
+		featured: function() {
+			return ["bim-viewer", "text2sql", "salons-arka"]
+				.map((slug) => caseStudies[slug])
+				.filter(Boolean);
+		},
 	},
 	mounted: function() {
 		this.$st.CurPage = this;
@@ -270,6 +376,154 @@ export default {
   }
   #heroLinks {
     margin-top: 20px;
+  }
+
+  #featuredBlock {
+    padding: 8vh 0 4vh;
+  }
+  .featuredGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 4vh;
+  }
+  .featuredCard {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 260px;
+    max-width: 360px;
+    padding: 1.5rem;
+
+    text-align: left;
+    text-decoration: none;
+    color: #e9eef3;
+
+    background: rgba(40, 48, 58, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+
+    transition: transform 0.18s ease, border-color 0.18s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgba(100, 255, 218, 0.5);
+    }
+    &:focus-visible {
+      outline: 2px solid #64ffda;
+      outline-offset: 3px;
+    }
+  }
+  .featuredTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.85rem;
+  }
+  .featuredTag {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #64ffda;
+    border: 1px solid rgba(100, 255, 218, 0.35);
+    border-radius: 999px;
+    padding: 0.2rem 0.55rem;
+  }
+  .featuredTitle {
+    margin: 0;
+    font-size: 1.3rem;
+    text-align: left;
+  }
+  .featuredLede {
+    flex-grow: 1;
+    margin: 0.6rem 0 1.2rem;
+    font-size: 0.92rem;
+    color: #9aa7b4;
+    text-align: left;
+  }
+  .featuredMore {
+    color: #64ffda;
+    font-size: 0.85rem;
+  }
+  .featuredAll {
+    margin-top: 3vh;
+    text-align: center;
+  }
+  .seeAll {
+    color: #9aa7b4;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+
+    &:hover {
+      color: #64ffda;
+    }
+  }
+
+  #experienceBlock {
+    padding: 8vh 0 4vh;
+  }
+  .expList {
+    margin-top: 4vh;
+  }
+  .expItem {
+    position: relative;
+    padding: 0 0 2.4rem 1.8rem;
+    border-left: 2px solid rgba(100, 255, 218, 0.25);
+
+    &:last-child {
+      padding-bottom: 0;
+      border-left-color: transparent;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #64ffda;
+      box-shadow: 0 0 12px rgba(100, 255, 218, 0.6);
+    }
+  }
+  .expPeriod {
+    margin-bottom: 0.4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #64ffda;
+  }
+  .expRole {
+    margin: 0;
+    font-size: 1.25rem;
+    text-align: left;
+  }
+  .expCompany {
+    color: #9aa7b4;
+    font-weight: 400;
+  }
+  .expLoc {
+    margin-top: 0.3rem;
+    font-size: 0.78rem;
+    color: #7f8c9a;
+  }
+  .expBullets {
+    margin: 0.9rem 0 0;
+    padding-left: 1.1rem;
+    text-align: left;
+
+    > li {
+      margin-bottom: 0.45rem;
+      font-size: 0.95rem;
+      color: #cdd6df;
+    }
+  }
+  .expTech {
+    margin-top: 0.9rem;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #7f8c9a;
   }
 
   #backToTop {
