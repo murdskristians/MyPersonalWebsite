@@ -77,6 +77,8 @@
 					</section>
 
 					<router-link class="backLink" :to="{ name: 'Projects' }">← All projects</router-link>
+
+					<site-footer />
 				</GridCol>
 			</GridRow>
 		</GridContainer>
@@ -84,8 +86,13 @@
 </template>
 
 <script>
+import { SiteFooter } from "@/components/page/";
+
 export default {
 	name: "CaseStudy",
+	components: {
+		SiteFooter
+	},
 	props: {
 		data: {
 			type: Object,

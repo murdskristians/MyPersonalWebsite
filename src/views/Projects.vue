@@ -60,6 +60,7 @@
               </GridRow>
             </GridContainer>
           </div>
+          <site-footer />
         </GridCol>
       </GridRow>
     </GridContainer>
@@ -68,11 +69,13 @@
 
 <script>
 import Project from '@/components/page/Project.vue'
+import { SiteFooter } from '@/components/page/'
 
 export default {
 	name: "Projects",
 	components: {
-		Project
+		Project,
+		SiteFooter
 	},
 	mounted: function() {
 		this.$st.CurPage = this;
