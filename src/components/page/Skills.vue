@@ -170,6 +170,24 @@ export default {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+// Each category is a <div> wrapping its <dt> + <dd>, so a column gap here
+// separates one group from the next — previously "Back-end" sat directly on
+// the Front-end badges with nothing between them.
+dl {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15em;
+  margin: 0;
+}
+dt {
+  margin-bottom: 0.5em;
+}
+// The dl's default bottom margin is zeroed above, which left this note sitting
+// directly on the last row of badges.
+small {
+  display: block;
+  margin-top: 1.15em;
+}
 dd {
   display: flex;
   flex-wrap: wrap;
