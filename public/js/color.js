@@ -7,6 +7,31 @@ var colors = new Array(
   [21,8,17],
   [18,94,138]);
 
+var MAX_BACKGROUND_LUMINANCE = 0.15;
+
+function relativeLuminance(rgb) {
+  var channels = rgb.map(function (value) {
+    var v = value / 255;
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+}
+
+function capLuminance(rgb, max) {
+  var out = rgb.slice();
+  var guard = 0;
+  while (relativeLuminance(out) > max && guard++ < 100) {
+    out = out.map(function (value) {
+      return Math.max(0, Math.round(value * 0.94));
+    });
+  }
+  return out;
+}
+
+colors = colors.map(function (rgb) {
+  return capLuminance(rgb, MAX_BACKGROUND_LUMINANCE);
+});
+
 
 var step = 0;
 //color table indices for: 

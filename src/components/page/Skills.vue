@@ -105,7 +105,11 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   gap: 5%;
-  @media only screen and (min-width: 970px){
+  // Side by side only once there is genuinely room for both. At the old 970px
+  // the badge column was squeezed to ~220px, which is barely wider than a
+  // single badge ("PostgreSQL / pgvector" alone is ~140px) and left the labels
+  // clipping. Below this the two stack and each gets the full width.
+  @media only screen and (min-width: 1100px){
     flex-direction: row;
   }
 }
@@ -118,17 +122,28 @@ export default {
 .col {
   display: flex;
   flex-direction: column;
+  // Without this a flex item's automatic minimum size is its content, so a
+  // column can refuse to shrink and push its contents past the container.
+  min-width: 0;
   &_chart {
-    // Full width when stacked (mobile); a 2/3 column when the bridge is a row.
+    // Full width when stacked; a wide column when the bridge is a row.
     flex: 0 0 auto;
     width: 100%;
-    @media only screen and (min-width: 970px) {
-      flex: 0 0 66.6%;
+    @media only screen and (min-width: 1100px) {
+      flex: 1 1 60%;
       width: auto;
     }
   }
-  &_flex {
-    flex: 0 0 33.3%;
+  // This used to be `&_flex`, which compiled to .col_flex — a class the
+  // template never uses (it renders `col col_text`). So the badge column had
+  // no width rule at all and was sized purely by its content.
+  &_text {
+    flex: 0 0 auto;
+    width: 100%;
+    @media only screen and (min-width: 1100px) {
+      flex: 1 1 40%;
+      width: auto;
+    }
   }
 }
 // Chart.js needs a sized parent (responsive + maintainAspectRatio:false); without
@@ -137,13 +152,15 @@ export default {
   position: relative;
   width: 100%;
   height: 300px;
-  @media only screen and (min-width: 970px) {
+  @media only screen and (min-width: 1100px) {
     height: 360px;
   }
 }
 .text-center {
   text-align: center;
-  width: 100vw;
+  // 100vw ignored the container's 10% side margins, so the heading block ran
+  // ~10vw past the right edge — only hidden because an ancestor clips overflow.
+  width: 100%;
   margin-bottom: 4vw;
 }
 .line {
@@ -153,13 +170,20 @@ export default {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45em 0.4em;
+  margin-left: 0;
+}
 .badge {
   color: #263238;
-  padding-right: 0.6em;
-  padding-left: 0.6em;
+  // The padding-left/right pair that used to sit here was overridden by the
+  // padding shorthand three lines below, so the intended horizontal padding
+  // never applied and the pills looked cramped. Folded into one declaration.
+  padding: 0.32em 0.7em;
   border-radius: 10rem;
   display: inline-block;
-  padding: 0.25em 0.4em;
   font-size: 75%;
   font-weight: 700;
   line-height: 1;
