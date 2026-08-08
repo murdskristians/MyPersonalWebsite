@@ -1,8 +1,8 @@
 <template>
 	<div class="st_pageScroller" @click="$emit('click')" :class="{ flip : flip, hideOnMobile : hideOnMobile }">
-		<img class="carrot" src="../../assets/images/icons/carrot-down.svg">
-		<img class="carrot" src="../../assets/images/icons/carrot-down.svg">
-		<img class="carrot" src="../../assets/images/icons/carrot-down.svg">
+		<img class="carrot" src="../../assets/images/icons/carrot-down.svg" alt="">
+		<img class="carrot" src="../../assets/images/icons/carrot-down.svg" alt="">
+		<img class="carrot" src="../../assets/images/icons/carrot-down.svg" alt="">
 	</div>
 </template>
 

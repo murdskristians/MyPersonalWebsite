@@ -76,7 +76,7 @@
 						</div>
 					</section>
 
-					<router-link class="backLink" :to="{ name: 'Projects' }">← All projects</router-link>
+					<router-link class="backLink" :to="{ name: 'Projects' }">← Back to projects</router-link>
 
 					<site-footer />
 				</GridCol>

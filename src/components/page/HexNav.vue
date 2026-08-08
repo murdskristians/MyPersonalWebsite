@@ -3,8 +3,8 @@
 		<a id="st_mainNav-about" @click="gotoPage('/', 'about')" class="nav_link">about</a>
 		<a id="st_mainNav-projects" @click="gotoPage('/projects', 'projects')" class="nav_link">projects</a>
 		<!-- <a id="st_mainNav-blog" @click="gotoPage('/blog', 'blog')" class="nav_link">blog</a> -->
-		<img class="preloadHoverImage" src='../../assets/images/icons/menu_hover.png'>
-		<img class="preloadHoverImage" src='../../assets/images/icons/link-hex_hover.png'>
+		<img class="preloadHoverImage" src='../../assets/images/icons/menu_hover.png' alt="">
+		<img class="preloadHoverImage" src='../../assets/images/icons/link-hex_hover.png' alt="">
 	</nav>
 </template>
 

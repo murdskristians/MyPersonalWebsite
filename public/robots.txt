@@ -1,0 +1,6 @@
+# Without this file the catch-all redirect in netlify.toml (/* -> /index.html)
+# answers /robots.txt with the HTML app, which crawlers cannot parse.
+User-agent: *
+Allow: /
+
+Sitemap: https://kristiansmurds.netlify.app/sitemap.xml

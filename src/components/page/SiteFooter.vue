@@ -6,6 +6,14 @@
 				Kristiāns Murds <span class="footerRole">· Full-Stack &amp; AI Developer</span>
 			</div>
 			<nav class="footerLinks">
+				<a
+					class="footerCv"
+					:href="cvUrl"
+					download
+					type="application/pdf"
+					aria-label="Download CV as PDF"
+					>Download CV ↓</a
+				>
 				<a href="mailto:murdskristians@gmail.com">Email</a>
 				<a href="https://github.com/murdskristians" target="_blank" rel="noopener">GitHub</a>
 				<a
@@ -21,7 +29,12 @@
 
 <script>
 export default {
-	name: "SiteFooter"
+	name: "SiteFooter",
+	data() {
+		return {
+			cvUrl: import.meta.env.BASE_URL + "Kristians-Murds-CV.pdf"
+		};
+	}
 };
 </script>
 
@@ -80,6 +93,21 @@ export default {
 		&:hover,
 		&:focus-visible {
 			color: #64ffda;
+		}
+	}
+
+	// The CV is the action worth drawing the eye on these pages, so it reads as
+	// a button rather than another plain link.
+	> a.footerCv {
+		padding: 0.35rem 0.9rem;
+		color: #64ffda;
+		border: 1px solid rgba(100, 255, 218, 0.5);
+		border-radius: 999px;
+
+		&:hover,
+		&:focus-visible {
+			background: rgba(100, 255, 218, 0.14);
+			border-color: #64ffda;
 		}
 	}
 }

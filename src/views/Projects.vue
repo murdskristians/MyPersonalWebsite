@@ -9,9 +9,9 @@
             <h2 class="sectionTitle">Full-Stack Web Apps</h2>
             <GridContainer>
               <GridRow class="projectGrid">
-                <project title="E-Store Demo" id="eStore" live="https://e-store-demo-e1d0348a.netlify.app" source="e-store-demo" details="e-store"/>
                 <project title="Calendar App" id="calendarMF" live="https://calendarmodule.netlify.app" source="React-Calendar-module-federation" details="calendar"/>
                 <project title="Firebase Chat" id="fbChat" live="https://module-chat.netlify.app" source="module-REACT-FIREBASE-CHAT-APP-POC" details="firebase-chat"/>
+                <project title="E-Store Demo" id="eStore" live="https://e-store-demo-e1d0348a.netlify.app" source="e-store-demo" details="e-store"/>
               </GridRow>
             </GridContainer>
           </div>

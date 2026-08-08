@@ -14,6 +14,17 @@
             front-ends, .NET &amp; Python services, and LLM systems like LangGraph, RAG and agents.
             Currently open to new opportunities.
           </p>
+          <div id="heroCta" v-scroll-reveal.reset="{delay: 350}">
+            <a
+              class="cvButton"
+              :href="cvUrl"
+              download
+              type="application/pdf"
+              aria-label="Download CV as PDF"
+            >
+              Download CV <span class="cvIcon" aria-hidden="true">↓</span>
+            </a>
+          </div>
           <!--<div id="heroLinks" class="st_inlineHexLinks">
 						<a id="link_skills" class="st_hexButton" @click="scrollToSkills">skills</a>
 						<a id="link_projects" class="st_hexButton" @click="scrollToProjects">projects</a>
@@ -48,7 +59,9 @@
             </router-link>
           </div>
           <div class="featuredAll">
-            <a class="seeAll" @click="gotoPage('/projects')">See all projects →</a>
+            <!-- A router-link so this emits a real href: as a bare <a @click>
+                 it was invisible to crawlers and unusable by keyboard. -->
+            <router-link class="seeAll" :to="{ name: 'Projects' }">See all projects →</router-link>
           </div>
         </GridCol>
       </GridRow>
@@ -139,7 +152,10 @@
       </GridRow>
       <GridRow>
         <GridCol :small="10" :start="2" :medium="6" :mediumStart="4">
-          <h3 v-scroll-reveal.reset="{delay: 150, origin: 'right'}">I'm always up for hearing about interesting opportunities.</h3>
+          <!-- h2, not h3: the section above it is an h1, and skipping a level
+               breaks the heading outline screen readers navigate by. The class
+               keeps the original visual size. -->
+          <h2 class="contactLead" v-scroll-reveal.reset="{delay: 150, origin: 'right'}">I'm always up for hearing about interesting opportunities.</h2>
         </GridCol>
       </GridRow>
       <GridRow>
@@ -183,6 +199,15 @@
             target="_blank"
             >github</a
           >
+          <a
+            id="link_cv"
+            class="st_hexButton"
+            :href="cvUrl"
+            download
+            type="application/pdf"
+            aria-label="Download CV as PDF"
+            >cv</a
+          >
         </GridCol>
       </GridRow>
     </GridContainer>
@@ -208,6 +233,10 @@ export default {
 	},
 	data() {
 		return {
+			// Served from public/, so it lands at the site root untouched by the
+			// bundler. BASE_URL keeps it correct if the site is ever hosted
+			// under a sub-path.
+			cvUrl: import.meta.env.BASE_URL + "Kristians-Murds-CV.pdf",
 			frontEndActive: true,
 			backEndActive: false,
 			// Experience — mirrors the LinkedIn profile (titles, companies, dates).
@@ -378,6 +407,38 @@ export default {
     margin-top: 20px;
   }
 
+  #heroCta {
+    margin-top: 32px;
+  }
+  .cvButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.9rem;
+
+    color: #64ffda;
+    font-size: 1rem;
+    text-decoration: none;
+    white-space: nowrap;
+
+    background: rgba(100, 255, 218, 0.08);
+    border: 1px solid rgba(100, 255, 218, 0.55);
+    border-radius: 999px;
+
+    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(100, 255, 218, 0.18);
+      border-color: #64ffda;
+      transform: translateY(-2px);
+    }
+  }
+  .cvIcon {
+    font-size: 1.05em;
+    line-height: 1;
+  }
+
   #featuredBlock {
     padding: 8vh 0 4vh;
   }
@@ -506,7 +567,12 @@ export default {
   .expLoc {
     margin-top: 0.3rem;
     font-size: 0.78rem;
-    color: #7f8c9a;
+    // #7f8c9a scored 4.41:1 on this background — just under the 4.5:1 minimum
+    // for text this size. Lifted to ~5.1:1.
+    color: #8a97a5;
+  }
+  .contactLead {
+    font-size: 1.5rem;
   }
   .expBullets {
     margin: 0.9rem 0 0;
@@ -523,7 +589,8 @@ export default {
     margin-top: 0.9rem;
     font-size: 0.8rem;
     font-style: italic;
-    color: #7f8c9a;
+    // Same contrast lift as .expLoc above.
+    color: #8a97a5;
   }
 
   #backToTop {

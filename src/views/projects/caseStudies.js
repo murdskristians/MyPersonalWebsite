@@ -11,7 +11,7 @@ export const caseStudies = {
 			"An adaptive e-commerce storefront whose home page is assembled live by an AI agent — different for every visitor, streamed in as it's generated.",
 		live: "https://e-store-demo-e1d0348a.netlify.app",
 		source: "e-store-demo",
-		meta: { role: "Solo — full-stack", type: "Personal build", status: "Live in production" },
+		meta: { role: "Solo — full-stack", type: "Personal project", status: "Live in production" },
 		overview: [
 			"Most storefronts serve the same landing page to everyone. This one doesn't. Instead of a fixed homepage, an AI agent composes the landing sections per visitor — reading their browsing behavior and returning a tailored layout that streams in section by section over a WebSocket.",
 			"It's a small demo with a real spine behind it: a Python API, an async database, an AI orchestration layer, and the production plumbing to keep all of it alive on free-tier hosting."
