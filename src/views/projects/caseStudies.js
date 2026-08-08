@@ -346,7 +346,7 @@ export const caseStudies = {
 		lede: "A large custom-built PHP/MySQL e-commerce platform for a Latvian furniture supplier, with a bespoke admin panel, multilingual catalog and integrated card payments.",
 		live: "https://export.salonsarka.lv",
 		source: "",
-		meta: { role: "Freelance — full-stack", type: "Client project", status: "Live in production" },
+		meta: { role: "Solo — full-stack", type: "Client project", status: "Live in production" },
 		overview: [
 			"Salons Arka is a production e-commerce site built from scratch in plain PHP on a MySQL/MariaDB database of roughly 62 tables. It covers the full storefront — product catalog with categories, subcategories, collections and configurable products, cart and checkout, customer accounts, blog, project references and equipment rental — served bilingually in Latvian and English.",
 			"The whole site is content-managed through a custom-written admin panel rather than an off-the-shelf CMS, giving the client control over products, pricing, media, menus, SEO and orders without touching code."
@@ -376,7 +376,7 @@ export const caseStudies = {
 		lede: "A modern, trilingual marketing and service-catalog site for a Latvian locksmith and security company, built with Next.js and TypeScript.",
 		live: "https://atsledznieks.lv",
 		source: "",
-		meta: { role: "Freelance — full-stack", type: "Client project", status: "Live in production" },
+		meta: { role: "Solo — full-stack", type: "Client project", status: "Live in production" },
 		overview: [
 			"Atslēdznieks is the web presence for a locksmith and security-systems business, presenting its services — lock opening and installation, alarm systems, CCTV, access control and safes — alongside a filterable product catalog. It is built on Next.js 14 with the App Router and TypeScript, organized into around 40 reusable React components.",
 			"The site is fully localized in three languages (Latvian by default, plus English and Russian) using next-intl, with locale-aware routing and per-page SEO metadata."
@@ -405,7 +405,7 @@ export const caseStudies = {
 		lede: "A visually rich one-page marketing site for an environmental-technology company, built as a lightweight static site with parallax effects and client-side multilingual support.",
 		live: "https://elementsincwebsite.netlify.app",
 		source: "",
-		meta: { role: "Freelance — front-end", type: "Client project", status: "Live in production" },
+		meta: { role: "Solo — front-end", type: "Client project", status: "Live in production" },
 		overview: [
 			"Elements is a single-page promotional website for Elements Inc, a company working in wastewater treatment and environmental technology, with sections on water purification, green logistics and drone-assisted operations. It is deployed as a static site on Netlify.",
 			"The page leans on motion and imagery — parallax scrolling, background video and fading image slideshows — to present the brand, kept fast and dependency-light with vanilla JavaScript."
@@ -435,7 +435,7 @@ export const caseStudies = {
 		lede: "An online store I built and maintain as part of my freelance client work.",
 		live: "https://reltek.lv",
 		source: "",
-		meta: { role: "Freelance — full-stack", type: "Client project", status: "Live in production" },
+		meta: { role: "Solo — full-stack", type: "Client project", status: "Live in production" },
 		overview: [
 			"A production e-commerce site delivering the storefront, product management, and day-to-day maintenance for a real business."
 		],
@@ -451,7 +451,7 @@ export const caseStudies = {
 		lede: "A business website delivered as freelance client work.",
 		live: "http://kppro.lv",
 		source: "",
-		meta: { role: "Freelance — full-stack", type: "Client project", status: "Live in production" },
+		meta: { role: "Solo — full-stack", type: "Client project", status: "Live in production" },
 		overview: [
 			"A production website built for a client — front-end delivery plus the back-end and content wiring to keep it running."
 		],
