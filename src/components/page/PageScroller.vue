@@ -71,23 +71,28 @@ export default {
 	}
 }
 
+// Animates transform instead of bottom (same visual motion — .carrot's
+// resting "bottom: 100%" is the 0% baseline transform gets offset from, and
+// since each carrot's own height equals its container's, translateY(%) and
+// the old bottom(%) deltas land on the same pixel amounts) so the browser
+// can run it on the compositor instead of laying out every frame.
 @keyframes scrollerCarrot {
 	0% {
-		bottom: 70%;
+		transform: translateY(30%);
 		opacity: 0;
 	}
 	20% {
 		opacity: 1;
 	}
 	50% {
-		bottom: 20%;
+		transform: translateY(80%);
 		opacity: 1;
 	}
 	80% {
 		opacity: 1;
 	}
 	100% {
-		bottom: -30%;
+		transform: translateY(130%);
 		opacity: 0;
 	}
 }

@@ -22,7 +22,7 @@
               type="application/pdf"
               aria-label="Download CV as PDF"
             >
-              Download CV <span class="cvIcon" aria-hidden="true">↓</span>
+              Download CV <span class="cvIcon" aria-hidden="true"></span>
             </a>
           </div>
           <!--<div id="heroLinks" class="st_inlineHexLinks">
@@ -38,6 +38,8 @@
     <PageScroller @click="scrollToSkills" />
 
     <skills id="skillsBlock" />
+
+    <PageScroller id="skillsScroller" :hideOnMobile="true" @click="scrollToFeatured" />
 
     <GridContainer id="featuredBlock">
       <GridRow>
@@ -66,6 +68,8 @@
         </GridCol>
       </GridRow>
     </GridContainer>
+
+    <PageScroller id="featuredScroller" :hideOnMobile="true" @click="scrollToExperience" />
 
     <GridContainer id="experienceBlock">
       <GridRow>
@@ -200,6 +204,7 @@
             >github</a
           >
           <a
+			v-scroll-reveal.reset="{delay: 400, scale: 0.2}"
             id="link_cv"
             class="st_hexButton"
             :href="cvUrl"
@@ -215,6 +220,7 @@
       id="backToTop"
       :flip="true"
       :hideOnMobile="true"
+      :class="{ isVisible: showBackToTop }"
       @click="scrollToHero"
     />
   </div>
@@ -239,6 +245,10 @@ export default {
 			cvUrl: import.meta.env.BASE_URL + "Kristians-Murds-CV.pdf",
 			frontEndActive: true,
 			backEndActive: false,
+			// Only show the "back to top" scroller once the user has actually
+			// scrolled away from the top — otherwise it sits redundantly next
+			// to content the user is already looking at.
+			showBackToTop: false,
 			// Experience — mirrors the LinkedIn profile (titles, companies, dates).
 			experience: [
 				{
@@ -301,6 +311,16 @@ export default {
 	},
 	mounted: function() {
 		this.$st.CurPage = this;
+		// #page has overflow-y: auto in CSS, but with its height chain relying
+		// on percentages against an auto-height ancestor it never actually
+		// overflows in practice — the window/document is what really scrolls.
+		this.onPageScroll = () => {
+			this.showBackToTop = window.scrollY > 400;
+		};
+		window.addEventListener("scroll", this.onPageScroll, { passive: true });
+	},
+	beforeUnmount: function() {
+		window.removeEventListener("scroll", this.onPageScroll);
 	},
 	methods: {
 		gotoPage: function(path) {
@@ -326,6 +346,16 @@ export default {
 			// });
 			document
 				.getElementById("skillsBlock")
+				.scrollIntoView({ block: "start", behavior: "smooth" });
+		},
+		scrollToFeatured: function() {
+			document
+				.getElementById("featuredBlock")
+				.scrollIntoView({ block: "start", behavior: "smooth" });
+		},
+		scrollToExperience: function() {
+			document
+				.getElementById("experienceBlock")
 				.scrollIntoView({ block: "start", behavior: "smooth" });
 		},
 		scrollToProjects: function() {
@@ -425,18 +455,27 @@ export default {
     border: 1px solid rgba(100, 255, 218, 0.55);
     border-radius: 999px;
 
-    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    transition: background 0.2s ease, border-color 0.2s ease;
 
+    // No translateY lift here on purpose: shifting the button under a cursor
+    // sitting near its edge un-hovers it, snapping it back and re-hovering
+    // it — a flicker loop. Color-only hover avoids that.
     &:hover,
     &:focus-visible {
       background: rgba(100, 255, 218, 0.18);
       border-color: #64ffda;
-      transform: translateY(-2px);
     }
   }
   .cvIcon {
-    font-size: 1.05em;
-    line-height: 1;
+    display: inline-block;
+    width: 0.95em;
+    height: 0.95em;
+
+    // Recolored via mask instead of an <img> so it always matches the
+    // button's teal, rather than shipping the icon's own blue.
+    background-color: currentColor;
+    -webkit-mask: url(../assets/images/icons/download-arrow.png) center / contain no-repeat;
+    mask: url(../assets/images/icons/download-arrow.png) center / contain no-repeat;
   }
 
   #featuredBlock {
@@ -599,6 +638,18 @@ export default {
     bottom: 20px;
     left: auto;
     right: 20px;
+
+    // Hidden until the user scrolls away from the top (toggled via
+    // showBackToTop), rather than sitting on-screen from page load.
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 250ms ease-in-out;
+
+    &.isVisible {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 
   .techBlock {
@@ -672,6 +723,18 @@ export default {
   }
   #secondScroller {
     top: 2vh;
+  }
+  // Both default to the base PageScroller's top: -64px, which pulls them up
+  // into the content right above (overlapping "See all projects →" in
+  // #featuredScroller's case). Same fix as #secondScroller above.
+  #featuredScroller {
+    top: 2vh;
+  }
+  // The gap above Featured Work is taller than the others (Skills has no
+  // trailing content to hug), so 2vh left this arrow stuck near its top
+  // edge instead of centered in the empty space.
+  #skillsScroller {
+    top: 7.5vh;
   }
 }
 </style>

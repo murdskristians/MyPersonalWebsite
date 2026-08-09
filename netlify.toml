@@ -11,3 +11,19 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Security headers (Lighthouse Best Practices' "Trust and Safety" checks).
+# Everything the site loads is self-hosted except the Google Fonts
+# stylesheet/font files, so the allowlist stays this short.
+# Trusted Types is deliberately left out: enforcing it needs testing against
+# how Vue's runtime and the classic three.js scripts touch the DOM, which is
+# more than a header-only change should risk breaking silently.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Cross-Origin-Opener-Policy = "same-origin"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

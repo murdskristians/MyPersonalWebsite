@@ -34,54 +34,70 @@ colors = colors.map(function (rgb) {
 
 
 var step = 0;
-//color table indices for: 
+//color table indices for:
 // current color left
 // next color left
 // current color right
 // next color right
 var colorIndices = [0,1,2,3];
 
-//transition speed
-var gradientSpeed = 0.002;
+// Same real-time pace as the old setInterval(fn, 10ms) + step-per-tick
+// 0.002 version, expressed as a per-millisecond rate now that this runs
+// off requestAnimationFrame instead of a 100/sec timer.
+var gradientSpeedPerMs = 0.002 / 10;
 
-function updateGradient()
+function updateGradient(dt)
 {
-  
-  if ( $===undefined ) return;
-  
-var c0_0 = colors[colorIndices[0]];
-var c0_1 = colors[colorIndices[1]];
-var c1_0 = colors[colorIndices[2]];
-var c1_1 = colors[colorIndices[3]];
+  var el = document.querySelector('.gradient');
+  if (!el) return;
 
-var istep = 1 - step;
-var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
-var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
-var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
-var color1 = "rgb("+r1+","+g1+","+b1+")";
+  var c0_0 = colors[colorIndices[0]];
+  var c0_1 = colors[colorIndices[1]];
+  var c1_0 = colors[colorIndices[2]];
+  var c1_1 = colors[colorIndices[3]];
 
-var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
-var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
-var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
-var color2 = "rgb("+r2+","+g2+","+b2+")";
+  var istep = 1 - step;
+  var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+  var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+  var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
 
- $('.gradient').css({
-   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
-    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
-  
-  step += gradientSpeed;
+  var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+  var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+  var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+
+  // Standard syntax (supported everywhere) instead of the old
+  // -webkit-gradient()/-moz-linear-gradient() prefixed pair — the former is
+  // a long-deprecated proprietary syntax Chrome flags in DevTools, the
+  // latter hasn't worked in any browser in over a decade.
+  el.style.background = "linear-gradient(to right, rgb(" + r1 + "," + g1 + "," + b1 + "), rgb(" + r2 + "," + g2 + "," + b2 + "))";
+
+  step += gradientSpeedPerMs * dt;
   if ( step >= 1 )
   {
     step %= 1;
     colorIndices[0] = colorIndices[1];
     colorIndices[2] = colorIndices[3];
-    
+
     //pick two new target color indices
     //do not pick the same as the current one
     colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
     colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
-    
+
   }
 }
 
-setInterval(updateGradient,10);
+var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (reducedMotion) {
+  // Paint one static frame instead of looping forever.
+  updateGradient(0);
+} else {
+  var lastTime = null;
+  var tick = function (now) {
+    if (lastTime === null) lastTime = now;
+    updateGradient(now - lastTime);
+    lastTime = now;
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}

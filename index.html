@@ -29,7 +29,12 @@
 	<link rel="icon" type="image/png" href="/favicon.png">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<!-- Non-render-blocking font load: an external deferred script injects the
+	     stylesheet link after the initial parse instead of a blocking <link
+	     rel=stylesheet> here. Used to be a rel=preload + inline onload=""
+	     swap, but that handler needs script-src 'unsafe-inline' to run under
+	     a real CSP; this achieves the same non-blocking effect without it. -->
+	<script src="/js/font-loader.js" defer></script>
 	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"></noscript>
 </head>
 <body>
@@ -49,8 +54,7 @@
 	<script src="/js/projector.js" defer></script>
 	<script src="/js/canvas-renderer.js" defer></script>
 
-	<!-- Animated background color -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js" defer></script>
+	<!-- Animated background color (vanilla JS — no jQuery dependency) -->
 	<script src="/js/color.js" defer></script>
 
 	<!-- Visualization adjustments -->

@@ -483,7 +483,7 @@ export const caseStudies = {
 		lede: "A focused UI component for selecting currencies, built as a front-end practice piece.",
 		live: "https://currencyselectiondemo.netlify.app",
 		source: "CurrencySelectionDemo",
-		meta: { role: "Solo — front-end", type: "Practice project", status: "Live" },
+		meta: { role: "Solo — front-end", type: "Personal project", status: "Live" },
 		overview: [
 			"A small, self-contained demo concentrating on a single interactive control done well."
 		],
@@ -497,7 +497,7 @@ export const caseStudies = {
 		lede: "An interactive cheatsheet for CSS Flexbox and Grid, built to make the layout properties click.",
 		live: "https://flexgridcheatsheet.netlify.app",
 		source: "Flex-Grid-Cheat-Sheet",
-		meta: { role: "Solo — front-end", type: "Practice project", status: "Live" },
+		meta: { role: "Solo — front-end", type: "Personal project", status: "Live" },
 		overview: [
 			"A visual reference that lets you toggle Flexbox and Grid properties and watch the layout respond in real time."
 		],
@@ -511,7 +511,7 @@ export const caseStudies = {
 		lede: "A responsive web-design exercise laying out a student's week.",
 		live: "https://webdesign.netlify.app",
 		source: "WeekAsStudent",
-		meta: { role: "Solo — front-end", type: "Practice project", status: "Live" },
+		meta: { role: "Solo — front-end", type: "Personal project", status: "Live" },
 		overview: [
 			"An early web-design piece focused on clean, responsive layout and typography."
 		],
@@ -525,7 +525,7 @@ export const caseStudies = {
 		lede: "The classic Snake game, built to practice the game loop and canvas rendering.",
 		live: "https://upbeat-ptolemy-8e8db8.netlify.app",
 		source: "Snake-game",
-		meta: { role: "Solo — front-end", type: "Practice project", status: "Live" },
+		meta: { role: "Solo — front-end", type: "Personal project", status: "Live" },
 		overview: [
 			"A from-scratch take on Snake — input handling, a running game loop, collision detection, and scoring."
 		],
@@ -539,7 +539,7 @@ export const caseStudies = {
 		lede: "Tic-tac-toe with win detection, built to practice state and game logic.",
 		live: "https://elastic-goldwasser-559708.netlify.app",
 		source: "Tic-Tac-Toe-Game",
-		meta: { role: "Solo — front-end", type: "Practice project", status: "Live" },
+		meta: { role: "Solo — front-end", type: "Personal project", status: "Live" },
 		overview: [
 			"A small two-player game handling board state, turn logic, and win/draw detection."
 		],
@@ -553,7 +553,7 @@ export const caseStudies = {
 		lede: "A dice-and-chips game demo built as a front-end practice piece.",
 		live: "https://chipanddicegame.netlify.app",
 		source: "dice-chip-game",
-		meta: { role: "Solo — front-end", type: "Practice project", status: "Live" },
+		meta: { role: "Solo — front-end", type: "Personal project", status: "Live" },
 		overview: [
 			"A browser game exercise covering game state, randomness, and turn-based rules."
 		],

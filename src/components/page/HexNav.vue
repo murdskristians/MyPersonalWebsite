@@ -2,6 +2,15 @@
 	<nav id="st_mainNav" @click.stop="toggleOpen" :class="{ open : menuOpen }" v-bind:style="{ top: navY, right: navX }">
 		<a id="st_mainNav-about" @click="gotoPage('/', 'about')" class="nav_link">about</a>
 		<a id="st_mainNav-projects" @click="gotoPage('/projects', 'projects')" class="nav_link">projects</a>
+		<a
+			id="st_mainNav-cv"
+			class="nav_link"
+			:href="cvUrl"
+			download
+			type="application/pdf"
+			aria-label="Download CV as PDF"
+			>cv</a
+		>
 		<!-- <a id="st_mainNav-blog" @click="gotoPage('/blog', 'blog')" class="nav_link">blog</a> -->
 		<img class="preloadHoverImage" src='../../assets/images/icons/menu_hover.png' alt="">
 		<img class="preloadHoverImage" src='../../assets/images/icons/link-hex_hover.png' alt="">
@@ -29,7 +38,10 @@ export default {
 	data() {
 		return {
 			floatX: 0,
-			floatY: 0
+			floatY: 0,
+			// Served from public/, so it lands at the site root untouched by
+			// the bundler — same file the About hero and footer CV buttons use.
+			cvUrl: import.meta.env.BASE_URL + "Kristians-Murds-CV.pdf"
 		};
 	},
 	methods: {
@@ -92,7 +104,9 @@ export default {
 	}
 
 	@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
-		margin: 60px 50px 0 0;
+		// +20px over the base 50px — the open state's fanned-out hexes (esp.
+		// "cv") were sitting right up against the viewport edge.
+		margin: 60px 70px 0 0;
 		width: 100px;
 		height: 100px;
 	}
@@ -148,10 +162,20 @@ export default {
 	}
 	&.open > #st_mainNav-projects {
 		left: -160px;
-		
+
 		@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
 			top: 71px;
 			left: -40px;
+		}
+	}
+	// Takes the slot the (currently disabled) blog link reserved, since it's
+	// unused for now.
+	&.open > #st_mainNav-cv {
+		left: -240px;
+
+		@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
+			top: 71px;
+			left: 40px;
 		}
 	}
 

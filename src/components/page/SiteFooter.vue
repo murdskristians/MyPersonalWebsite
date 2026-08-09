@@ -1,4 +1,15 @@
 <template>
+	<div class="cvBlock">
+		<a
+			class="cvButton"
+			:href="cvUrl"
+			download
+			type="application/pdf"
+			aria-label="Download CV as PDF"
+		>
+			Download CV <span class="cvIcon" aria-hidden="true"></span>
+		</a>
+	</div>
 	<footer class="siteFooter">
 		<div class="footerRule"></div>
 		<div class="footerInner">
@@ -6,14 +17,6 @@
 				Kristiāns Murds <span class="footerRole">· Full-Stack &amp; AI Developer</span>
 			</div>
 			<nav class="footerLinks">
-				<a
-					class="footerCv"
-					:href="cvUrl"
-					download
-					type="application/pdf"
-					aria-label="Download CV as PDF"
-					>Download CV ↓</a
-				>
 				<a href="mailto:murdskristians@gmail.com">Email</a>
 				<a href="https://github.com/murdskristians" target="_blank" rel="noopener">GitHub</a>
 				<a
@@ -44,9 +47,53 @@ export default {
 // Pages that end on a content grid previously ran straight into the viewport
 // edge. The generous top and bottom padding here is the point as much as the
 // content is — it gives every page a landing space to scroll into.
-.siteFooter {
+.cvBlock {
 	margin-top: 8vh;
+	text-align: center;
+}
+.siteFooter {
+	margin-top: 3vh;
 	padding-bottom: 8vh;
+}
+
+// Same button as the "Download CV" CTA in the About hero — kept in sync by
+// hand since this component's styles are scoped.
+.cvButton {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.85rem 1.9rem;
+
+	color: #64ffda;
+	font-size: 1rem;
+	text-decoration: none;
+	white-space: nowrap;
+
+	background: rgba(100, 255, 218, 0.08);
+	border: 1px solid rgba(100, 255, 218, 0.55);
+	border-radius: 999px;
+
+	transition: background 0.2s ease, border-color 0.2s ease;
+
+	// No translateY lift here on purpose: shifting the button under a cursor
+	// sitting near its edge un-hovers it, snapping it back and re-hovering
+	// it — a flicker loop. Color-only hover avoids that.
+	&:hover,
+	&:focus-visible {
+		background: rgba(100, 255, 218, 0.18);
+		border-color: #64ffda;
+	}
+}
+.cvIcon {
+	display: inline-block;
+	width: 0.95em;
+	height: 0.95em;
+
+	// Recolored via mask instead of an <img> so it always matches the
+	// button's teal, rather than shipping the icon's own blue.
+	background-color: currentColor;
+	-webkit-mask: url(../../assets/images/icons/download-arrow.png) center / contain no-repeat;
+	mask: url(../../assets/images/icons/download-arrow.png) center / contain no-repeat;
 }
 
 .footerRule {
@@ -96,19 +143,5 @@ export default {
 		}
 	}
 
-	// The CV is the action worth drawing the eye on these pages, so it reads as
-	// a button rather than another plain link.
-	> a.footerCv {
-		padding: 0.35rem 0.9rem;
-		color: #64ffda;
-		border: 1px solid rgba(100, 255, 218, 0.5);
-		border-radius: 999px;
-
-		&:hover,
-		&:focus-visible {
-			background: rgba(100, 255, 218, 0.14);
-			border-color: #64ffda;
-		}
-	}
 }
 </style>

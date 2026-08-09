@@ -35,10 +35,16 @@
 </template>
 
 <script>
-import Chart from "@/components/page/Chart.js";
+import { defineAsyncComponent } from "vue";
 
 export default {
-	components: { Chart },
+	components: {
+		// chart.js + vue-chartjs are ~40KB gzip and only needed for this one
+		// bar chart, well below the fold. Splitting it into its own chunk
+		// keeps it out of the critical bundle every page has to parse before
+		// the hero can paint — same pattern already used for YIP.vue.
+		Chart: defineAsyncComponent(() => import("@/components/page/Chart.js"))
+	},
 	data() {
 		return {
 			isVisible: false,
