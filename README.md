@@ -25,4 +25,4 @@ pnpm lint       # lint & auto-fix with ESLint
 ## Notes
 
 - The animated 3D background lives in `public/js/` (legacy global scripts using
-  Three.js + jQuery) and is loaded via `<script>` tags in `index.html`.
+  Three.js, no jQuery) and is loaded via `<script>` tags in `index.html`.
