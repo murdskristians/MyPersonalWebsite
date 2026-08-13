@@ -42,7 +42,19 @@
             </GridContainer>
           </div>
 
-          <div class="projectSection">
+          <div v-if="!showFundamentals" class="showMoreWrap">
+            <button
+              id="showFundamentals"
+              type="button"
+              class="showMoreButton"
+              aria-expanded="false"
+              @click="showFundamentals = true"
+            >
+              Show more &darr;
+            </button>
+          </div>
+
+          <div v-if="showFundamentals" id="fundamentalsSection" class="projectSection">
             <h2 class="sectionTitle">Fundamentals &amp; Practice</h2>
             <GridContainer>
               <GridRow class="projectGrid">
@@ -76,6 +88,13 @@ export default {
 	components: {
 		Project,
 		SiteFooter
+	},
+	data() {
+		return {
+			// The fundamentals/practice pile is long and the least interesting of
+			// the four sections, so it stays behind a "show more" until asked for.
+			showFundamentals: false
+		};
 	},
 	mounted: function() {
 		this.$st.CurPage = this;
@@ -123,6 +142,38 @@ export default {
   }
   .projectSection:first-of-type .sectionTitle {
     margin-top: 3vh;
+  }
+
+  // Reveal toggle for the "Fundamentals & Practice" section. Borrows the mint
+  // outline of the case-study links rather than the hex buttons, which are
+  // reserved for links off the page.
+  .showMoreWrap {
+    display: flex;
+    justify-content: center;
+    margin: 9vh 0 3vh 0;
+  }
+  .showMoreButton {
+    padding: 0.7rem 1.6rem;
+
+    cursor: pointer;
+
+    color: #64ffda;
+    @include font-regular();
+    font-size: 1rem;
+    background: transparent;
+    border: 1px solid rgba(100, 255, 218, 0.4);
+    border-radius: 6px;
+
+    transition: background 0.18s ease, transform 0.18s ease;
+
+    &:hover {
+      background: rgba(100, 255, 218, 0.12);
+      transform: translateY(-1px);
+    }
+    &:focus-visible {
+      outline: 2px solid #64ffda;
+      outline-offset: 3px;
+    }
   }
 
   #footerTitle {
