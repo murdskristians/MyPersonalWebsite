@@ -1,7 +1,21 @@
 <template>
 	<nav id="st_mainNav" @click.stop="toggleOpen" :class="{ open : menuOpen }" v-bind:style="{ top: navY, right: navX }">
-		<a id="st_mainNav-about" @click="gotoPage('/', 'about')" class="nav_link">about</a>
-		<a id="st_mainNav-projects" @click="gotoPage('/projects', 'projects')" class="nav_link">projects</a>
+		<a
+			id="st_mainNav-about"
+			@click="gotoPage('/', 'about')"
+			class="nav_link"
+			:class="{ active: isActive('/') }"
+			:aria-current="isActive('/') ? 'page' : null"
+			>about</a
+		>
+		<a
+			id="st_mainNav-projects"
+			@click="gotoPage('/projects', 'projects')"
+			class="nav_link"
+			:class="{ active: isActive('/projects') }"
+			:aria-current="isActive('/projects') ? 'page' : null"
+			>projects</a
+		>
 		<a
 			id="st_mainNav-cv"
 			class="nav_link"
@@ -54,11 +68,17 @@ export default {
 			}, 200));
 
 		},
+		// Exact match only — a case study (/projects/:id) is its own page, so
+		// "projects" stays a live link while you're on one.
+		isActive: function(path) {
+			return this.$route.path === path;
+		},
 		gotoPage: function(path) {
 			// gtag('event', 'page_link', {
 			// 	'event_category' : 'engagement',
 			// 	'event_label' : this.$router.currentRoute.name + '_mainav_' + from
 			// });
+			if (this.isActive(path)) return;
 			this.$router.push(path);
 		},
 		toggleOpen: function() {
@@ -139,15 +159,23 @@ export default {
 		&:active {
 			background-image: url(../../assets/images/icons/link-hex_hover.png);
 		}
+
+		// The page you're already on: shown selected, and not clickable.
+		&.active {
+			background-image: url(../../assets/images/icons/link-hex_hover.png);
+			cursor: not-allowed;
+		}
 	}
 
 	&.open > .nav_link {
 		opacity: 1;
 		pointer-events: auto;
 	}
+	// Mobile fans the links out in one row to the left of the burger, so the
+	// offsets read right-to-left: about is furthest out to land first.
 	&.open > #st_mainNav-about {
-		left: -80px;
-		
+		left: -240px;
+
 		@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
 			left: -80px;
 		}
@@ -171,7 +199,7 @@ export default {
 	// Takes the slot the (currently disabled) blog link reserved, since it's
 	// unused for now.
 	&.open > #st_mainNav-cv {
-		left: -240px;
+		left: -80px;
 
 		@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
 			top: 71px;
