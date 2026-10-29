@@ -38,6 +38,7 @@
                 <project title="Atslēdznieks" id="keyMaster" live="https://atsledznieks.lv" source="" details="atsledznieks"/>
                 <project title="KP Pro" id="kppro" live="http://kppro.lv" source="" details="kp-pro"/>
                 <project title="Elements" id="elements" live="https://elementsincwebsite.netlify.app" source="" details="elements"/>
+                <project title="Forest Prana" id="forestPrana" live="https://forest-prana.netlify.app" source="" details="forest-prana"/>
               </GridRow>
             </GridContainer>
           </div>

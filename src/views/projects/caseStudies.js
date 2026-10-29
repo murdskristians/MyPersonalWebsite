@@ -426,6 +426,36 @@ export const caseStudies = {
 		]
 	},
 
+	"forest-prana": {
+		slug: "forest-prana",
+		title: "Forest Prana",
+		tags: ["Client", "React", "TypeScript"],
+		lede: "A Latvian-language product showcase for a small nature-products business, rebuilt from a Canva site as a fast React single-page app with a single data file the client's catalog lives in.",
+		live: "https://forest-prana.netlify.app",
+		source: "",
+		meta: { role: "Solo — front-end", type: "Client project", status: "Live on Netlify" },
+		overview: [
+			"Forest Prana sells handmade products in categories such as oximeli, flowers and vinegars. The original site was built in Canva; I rebuilt it in React and TypeScript with MUI so it is easier to maintain, loads faster and is easy to extend with new products.",
+			"The visitor browses category tiles, jumps to a product list with photos and prices, and contacts the seller directly by phone, WhatsApp, Instagram or Facebook. There is no checkout — ordering happens through those contact channels."
+		],
+		architecture: [
+			{ role: "Front end", title: "React 19 + MUI", body: "A single-page layout split into focused components — hero with navigation pills, about section, category overview, category index, product cards, vinegars, contacts and info sections — styled with MUI and Emotion on a custom theme." },
+			{ role: "Content", title: "One data file", body: "All products, prices, descriptions, images and contact links live in a single typed TypeScript file. Adding a product or marking one as sold out is a one-line change, and the category index and product lists update automatically." },
+			{ role: "Build & hosting", title: "Vite + Netlify", body: "Vite builds the static bundle, and a small script downloads the original site's images into the project once, skipping files it already has. The result is deployed to Netlify as a static site." }
+		],
+		highlights: [
+			{ title: "Client-editable catalog", body: "Prices, descriptions, photos and a “sold out” badge are all driven from one data file, so routine updates need no layout changes." },
+			{ title: "Direct contact, no checkout", body: "A tap-to-call phone link and a WhatsApp button open a conversation with the seller straight from the page, alongside Instagram and Facebook links." },
+			{ title: "Typed and consistent", body: "TypeScript across the codebase and a shared MUI theme keep colors, type and spacing consistent from the hero to the footer." },
+			{ title: "Self-hosted fonts", body: "Cormorant Garamond and Open Sans are bundled through Fontsource, so typography does not depend on a third-party font CDN." }
+		],
+		stack: [
+			{ group: "Front end", items: ["React 19", "TypeScript", "MUI", "Emotion"] },
+			{ group: "Tooling", items: ["Vite", "oxlint"] },
+			{ group: "Hosting", items: ["Netlify (static)"] }
+		]
+	},
+
 	// --- Client / production work without a public repo (kept brief & honest) ---
 
 	"reltek": {
