@@ -3,6 +3,39 @@
 // smaller practice projects are intentionally brief and honest about their scope.
 
 export const caseStudies = {
+	"omdb-movie-search": {
+		slug: "omdb-movie-search",
+		title: "OMDb Movie Search",
+		tags: ["Full-Stack", "Laravel", "Vue 3", "TypeScript"],
+		lede:
+			"Search movies by title, browse the results and open a movie's details — a Vue 3 page backed by a Laravel JSON API that sits in front of the OMDb API.",
+		live: "https://omdb-movie-search.onrender.com",
+		source: "omdb-movie-search",
+		meta: { role: "Solo — full-stack", type: "Personal project", status: "Live on Render" },
+		overview: [
+			"The app lets a visitor search movies by title, page through the results as poster cards, and open a details window with the plot, IMDb rating, other ratings, genres, cast, runtime and awards. It also remembers the last five searches so they can be run again with one click.",
+			"The browser never talks to OMDb directly. Laravel 13 exposes a small, stable JSON API and does the messy work in one place: OMDb reports most errors as HTTP 200, uses the text \"N/A\" for missing values and sends lists as one comma-separated string. The Vue frontend only ever sees clean, typed data."
+		],
+		architecture: [
+			{ role: "Front end", title: "Vue 3 + TypeScript", body: "A single page built from small components (search form, movie list and cards, pagination, history, details modal) with composables for search and details. A single API module is the only code that sends requests. Styled with Tailwind CSS 4 and built with Vite." },
+			{ role: "Back end", title: "Laravel 13 JSON API", body: "Controllers, form-request validation and API resources in front of an OmdbClient service. The API key stays on the server, answers are cached, and failures map to fitting JSON errors (404, 422, 429, 502, 504)." },
+			{ role: "Deployment", title: "Docker on Render", body: "A Dockerfile builds the frontend and runs the app on Apache with PHP 8.5, described by a render.yaml blueprint. There is no database: recent searches live in an encrypted session cookie and the cache is a file." }
+		],
+		highlights: [
+			{ title: "Cache that protects the quota", body: "Search results are cached for 10 minutes and movie details for 24 hours, so repeated requests do not use up OMDb's daily limit. Unknown ids are remembered briefly, and transient failures are deliberately not cached." },
+			{ title: "Timeouts and retries", body: "OMDb requests have connect and total time limits and are retried after network errors, timeouts and 5xx answers — never after a plain \"not found\". A request that is still too slow ends in a clear 504." },
+			{ title: "Stale answers can't win", body: "Starting a new search or opening another movie cancels the previous request with an AbortController, so a slow old response never overwrites a newer one." },
+			{ title: "Accessible details window", body: "The modal closes with Esc, keeps Tab focus inside, and returns focus to the card; the layout works down to a 360 px wide screen. Posters fall back to a placeholder when missing or broken." },
+			{ title: "Tested end to end in layers", body: "PHPUnit feature and unit tests use Http::fake(), and Vitest component and composable tests use a fake API, so no test calls the real OMDb. GitHub Actions runs Pint, tests, type-check, ESLint, Prettier and the build on every push." }
+		],
+		stack: [
+			{ group: "Front end", items: ["Vue 3", "TypeScript", "Tailwind CSS 4", "Vite", "Axios"] },
+			{ group: "Back end", items: ["PHP 8.5", "Laravel 13", "OMDb API"] },
+			{ group: "Quality", items: ["PHPUnit", "Vitest", "ESLint", "Prettier", "Pint", "GitHub Actions"] },
+			{ group: "Hosting", items: ["Docker", "Render"] }
+		]
+	},
+
 	"e-store": {
 		slug: "e-store",
 		title: "E-Store Demo",
@@ -431,7 +464,7 @@ export const caseStudies = {
 		title: "Forest Prana",
 		tags: ["Client", "React", "TypeScript"],
 		lede: "A Latvian-language product showcase for a small nature-products business, rebuilt from a Canva site as a fast React single-page app with a single data file the client's catalog lives in.",
-		live: "https://forest-prana.netlify.app",
+		live: "https://forest-prana-live.netlify.app",
 		source: "",
 		meta: { role: "Solo — front-end", type: "Client project", status: "Live on Netlify" },
 		overview: [

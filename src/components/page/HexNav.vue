@@ -118,8 +118,10 @@ export default {
 	transition: top 200ms linear,
 				right 200ms linear;
 
-	&:hover,
-	&:active {
+	// Hovering a link hex counts as hovering the nav (it's a child), so skip
+	// the burger highlight while a link is the thing under the cursor.
+	&:hover:not(:has(.nav_link:hover)),
+	&:active:not(:has(.nav_link:active)) {
 		background-image: url(../../assets/images/icons/menu_hover.png);
 	}
 
@@ -161,8 +163,13 @@ export default {
 		}
 
 		// The page you're already on: shown selected, and not clickable.
+		// Distinct from the hover colour: keeps the base hex, brightened, bold.
 		&.active {
-			background-image: url(../../assets/images/icons/link-hex_hover.png);
+			background-image: url(../../assets/images/icons/link-hex.png);
+			// Sit above the neighbouring hexes so they don't cover its border.
+			z-index: 2;
+			filter: brightness(1.35) saturate(1.2) drop-shadow(0 0 6px rgba(33, 150, 243, 0.8));
+			font-weight: 700;
 			cursor: not-allowed;
 		}
 	}

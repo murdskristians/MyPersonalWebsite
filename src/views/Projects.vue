@@ -12,6 +12,7 @@
                 <project title="Calendar App" id="calendarMF" live="https://calendarmodule.netlify.app" source="React-Calendar-module-federation" details="calendar"/>
                 <project title="Firebase Chat" id="fbChat" live="https://module-chat.netlify.app" source="module-REACT-FIREBASE-CHAT-APP-POC" details="firebase-chat"/>
                 <project title="E-Store Demo" id="eStore" live="https://e-store-demo-e1d0348a.netlify.app" source="e-store-demo" details="e-store"/>
+                <project title="OMDb Movie Search" id="omdbSearch" live="https://omdb-movie-search.onrender.com" source="omdb-movie-search" details="omdb-movie-search"/>
               </GridRow>
             </GridContainer>
           </div>
@@ -38,7 +39,7 @@
                 <project title="Atslēdznieks" id="keyMaster" live="https://atsledznieks.lv" source="" details="atsledznieks"/>
                 <project title="KP Pro" id="kppro" live="http://kppro.lv" source="" details="kp-pro"/>
                 <project title="Elements" id="elements" live="https://elementsincwebsite.netlify.app" source="" details="elements"/>
-                <project title="Forest Prana" id="forestPrana" live="https://forest-prana.netlify.app" source="" details="forest-prana"/>
+                <project title="Forest Prana" id="forestPrana" live="https://forest-prana-live.netlify.app" source="" details="forest-prana"/>
               </GridRow>
             </GridContainer>
           </div>
@@ -210,6 +211,21 @@ export default {
 
       @media only screen and (min-width: $breakpoint-m + $grid-gutters) {
         width: calc((100% - #{$grid-col-gap * 2}) / 3);
+      }
+    }
+
+    // Exactly four cards: lay them out 2 + 2 instead of 3 + 1 by narrowing
+    // the row to the width of two normal cards and making each card half of
+    // that row (so cards keep their usual size).
+    @media only screen and (min-width: $breakpoint-m + $grid-gutters) {
+      &:has(> .st_gridCol:nth-child(4):last-child) {
+        max-width: calc((100% - #{$grid-col-gap * 2}) / 3 * 2 + #{$grid-col-gap});
+        margin-left: auto;
+        margin-right: auto;
+
+        > .st_gridCol {
+          width: calc((100% - #{$grid-col-gap}) / 2);
+        }
       }
     }
   }
