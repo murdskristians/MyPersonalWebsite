@@ -24,7 +24,7 @@ export default {
 		position:fixed;
 		top:0;
 		left:0;
-		background-color: #1a1724;
+		background-color: var(--color-canvas);
 	}
 	.canvas-wrap{
 		z-index: 1;
@@ -38,7 +38,7 @@ export default {
 	div.canvas-content{
 		position:relative;
 		z-index:2000;
-		color:#fff;
+		color:var(--color-canvas-text);
 		text-align:center;
 		padding-top:30px;
 	}

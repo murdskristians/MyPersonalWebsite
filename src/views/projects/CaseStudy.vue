@@ -108,13 +108,6 @@ export default {
 <style lang="scss">
 @use "../../styles/_globals" as *;
 
-$cs-teal: #64ffda;
-$cs-teal-2: #1de9b6;
-$cs-panel: rgba(40, 48, 58, 0.72);
-$cs-panel-2: rgba(52, 62, 74, 0.6);
-$cs-line: rgba(255, 255, 255, 0.1);
-$cs-ink: #e9eef3;
-$cs-muted: #9aa7b4;
 
 .caseStudy {
 	.backTop {
@@ -122,13 +115,13 @@ $cs-muted: #9aa7b4;
 		align-items: center;
 		gap: 0.4rem;
 		margin-bottom: 1.4rem;
-		color: $cs-muted;
+		color: var(--color-text-muted);
 		text-decoration: none;
 		font-size: 0.85rem;
 		transition: color 0.18s ease;
 
-		&:hover { color: $cs-teal; }
-		&:focus-visible { outline: 2px solid $cs-teal; outline-offset: 3px; }
+		&:hover { color: var(--color-accent); }
+		&:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
 	}
 
 	#projectTitle {
@@ -151,8 +144,8 @@ $cs-muted: #9aa7b4;
 		font-size: 0.7rem;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		color: $cs-teal;
-		border: 1px solid rgba(100, 255, 218, 0.35);
+		color: var(--color-accent);
+		border: 1px solid rgba(var(--accent-rgb), 0.35);
 		border-radius: 999px;
 		padding: 0.28rem 0.7rem;
 	}
@@ -161,7 +154,7 @@ $cs-muted: #9aa7b4;
 		max-width: 60ch;
 		margin: 1.2rem 0 0;
 		font-size: 1.15rem;
-		color: $cs-muted;
+		color: var(--color-text-muted);
 		text-align: left;
 	}
 
@@ -169,7 +162,7 @@ $cs-muted: #9aa7b4;
 		width: 64px;
 		height: 3px;
 		margin: 1.6rem 0 0;
-		background: $cs-teal;
+		background: var(--color-accent);
 		border-radius: 2px;
 	}
 
@@ -185,17 +178,17 @@ $cs-muted: #9aa7b4;
 		text-decoration: none;
 		padding: 0.7rem 1.3rem;
 		border-radius: 8px;
-		border: 1px solid $cs-line;
-		color: $cs-ink;
+		border: 1px solid var(--color-border);
+		color: var(--color-ink);
 		transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
 
 		&:hover { transform: translateY(-2px); }
-		&:focus-visible { outline: 2px solid $cs-teal; outline-offset: 3px; }
+		&:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
 	}
 	.btn--primary {
-		border-color: rgba(100, 255, 218, 0.5);
-		color: $cs-teal;
-		&:hover { background: rgba(100, 255, 218, 0.12); }
+		border-color: rgba(var(--accent-rgb), 0.5);
+		color: var(--color-accent);
+		&:hover { background: rgba(var(--accent-rgb), 0.12); }
 	}
 
 	.meta {
@@ -203,20 +196,20 @@ $cs-muted: #9aa7b4;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 1px;
 		margin: 2.6rem 0 0;
-		background: $cs-line;
-		border: 1px solid $cs-line;
+		background: var(--color-border);
+		border: 1px solid var(--color-border);
 		border-radius: 12px;
 		overflow: hidden;
 
-		> div { background: $cs-panel; padding: 1rem 1.2rem; }
+		> div { background: var(--color-panel); padding: 1rem 1.2rem; }
 		dt {
 			margin: 0 0 0.35rem;
 			font-size: 0.66rem;
 			letter-spacing: 0.14em;
 			text-transform: uppercase;
-			color: $cs-muted;
+			color: var(--color-text-muted);
 		}
-		dd { margin: 0; font-weight: 600; font-size: 0.95rem; color: $cs-ink; }
+		dd { margin: 0; font-weight: 600; font-size: 0.95rem; color: var(--color-ink); }
 	}
 
 	section { margin-top: 3.2rem; }
@@ -226,14 +219,14 @@ $cs-muted: #9aa7b4;
 		font-size: 0.78rem;
 		letter-spacing: 0.16em;
 		text-transform: uppercase;
-		color: $cs-teal-2;
+		color: var(--color-accent-2);
 		text-align: left;
 	}
 
 	section > p {
 		max-width: 68ch;
 		margin: 0 0 1rem;
-		color: #cdd6df;
+		color: var(--color-text-soft);
 		text-align: left;
 	}
 
@@ -243,8 +236,8 @@ $cs-muted: #9aa7b4;
 		gap: 1rem;
 	}
 	.card {
-		background: $cs-panel;
-		border: 1px solid $cs-line;
+		background: var(--color-panel);
+		border: 1px solid var(--color-border);
 		border-radius: 14px;
 		padding: 1.4rem;
 		text-align: left;
@@ -253,7 +246,7 @@ $cs-muted: #9aa7b4;
 			font-size: 0.66rem;
 			letter-spacing: 0.12em;
 			text-transform: uppercase;
-			color: $cs-teal;
+			color: var(--color-accent);
 		}
 		h3 {
 			display: flex;
@@ -263,14 +256,14 @@ $cs-muted: #9aa7b4;
 			font-size: 1.05rem;
 			text-align: left;
 		}
-		p { margin: 0.7rem 0 0; font-size: 0.92rem; color: $cs-muted; text-align: left; }
+		p { margin: 0.7rem 0 0; font-size: 0.92rem; color: var(--color-text-muted); text-align: left; }
 	}
 	.dot {
 		width: 9px;
 		height: 9px;
 		border-radius: 50%;
-		background: $cs-teal;
-		box-shadow: 0 0 12px $cs-teal;
+		background: var(--color-accent);
+		box-shadow: 0 0 12px var(--color-accent);
 		flex: none;
 	}
 
@@ -280,15 +273,15 @@ $cs-muted: #9aa7b4;
 		gap: 1rem;
 	}
 	.hl {
-		background: $cs-panel;
-		border: 1px solid $cs-line;
-		border-left: 3px solid $cs-teal;
+		background: var(--color-panel);
+		border: 1px solid var(--color-border);
+		border-left: 3px solid var(--color-accent);
 		border-radius: 0 12px 12px 0;
 		padding: 1.1rem 1.3rem;
 		text-align: left;
 
 		h4 { margin: 0 0 0.35rem; font-size: 0.98rem; text-align: left; }
-		p { margin: 0; font-size: 0.88rem; color: $cs-muted; text-align: left; }
+		p { margin: 0; font-size: 0.88rem; color: var(--color-text-muted); text-align: left; }
 	}
 
 	.stack {
@@ -301,15 +294,15 @@ $cs-muted: #9aa7b4;
 		font-size: 0.68rem;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
-		color: $cs-muted;
+		color: var(--color-text-muted);
 		text-align: left;
 	}
 	.chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
 	.chip {
 		font-size: 0.76rem;
-		background: $cs-panel-2;
-		border: 1px solid $cs-line;
-		color: #d4dde6;
+		background: var(--color-panel-2);
+		border: 1px solid var(--color-border);
+		color: var(--color-text-soft-2);
 		border-radius: 999px;
 		padding: 0.32rem 0.72rem;
 	}
@@ -317,12 +310,12 @@ $cs-muted: #9aa7b4;
 	.backLink {
 		display: inline-block;
 		margin-top: 3.4rem;
-		color: $cs-muted;
+		color: var(--color-text-muted);
 		text-decoration: none;
 		font-size: 0.9rem;
 		transition: color 0.18s ease;
 
-		&:hover { color: $cs-teal; }
+		&:hover { color: var(--color-accent); }
 	}
 
 	@media only screen and (max-width: 720px) {

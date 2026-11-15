@@ -28,9 +28,39 @@ function capLuminance(rgb, max) {
   return out;
 }
 
+// Light theme: pale, high-luminance palette; colors are lifted to a floor
+// instead of being capped, so dark text keeps AA contrast on top of it.
+var lightColors = new Array(
+  [226,232,240],
+  [214,224,238],
+  [232,222,238],
+  [238,230,226],
+  [222,236,236],
+  [210,226,242]);
+
+var MIN_LIGHT_LUMINANCE = 0.7;
+
+function floorLuminance(rgb, min) {
+  var out = rgb.slice();
+  var guard = 0;
+  while (relativeLuminance(out) < min && guard++ < 100) {
+    out = out.map(function (value) {
+      return Math.min(255, Math.round(value + (255 - value) * 0.06));
+    });
+  }
+  return out;
+}
+
 colors = colors.map(function (rgb) {
   return capLuminance(rgb, MAX_BACKGROUND_LUMINANCE);
 });
+lightColors = lightColors.map(function (rgb) {
+  return floorLuminance(rgb, MIN_LIGHT_LUMINANCE);
+});
+
+function currentPalette() {
+  return document.documentElement.dataset.theme === 'light' ? lightColors : colors;
+}
 
 
 var step = 0;
@@ -51,10 +81,11 @@ function updateGradient(dt)
   var el = document.querySelector('.gradient');
   if (!el) return;
 
-  var c0_0 = colors[colorIndices[0]];
-  var c0_1 = colors[colorIndices[1]];
-  var c1_0 = colors[colorIndices[2]];
-  var c1_1 = colors[colorIndices[3]];
+  var palette = currentPalette();
+  var c0_0 = palette[colorIndices[0]];
+  var c0_1 = palette[colorIndices[1]];
+  var c1_0 = palette[colorIndices[2]];
+  var c1_1 = palette[colorIndices[3]];
 
   var istep = 1 - step;
   var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
@@ -91,6 +122,7 @@ var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-mot
 if (reducedMotion) {
   // Paint one static frame instead of looping forever.
   updateGradient(0);
+  window.addEventListener('themechange', function () { updateGradient(0); });
 } else {
   var lastTime = null;
   var tick = function (now) {

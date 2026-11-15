@@ -1,0 +1,84 @@
+/* Theme tokens. Selected by data-theme="dark" | "light" on <html>.
+   Add a new themed color by defining it in BOTH blocks, then use var(--name).
+   Tints that need alpha use RGB triplets: rgba(var(--accent-rgb), .4). */
+
+/*#region Dark (the original look; also the fallback when no attribute is set)*/
+:root,
+:root[data-theme="dark"] {
+	color-scheme: dark;
+
+	--color-bg: #262626;
+	--color-surface: rgba(38, 38, 38, 0.5);
+	--color-text: #F2F2F2;
+	--color-ink: #e9eef3;
+	--color-text-soft: #cdd6df;
+	--color-text-soft-2: #d4dde6;
+	--color-text-muted: #9aa7b4;
+	--color-text-subtle: #8a97a5;
+	--color-text-dim: #7f8c9a;
+	--color-accent: #64ffda;
+	--color-accent-2: #1de9b6;
+	--accent-rgb: 100, 255, 218;
+	--color-panel: rgba(40, 48, 58, 0.72);
+	--color-panel-2: rgba(52, 62, 74, 0.6);
+	--color-border: rgba(255, 255, 255, 0.1);
+	--color-overlay-border: rgba(242, 242, 242, 0.5);
+	--color-card-bg: #fff;
+	--color-card-text: #263238;
+	--shadow-rgb: 38, 38, 38;
+	--scrollbar-rgb: 32, 91, 157;
+	--color-canvas: #1a1724;
+	--color-canvas-text: #fff;
+}
+/*#endregion*/
+
+/*#region Light
+  Contrast (WCAG AA) against the lightest panel (#fff) / page (~#e3e9ef):
+  text #1f2933 15:1, muted #4a5866 7.4:1, subtle #566371 5.9:1,
+  accent #00695c 6.6:1 (text/links), accent border on panels >= 3:1.*/
+:root[data-theme="light"] {
+	color-scheme: light;
+
+	--color-bg: #eef2f6;
+	--color-surface: rgba(238, 242, 246, 0.55);
+	--color-text: #1f2933;
+	--color-ink: #1f2933;
+	--color-text-soft: #2f3b47;
+	--color-text-soft-2: #2a3541;
+	--color-text-muted: #4a5866;
+	--color-text-subtle: #566371;
+	--color-text-dim: #566371;
+	--color-accent: #00695c;
+	--color-accent-2: #00695c;
+	--accent-rgb: 0, 105, 92;
+	--color-panel: rgba(255, 255, 255, 0.82);
+	--color-panel-2: rgba(234, 239, 244, 0.85);
+	--color-border: rgba(31, 41, 51, 0.16);
+	--color-overlay-border: rgba(31, 41, 51, 0.4);
+	--color-card-bg: #fff;
+	--color-card-text: #263238;
+	--shadow-rgb: 255, 255, 255;
+	--scrollbar-rgb: 32, 91, 157;
+	--color-canvas: #e3e9ef;
+	--color-canvas-text: #1f2933;
+}
+/*#endregion*/
+
+/* Smooth switching. Scoped to color properties only (never transform/opacity)
+   so ScrollReveal and .st_fadeable keep working. */
+html,
+body,
+h1, h2, h3, h4, p, a, button, section, article, li, dl, dd, dt, div, span,
+.st_hexButton {
+	transition-property: background-color, color, border-color, fill, box-shadow;
+	transition-duration: 250ms;
+	transition-timing-function: ease;
+}
+@media (prefers-reduced-motion: reduce) {
+	html,
+	body,
+	h1, h2, h3, h4, p, a, button, section, article, li, dl, dd, dt, div, span,
+	.st_hexButton {
+		transition: none !important;
+	}
+}

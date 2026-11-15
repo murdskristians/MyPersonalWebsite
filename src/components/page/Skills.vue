@@ -170,7 +170,7 @@ export default {
   margin-bottom: 4vw;
 }
 .line {
-  border-color: #64ffda;
+  border-color: var(--color-accent);
   max-width: 80px;
   border-top-width: 3px;
   margin-top: 1rem;
