@@ -460,7 +460,7 @@ $yip-blue: #278EB9;
 
 				text-align: center;
 
-				border: 1px solid $black;
+				border: 1px solid var(--bg);
 
 				@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
 					width: calc((100% - 240px) / 31);
@@ -501,7 +501,7 @@ $yip-blue: #278EB9;
 				width: 25px;
 				height: 25px;
 
-				border: 1px solid $black;
+				border: 1px solid var(--bg);
 				
 				&[data-value="1"] {
 					background-color: $yip-red;
@@ -539,12 +539,12 @@ $yip-blue: #278EB9;
 			padding: 5px;
 
 			content: attr(data-tooltip);
-			color: $black;
+			color: var(--bg);
 			@include font-regular();
 			font-size: 1rem;
 			line-height: 1.2em;
 
-			background: $white;
+			background: var(--text);
 			border-radius: 4px;
 			z-index: 100;
 		}

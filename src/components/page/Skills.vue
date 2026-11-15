@@ -170,7 +170,7 @@ export default {
   margin-bottom: 4vw;
 }
 .line {
-  border-color: #64ffda;
+  border-color: var(--accent);
   max-width: 80px;
   border-top-width: 3px;
   margin-top: 1rem;
@@ -201,7 +201,7 @@ dd {
   margin-left: 0;
 }
 .badge {
-  color: #263238;
+  color: var(--badge-text);
   // The padding-left/right pair that used to sit here was overridden by the
   // padding shorthand three lines below, so the intended horizontal padding
   // never applied and the pills looked cramped. Folded into one declaration.
@@ -214,6 +214,6 @@ dd {
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  background-color: #fff;
+  background-color: var(--badge-bg);
 }
 </style>

@@ -145,7 +145,7 @@ export default {
 		cursor: pointer;
 		pointer-events: none;
 
-		color: $white;
+		color: var(--hex-text);
 		@include font-regular();
 		font-size: 1rem;
 		line-height: 95px;

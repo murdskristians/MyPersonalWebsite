@@ -8,6 +8,7 @@
         <div id="app">
             <router-view id="page" class="st_fadeable" :class="{ fade : menuOpen }" />
             <HexNav />
+            <ThemeToggle />
         </div>
 	</div>
 </template>
@@ -15,22 +16,24 @@
 <script>
 import { mapState, mapActions } from 'pinia'
 import { useUiStore } from '@/plugins/store'
-import { HexNav } from '@/components/page/'
+import { HexNav, ThemeToggle } from '@/components/page/'
 
 export default {
 	name: 'App',
 	components: {
-		HexNav
+		HexNav,
+		ThemeToggle
 	},
 	mounted: function() {
 		this.$st.App = this;
+		this.initTheme();
 		this.$nextTick(this.init);
 	},
 	computed: {
 		...mapState(useUiStore, ['menuOpen'])
 	},
 	methods: {
-		...mapActions(useUiStore, ['setMenuOpen']),
+		...mapActions(useUiStore, ['setMenuOpen', 'initTheme']),
 		init: function() {
 			//Close navigation if clicked outside of it
 			document.addEventListener('click', () => {
@@ -45,9 +48,15 @@ export default {
 
 <style lang="scss">
 @use "styles/_globals" as *;
+@use "styles/_themes";
 
 *:not(input):not(textarea) {
 	outline: none !important;
+}
+// Keep a visible keyboard focus indicator for the theme toggle.
+.theme-toggle:focus-visible {
+	outline: 2px solid var(--accent) !important;
+	outline-offset: 3px;
 }
 *,
 *:before,
@@ -63,14 +72,14 @@ body {
 	padding: 0;
 	width: 100%;
 	min-height: 100vh;
-	color: $white;
-	background: $black;
+	color: var(--text);
+	background: var(--bg);
 }
 
 h1, h2, h3, h4 {
 	margin: 0;
 
-	color: $white;
+	color: var(--text-strong);
 	@include font-regular();
 	line-height: 1.2em;
 	text-align: center;
@@ -90,7 +99,7 @@ h4 {
 p {
 	margin: 0;
 
-	color: $white;
+	color: var(--text);
 	@include font-regular();
 	font-size: 1.125rem;
 	line-height: 1.25em;
@@ -162,7 +171,7 @@ p {
 
 	cursor: pointer;
 
-	color: $white;
+	color: var(--hex-text);
 	@include font-regular();
 	font-size: 1rem;
 	line-height: 95px;
@@ -247,7 +256,7 @@ p {
 	width: 100%;
 	height: 100%;
 
-	background: rgba($black, 0.5);
+	background: var(--bg-overlay);
 
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -257,11 +266,11 @@ p {
 	width: 8px;
 }
 ::-webkit-scrollbar-track {
-	background-color: rgba($blue, .25);
+	background-color: var(--scrollbar-track);
 	border-radius: $border-radius;
 }
 ::-webkit-scrollbar-thumb {
-	background-color: rgba($blue, .75);
+	background-color: var(--scrollbar-thumb);
 	border-radius: $border-radius;
 }
 </style>

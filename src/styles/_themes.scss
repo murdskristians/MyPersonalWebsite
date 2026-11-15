@@ -1,0 +1,115 @@
+/* Theme tokens. The active theme is the `data-theme` attribute on <html>
+   ("dark" | "light"), set before first paint by the inline script in
+   index.html and flipped by the `ui` Pinia store. Components must use these
+   var(--…) tokens instead of hard-coded colors for anything the theme changes.
+
+   WCAG contrast (ratio, text vs. the worst-case background it sits on):
+   dark  — text #F2F2F2 on #262626 ........ 13.5:1   muted #9aa7b4 on panel ... >=5.5:1
+           subtle #8a97a5 on panel ......... 4.6:1    accent #64ffda on #262626 . 11.6:1
+   light — text #262626 on #dfe6ee ......... 12.0:1   text-soft #3e4c59 ........ 7.0:1
+           muted/subtle #52606d on #d3dce6 . 4.7:1    accent #00695c on #d3dce6  4.8:1
+           (#d3dce6 is the darkest pixel of the light gradient under the overlay;
+            on panels/page it is 5.1–6.3:1). Borders/icons are >=3:1. */
+
+:root,
+:root[data-theme="dark"] {
+	color-scheme: dark;
+
+	--bg: #262626;
+	--canvas-bg: #1a1724;
+	--bg-overlay: rgba(38, 38, 38, 0.5);
+	--surface: rgba(40, 48, 58, 0.72);
+	--surface-2: rgba(52, 62, 74, 0.6);
+	--line: rgba(255, 255, 255, 0.1);
+	--line-strong: rgba(242, 242, 242, 0.5);
+
+	--text: #F2F2F2;
+	--text-strong: #F2F2F2;
+	--text-ink: #e9eef3;
+	--text-soft: #cdd6df;
+	--text-muted: #9aa7b4;
+	--text-subtle: #8a97a5;
+	--hex-text: #F2F2F2;
+	--shadow-text: rgba(38, 38, 38, 0.9);
+	--shadow-text-soft: rgba(38, 38, 38, 0.8);
+
+	--accent: #64ffda;
+	--accent-2: #1de9b6;
+	--accent-bg: rgba(100, 255, 218, 0.08);
+	--accent-bg-2: rgba(100, 255, 218, 0.12);
+	--accent-bg-hover: rgba(100, 255, 218, 0.18);
+	--accent-border: rgba(100, 255, 218, 0.55);
+	--accent-border-soft: rgba(100, 255, 218, 0.4);
+	--accent-line: rgba(100, 255, 218, 0.25);
+	--accent-glow: rgba(100, 255, 218, 0.6);
+
+	--badge-bg: #fff;
+	--badge-text: #263238;
+
+	--scrollbar-track: rgba(32, 91, 157, 0.25);
+	--scrollbar-thumb: rgba(32, 91, 157, 0.75);
+
+	--chart-grid: #314149;
+	--chart-text: #F2F2F2;
+	--chart-bar-1: rgba(29, 233, 182, 0.9);
+	--chart-bar-2: rgba(167, 255, 235, 0.9);
+
+	--particle: #ffffff;
+}
+
+:root[data-theme="light"] {
+	color-scheme: light;
+
+	--bg: #F2F2F2;
+	--canvas-bg: #dfe6ee;
+	--bg-overlay: rgba(242, 242, 242, 0.55);
+	--surface: rgba(255, 255, 255, 0.82);
+	--surface-2: rgba(255, 255, 255, 0.66);
+	--line: rgba(31, 41, 51, 0.16);
+	--line-strong: rgba(38, 38, 38, 0.5);
+
+	--text: #262626;
+	--text-strong: #1f2933;
+	--text-ink: #1f2933;
+	--text-soft: #3e4c59;
+	--text-muted: #52606d;
+	--text-subtle: #52606d;
+	// The hex buttons are dark raster art, so their label stays light.
+	--hex-text: #F2F2F2;
+	--shadow-text: rgba(242, 242, 242, 0.9);
+	--shadow-text-soft: rgba(242, 242, 242, 0.8);
+
+	--accent: #00695c;
+	--accent-2: #00695c;
+	--accent-bg: rgba(0, 105, 92, 0.08);
+	--accent-bg-2: rgba(0, 105, 92, 0.12);
+	--accent-bg-hover: rgba(0, 105, 92, 0.18);
+	--accent-border: rgba(0, 105, 92, 0.6);
+	--accent-border-soft: rgba(0, 105, 92, 0.5);
+	--accent-line: rgba(0, 105, 92, 0.35);
+	--accent-glow: rgba(0, 105, 92, 0.35);
+
+	--badge-bg: #263238;
+	--badge-text: #fff;
+
+	--scrollbar-track: rgba(32, 91, 157, 0.2);
+	--scrollbar-thumb: rgba(32, 91, 157, 0.7);
+
+	--chart-grid: rgba(31, 41, 51, 0.18);
+	--chart-text: #1f2933;
+	--chart-bar-1: rgba(0, 121, 107, 0.9);
+	--chart-bar-2: rgba(77, 182, 172, 0.9);
+
+	--particle: #1f2933;
+}
+
+// Applied to <html> by the store for ~300ms on a theme change only, so it
+// doesn't fight hover transitions or the first paint.
+@media (prefers-reduced-motion: no-preference) {
+	html.theme-transition,
+	html.theme-transition *,
+	html.theme-transition *::before,
+	html.theme-transition *::after {
+		transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, fill 0.25s ease !important;
+	}
+}

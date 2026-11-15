@@ -9,6 +9,18 @@ var colors = new Array(
 
 var MAX_BACKGROUND_LUMINANCE = 0.15;
 
+// Light theme: pale palette whose luminance is floored (not capped) so dark
+// text stays AA-readable on it.
+var lightColors = new Array(
+  [214,224,235],
+  [222,214,238],
+  [205,232,230],
+  [236,226,214],
+  [226,236,220],
+  [200,218,240]);
+
+var MIN_BACKGROUND_LUMINANCE = 0.7;
+
 function relativeLuminance(rgb) {
   var channels = rgb.map(function (value) {
     var v = value / 255;
@@ -28,9 +40,30 @@ function capLuminance(rgb, max) {
   return out;
 }
 
-colors = colors.map(function (rgb) {
+function floorLuminance(rgb, min) {
+  var out = rgb.slice();
+  var guard = 0;
+  while (relativeLuminance(out) < min && guard++ < 100) {
+    out = out.map(function (value) {
+      return Math.min(255, Math.round(value + (255 - value) * 0.06));
+    });
+  }
+  return out;
+}
+
+var darkColors = colors.map(function (rgb) {
   return capLuminance(rgb, MAX_BACKGROUND_LUMINANCE);
 });
+lightColors = lightColors.map(function (rgb) {
+  return floorLuminance(rgb, MIN_BACKGROUND_LUMINANCE);
+});
+
+// The active palette follows <html data-theme>; the observer below switches it
+// live when the toggle flips the attribute.
+function pickPalette() {
+  return document.documentElement.getAttribute('data-theme') === 'light' ? lightColors : darkColors;
+}
+colors = pickPalette();
 
 
 var step = 0;
@@ -85,6 +118,12 @@ function updateGradient(dt)
 
   }
 }
+
+new MutationObserver(function () {
+  colors = pickPalette();
+  // Re-paint right away (the reduced-motion static frame has no loop).
+  updateGradient(0);
+}).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
 var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

@@ -7,6 +7,23 @@
 	<title>Kristiāns Murds — Full-Stack & AI Developer</title>
 	<meta name="description" content="Portfolio of Kristiāns Murds — full-stack developer building AI-powered web &amp; desktop apps with React, TypeScript, .NET, Python and LLMs (LangGraph, RAG, microservices).">
 	<meta name="author" content="Kristiāns Murds">
+	<meta name="color-scheme" content="dark light">
+
+	<!-- Apply the saved (or OS-preferred) theme before first paint to avoid a
+	     flash of the wrong theme. Keep in sync with the `ui` store in
+	     src/plugins/store.js. No CSP is configured (see public/web.config); if
+	     one is added, allow this script via its SHA-256 hash, not 'unsafe-inline'. -->
+	<script>
+		(function () {
+			var t;
+			try { t = localStorage.getItem('theme'); } catch (e) {}
+			if (t !== 'light' && t !== 'dark') {
+				t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+			}
+			document.documentElement.setAttribute('data-theme', t);
+		})();
+	</script>
+	<style>html{background:#262626}html[data-theme=light]{background:#F2F2F2}</style>
 
 	<!--
 	  Social sharing (Open Graph / Twitter) needs ABSOLUTE urls.

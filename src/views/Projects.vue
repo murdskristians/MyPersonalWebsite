@@ -125,7 +125,7 @@ export default {
 
     font-size: 1.5rem;
     text-align: center;
-    text-shadow: 0 2px 14px rgba($black, 0.85);
+    text-shadow: 0 2px 14px var(--shadow-text);
 
     @media only screen and (min-width: $breakpoint-m) {
       font-size: 2.25rem;
@@ -138,7 +138,7 @@ export default {
       height: 3px;
       margin: 1rem auto 0;
 
-      background-color: #64ffda;
+      background-color: var(--accent);
       border-radius: 2px;
     }
   }
@@ -159,21 +159,21 @@ export default {
 
     cursor: pointer;
 
-    color: #64ffda;
+    color: var(--accent);
     @include font-regular();
     font-size: 1rem;
     background: transparent;
-    border: 1px solid rgba(100, 255, 218, 0.4);
+    border: 1px solid var(--accent-border-soft);
     border-radius: 6px;
 
     transition: background 0.18s ease, transform 0.18s ease;
 
     &:hover {
-      background: rgba(100, 255, 218, 0.12);
+      background: var(--accent-bg-2);
       transform: translateY(-1px);
     }
     &:focus-visible {
-      outline: 2px solid #64ffda;
+      outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
   }
@@ -238,8 +238,8 @@ export default {
     width: 100%;
     min-height: 200px;
 
-    background-color: rgba($black, 0.5);
-    border: 2px solid rgba($white, 0.5);
+    background-color: var(--bg-overlay);
+    border: 2px solid var(--line-strong);
     border-radius: $border-radius;
 
     padding: 2vw;
@@ -250,7 +250,7 @@ export default {
   h4 {
     @include font-regular;
     margin: 0;
-    color: #f2f2f2;
+    color: var(--text-strong);
     line-height: 1.2em;
     text-align: center;
   }
@@ -266,7 +266,7 @@ export default {
 
     cursor: pointer;
 
-    color: $white;
+    color: var(--hex-text);
     @include font-regular();
     font-size: 1rem;
     line-height: 95px;

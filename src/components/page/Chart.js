@@ -1,4 +1,6 @@
 import { h } from "vue";
+import { mapState } from "pinia";
+import { useUiStore } from "@/plugins/store";
 import { Bar } from "vue-chartjs";
 import {
 	Chart as ChartJS,
@@ -20,9 +22,10 @@ const yLabels = {
 	100: "Best ★"
 };
 
+// Chart.js can't read CSS variables itself, so resolve the theme tokens here.
+const token = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
 const defaults = {
-	fontColor: "white",
-	gridColor: "#314149",
 	fontSize: 12,
 	fontFamily: '"Varela Round", sans-serif'
 };
@@ -44,19 +47,27 @@ export default {
 				datasets: [
 					{
 						data: [90, 95, 85, 75, 85, 80, 75],
-						backgroundColor: [
-							"rgba(29,233,182, 0.9)",
-							"rgba(167,255,235, 0.9)",
-							"rgba(29,233,182, 0.9)",
-							"rgba(167,255,235, 0.9)",
-							"rgba(29,233,182, 0.9)",
-							"rgba(167,255,235, 0.9)",
-							"rgba(29,233,182, 0.9)"
-						]
+						backgroundColor: []
 					}
 				]
-			},
-			chartOptions: {
+			}
+		};
+	},
+	computed: {
+		// Reading the store's theme makes these recompute (and the chart update) on toggle.
+		...mapState(useUiStore, ["theme"]),
+		themedData() {
+			void this.theme;
+			const bars = [token("--chart-bar-1"), token("--chart-bar-2")];
+			const data = this.chartData.datasets[0].data;
+			return {
+				...this.chartData,
+				datasets: [{ ...this.chartData.datasets[0], backgroundColor: data.map((_, i) => bars[i % 2]) }]
+			};
+		},
+		chartOptions() {
+			void this.theme;
+			return {
 				responsive: true,
 				maintainAspectRatio: false,
 				plugins: {
@@ -68,10 +79,10 @@ export default {
 					y: {
 						beginAtZero: true,
 						grid: {
-							color: defaults.gridColor
+							color: token("--chart-grid")
 						},
 						ticks: {
-							color: defaults.fontColor,
+							color: token("--chart-text"),
 							font: {
 								size: defaults.fontSize,
 								family: defaults.fontFamily
@@ -81,10 +92,10 @@ export default {
 					},
 					x: {
 						grid: {
-							color: defaults.gridColor
+							color: token("--chart-grid")
 						},
 						ticks: {
-							color: defaults.fontColor,
+							color: token("--chart-text"),
 							font: {
 								size: defaults.fontSize,
 								family: defaults.fontFamily
@@ -92,12 +103,12 @@ export default {
 						}
 					}
 				}
-			}
-		};
+			};
+		}
 	},
 	render() {
 		return h(Bar, {
-			data: this.chartData,
+			data: this.themedData,
 			options: this.chartOptions
 		});
 	}
