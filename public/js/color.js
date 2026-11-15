@@ -1,5 +1,6 @@
 
-var colors = new Array(
+// Both palettes must have the same length (the animation indexes into them).
+var darkColors = new Array(
   [172,173,188],
   [155,158,206],
   [56,0,54],
@@ -7,7 +8,19 @@ var colors = new Array(
   [21,8,17],
   [18,94,138]);
 
+// Pale teal / blue / lavender tints for the light theme.
+var lightColors = new Array(
+  [214,236,240],
+  [221,226,247],
+  [232,222,244],
+  [236,246,248],
+  [218,240,232],
+  [200,225,242]);
+
 var MAX_BACKGROUND_LUMINANCE = 0.15;
+// Mirror of the cap for the light theme: keeps the page overlay + dark text
+// contrast math valid by never letting the gradient get darker than this.
+var MIN_BACKGROUND_LUMINANCE = 0.65;
 
 function relativeLuminance(rgb) {
   var channels = rgb.map(function (value) {
@@ -28,9 +41,25 @@ function capLuminance(rgb, max) {
   return out;
 }
 
-colors = colors.map(function (rgb) {
+function floorLuminance(rgb, min) {
+  var out = rgb.slice();
+  var guard = 0;
+  while (relativeLuminance(out) < min && guard++ < 100) {
+    out = out.map(function (value) {
+      return Math.min(255, Math.round(value + (255 - value) * 0.06));
+    });
+  }
+  return out;
+}
+
+darkColors = darkColors.map(function (rgb) {
   return capLuminance(rgb, MAX_BACKGROUND_LUMINANCE);
 });
+lightColors = lightColors.map(function (rgb) {
+  return floorLuminance(rgb, MIN_BACKGROUND_LUMINANCE);
+});
+
+var colors = darkColors;
 
 
 var step = 0;
@@ -50,6 +79,8 @@ function updateGradient(dt)
 {
   var el = document.querySelector('.gradient');
   if (!el) return;
+
+  colors = document.documentElement.dataset.theme === 'light' ? lightColors : darkColors;
 
   var c0_0 = colors[colorIndices[0]];
   var c0_1 = colors[colorIndices[1]];
@@ -91,6 +122,9 @@ var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-mot
 if (reducedMotion) {
   // Paint one static frame instead of looping forever.
   updateGradient(0);
+  // The loop doesn't run here, so repaint when the theme changes.
+  new MutationObserver(function () { updateGradient(0); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 } else {
   var lastTime = null;
   var tick = function (now) {

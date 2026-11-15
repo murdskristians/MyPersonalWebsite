@@ -7,6 +7,7 @@
         </section>
         <div id="app">
             <router-view id="page" class="st_fadeable" :class="{ fade : menuOpen }" />
+            <ThemeToggle />
             <HexNav />
         </div>
 	</div>
@@ -15,13 +16,14 @@
 <script>
 import { mapState, mapActions } from 'pinia'
 import { useUiStore } from '@/plugins/store'
-import { HexNav } from '@/components/page/'
+import { HexNav, ThemeToggle } from '@/components/page/'
 
 export default {
 	name: 'App',
 	components: {
-		HexNav
-	},
+			HexNav,
+			ThemeToggle
+		},
 	mounted: function() {
 		this.$st.App = this;
 		this.$nextTick(this.init);
@@ -30,8 +32,9 @@ export default {
 		...mapState(useUiStore, ['menuOpen'])
 	},
 	methods: {
-		...mapActions(useUiStore, ['setMenuOpen']),
+		...mapActions(useUiStore, ['setMenuOpen', 'watchSystemTheme']),
 		init: function() {
+			this.watchSystemTheme();
 			//Close navigation if clicked outside of it
 			document.addEventListener('click', () => {
 				if (this.menuOpen) {
@@ -45,6 +48,7 @@ export default {
 
 <style lang="scss">
 @use "styles/_globals" as *;
+@use "styles/_theme";
 
 *:not(input):not(textarea) {
 	outline: none !important;
@@ -63,14 +67,14 @@ body {
 	padding: 0;
 	width: 100%;
 	min-height: 100vh;
-	color: $white;
-	background: $black;
+	color: var(--text);
+	background: var(--bg);
 }
 
 h1, h2, h3, h4 {
 	margin: 0;
 
-	color: $white;
+	color: var(--text);
 	@include font-regular();
 	line-height: 1.2em;
 	text-align: center;
@@ -90,7 +94,7 @@ h4 {
 p {
 	margin: 0;
 
-	color: $white;
+	color: var(--text);
 	@include font-regular();
 	font-size: 1.125rem;
 	line-height: 1.25em;
@@ -247,7 +251,7 @@ p {
 	width: 100%;
 	height: 100%;
 
-	background: rgba($black, 0.5);
+	background: var(--page-overlay);
 
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -263,5 +267,27 @@ p {
 ::-webkit-scrollbar-thumb {
 	background-color: rgba($blue, .75);
 	border-radius: $border-radius;
+}
+
+// Short colour transition, only while the store has flagged a user toggle.
+@media (prefers-reduced-motion: no-preference) {
+	html[data-theme-transition],
+	html[data-theme-transition] *,
+	html[data-theme-transition] *::before,
+	html[data-theme-transition] *::after {
+		transition: background-color .3s ease, color .3s ease, border-color .3s ease, fill .3s ease, stroke .3s ease !important;
+	}
+}
+
+// The particle canvas is white sprites; flip it so it shows on the light gradient.
+html[data-theme="light"] #canvas canvas {
+	filter: invert(1);
+}
+
+// The hex PNG art (and its white label text) is made for the dark theme;
+// invert the whole hex in light mode so the art and label stay legible.
+html[data-theme="light"] #st_mainNav,
+html[data-theme="light"] .st_hexButton {
+	filter: var(--hex-filter);
 }
 </style>

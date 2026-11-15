@@ -1,0 +1,113 @@
+/* Theme tokens (CSS custom properties).
+   Dark is the default (today's look); light is applied by
+   <html data-theme="light">. This file is emitted ONCE, from App.vue's global
+   style block. Do not @use it from components: they just consume var(--token).
+
+   Token purposes
+   Surfaces  --bg, --page-overlay (tint over the animated gradient), --panel-bg /
+             --panel-bg-2 (cards), --line (hairlines/borders)
+   Text      --text, --text-strong, --text-soft, --text-muted, --text-faint,
+             --text-inverse (on --chip-solid)
+   Accent    --accent, --accent-2, --accent-bg(-hover/-soft), --accent-border(-mid/-soft)
+   Effects   --shadow-base (text-shadow color), --overlay-border, --chip-solid
+   Chart     --chart-text, --chart-grid, --chart-bar-1, --chart-bar-2
+   Toggle    --toggle-bg, --toggle-border, --toggle-icon
+
+   Light contrast (WCAG), worst case page = rgba(255,255,255,.55) over the
+   darkest light gradient stop (~#e4f0f7), panel = rgba(255,255,255,.78) on that:
+   text 13.5/15.2, text-soft 8.9/10.0, text-muted 6.3/7.1, text-faint 5.2/5.9,
+   accent 5.7/6.4, accent-2 4.6/5.2 (page/panel); accent on chip 5.7;
+   text-inverse on chip-solid 13.2; toggle icon on toggle bg 15.7. */
+
+:root,
+:root[data-theme="dark"] {
+	color-scheme: dark;
+
+	--bg: #262626;
+	--page-overlay: rgba(38, 38, 38, 0.5);
+	--panel-bg: rgba(40, 48, 58, 0.72);
+	--panel-bg-2: rgba(52, 62, 74, 0.6);
+	--line: rgba(255, 255, 255, 0.1);
+	--overlay-border: rgba(242, 242, 242, 0.5);
+	--canvas-fallback: #1a1724;
+
+	--text: #f2f2f2;
+	--text-strong: #e9eef3;
+	--text-soft: #cdd6df;
+	--text-soft-2: #d4dde6;
+	--text-muted: #9aa7b4;
+	--text-muted-2: #8a97a5;
+	--text-faint: #7f8c9a;
+	--text-inverse: #263238;
+	--chip-solid: #fff;
+
+	--accent: #64ffda;
+	--accent-2: #1de9b6;
+	--accent-bg: rgba(100, 255, 218, 0.08);
+	--accent-bg-soft: rgba(100, 255, 218, 0.12);
+	--accent-bg-hover: rgba(100, 255, 218, 0.18);
+	--accent-border: rgba(100, 255, 218, 0.55);
+	--accent-border-mid: rgba(100, 255, 218, 0.4);
+	--accent-border-soft: rgba(100, 255, 218, 0.35);
+	--accent-line: rgba(100, 255, 218, 0.25);
+	--accent-glow: rgba(100, 255, 218, 0.6);
+
+	--shadow-base: #262626;
+
+	--chart-text: #fff;
+	--chart-grid: #314149;
+	--chart-bar-1: rgba(29, 233, 182, 0.9);
+	--chart-bar-2: rgba(167, 255, 235, 0.9);
+
+	--toggle-bg: rgba(40, 48, 58, 0.72);
+	--toggle-border: rgba(255, 255, 255, 0.25);
+	--toggle-icon: #f2f2f2;
+
+	--hex-filter: none;
+}
+
+:root[data-theme="light"] {
+	color-scheme: light;
+
+	--bg: #f4f6f8;
+	--page-overlay: rgba(255, 255, 255, 0.55);
+	--panel-bg: rgba(255, 255, 255, 0.78);
+	--panel-bg-2: rgba(255, 255, 255, 0.62);
+	--line: rgba(15, 23, 32, 0.14);
+	--overlay-border: rgba(15, 23, 32, 0.35);
+	--canvas-fallback: #e4f0f7;
+
+	--text: #1b2430;
+	--text-strong: #0f1720;
+	--text-soft: #334155;
+	--text-soft-2: #334155;
+	--text-muted: #4a5868;
+	--text-muted-2: #4a5868;
+	--text-faint: #566474;
+	--text-inverse: #fff;
+	--chip-solid: #263238;
+
+	--accent: #00695c;
+	--accent-2: #00796b;
+	--accent-bg: rgba(0, 105, 92, 0.08);
+	--accent-bg-soft: rgba(0, 105, 92, 0.12);
+	--accent-bg-hover: rgba(0, 105, 92, 0.18);
+	--accent-border: rgba(0, 105, 92, 0.6);
+	--accent-border-mid: rgba(0, 105, 92, 0.5);
+	--accent-border-soft: rgba(0, 105, 92, 0.4);
+	--accent-line: rgba(0, 105, 92, 0.3);
+	--accent-glow: rgba(0, 105, 92, 0.35);
+
+	--shadow-base: #ffffff;
+
+	--chart-text: #1b2430;
+	--chart-grid: rgba(15, 23, 32, 0.15);
+	--chart-bar-1: rgba(0, 105, 92, 0.9);
+	--chart-bar-2: rgba(38, 166, 154, 0.9);
+
+	--toggle-bg: rgba(255, 255, 255, 0.85);
+	--toggle-border: rgba(15, 23, 32, 0.4);
+	--toggle-icon: #1b2430;
+
+	--hex-filter: invert(1) hue-rotate(180deg);
+}

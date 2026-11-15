@@ -24,7 +24,7 @@ export default {
 		position:fixed;
 		top:0;
 		left:0;
-		background-color: #1a1724;
+		background-color: var(--canvas-fallback);
 	}
 	.canvas-wrap{
 		z-index: 1;

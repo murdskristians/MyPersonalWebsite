@@ -64,13 +64,13 @@ export default {
 	gap: 0.5rem;
 	padding: 0.85rem 1.9rem;
 
-	color: #64ffda;
+	color: var(--accent);
 	font-size: 1rem;
 	text-decoration: none;
 	white-space: nowrap;
 
-	background: rgba(100, 255, 218, 0.08);
-	border: 1px solid rgba(100, 255, 218, 0.55);
+	background: var(--accent-bg);
+	border: 1px solid var(--accent-border);
 	border-radius: 999px;
 
 	transition: background 0.2s ease, border-color 0.2s ease;
@@ -80,8 +80,8 @@ export default {
 	// it — a flicker loop. Color-only hover avoids that.
 	&:hover,
 	&:focus-visible {
-		background: rgba(100, 255, 218, 0.18);
-		border-color: #64ffda;
+		background: var(--accent-bg-hover);
+		border-color: var(--accent);
 	}
 }
 .cvIcon {
@@ -98,7 +98,7 @@ export default {
 
 .footerRule {
 	height: 1px;
-	background: rgba(255, 255, 255, 0.1);
+	background: var(--line);
 }
 
 .footerInner {
@@ -118,11 +118,11 @@ export default {
 
 .footerName {
 	font-size: 0.9rem;
-	color: #cdd6df;
+	color: var(--text-soft);
 }
 
 .footerRole {
-	color: #7f8c9a;
+	color: var(--text-faint);
 }
 
 .footerLinks {
@@ -132,14 +132,14 @@ export default {
 	gap: 1.25rem;
 
 	> a {
-		color: #9aa7b4;
+		color: var(--text-muted);
 		font-size: 0.9rem;
 		text-decoration: none;
 		transition: color 0.18s ease;
 
 		&:hover,
 		&:focus-visible {
-			color: #64ffda;
+			color: var(--accent);
 		}
 	}
 

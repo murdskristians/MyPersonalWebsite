@@ -1,4 +1,5 @@
 import { h } from "vue";
+import { mapState } from "pinia";
 import { Bar } from "vue-chartjs";
 import {
 	Chart as ChartJS,
@@ -9,6 +10,7 @@ import {
 	CategoryScale,
 	LinearScale
 } from "chart.js";
+import { useUiStore } from "@/plugins/store";
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
@@ -21,17 +23,24 @@ const yLabels = {
 };
 
 const defaults = {
-	fontColor: "white",
-	gridColor: "#314149",
 	fontSize: 12,
 	fontFamily: '"Varela Round", sans-serif'
 };
 
+// Chart.js draws to a canvas and can't use var(); read the active theme's tokens.
+function token(name) {
+	return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
 export default {
 	name: "SkillsChart",
-	data() {
-		return {
-			chartData: {
+	computed: {
+		...mapState(useUiStore, ["theme"]),
+		chartData() {
+			// depend on the theme so colours are re-read after a toggle
+			void this.theme;
+			const bars = [token("--chart-bar-1"), token("--chart-bar-2")];
+			return {
 				labels: [
 					"React / Vue.js",
 					"JavaScript",
@@ -44,19 +53,17 @@ export default {
 				datasets: [
 					{
 						data: [90, 95, 85, 75, 85, 80, 75],
-						backgroundColor: [
-							"rgba(29,233,182, 0.9)",
-							"rgba(167,255,235, 0.9)",
-							"rgba(29,233,182, 0.9)",
-							"rgba(167,255,235, 0.9)",
-							"rgba(29,233,182, 0.9)",
-							"rgba(167,255,235, 0.9)",
-							"rgba(29,233,182, 0.9)"
-						]
+						backgroundColor: [0, 1, 0, 1, 0, 1, 0].map(i => bars[i])
 					}
 				]
-			},
-			chartOptions: {
+			};
+		},
+		chartOptions() {
+			void this.theme;
+			const text = token("--chart-text");
+			const grid = token("--chart-grid");
+			const font = { size: defaults.fontSize, family: defaults.fontFamily };
+			return {
 				responsive: true,
 				maintainAspectRatio: false,
 				plugins: {
@@ -67,33 +74,20 @@ export default {
 				scales: {
 					y: {
 						beginAtZero: true,
-						grid: {
-							color: defaults.gridColor
-						},
+						grid: { color: grid },
 						ticks: {
-							color: defaults.fontColor,
-							font: {
-								size: defaults.fontSize,
-								family: defaults.fontFamily
-							},
+							color: text,
+							font,
 							callback: value => yLabels[value]
 						}
 					},
 					x: {
-						grid: {
-							color: defaults.gridColor
-						},
-						ticks: {
-							color: defaults.fontColor,
-							font: {
-								size: defaults.fontSize,
-								family: defaults.fontFamily
-							}
-						}
+						grid: { color: grid },
+						ticks: { color: text, font }
 					}
 				}
-			}
-		};
+			};
+		}
 	},
 	render() {
 		return h(Bar, {
