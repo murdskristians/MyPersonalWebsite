@@ -170,7 +170,7 @@ export default {
   margin-bottom: 4vw;
 }
 .line {
-  border-color: #64ffda;
+  border-color: var(--c-accent);
   max-width: 80px;
   border-top-width: 3px;
   margin-top: 1rem;
@@ -214,6 +214,6 @@ dd {
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  background-color: #fff;
+  background-color: var(--c-badge-bg);
 }
 </style>

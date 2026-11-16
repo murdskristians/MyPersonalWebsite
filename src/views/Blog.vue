@@ -59,8 +59,8 @@ export default {
 		width: 100%;
 		min-height: 200px;
 
-		background-color: rgba($black, .5);
-		border: 2px solid rgba($white, .5);
+		background-color: rgba(var(--c-bg-rgb), .5);
+		border: 2px solid rgba(var(--c-text-rgb), .5);
 		border-radius: $border-radius;
 	}
 }
