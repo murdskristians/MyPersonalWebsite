@@ -32,6 +32,21 @@ colors = colors.map(function (rgb) {
   return capLuminance(rgb, MAX_BACKGROUND_LUMINANCE);
 });
 
+// Light theme: pale, low-saturation tones (relative luminance ~0.72-0.8), so
+// dark body and muted text stay above 4.5:1 through the #page overlay. Same
+// length as the dark palette, so colorIndices work for either.
+var lightColors = new Array(
+  [226,230,240],
+  [214,222,236],
+  [236,226,232],
+  [222,234,230],
+  [240,236,226],
+  [210,226,236]);
+
+function currentColors() {
+  return document.documentElement.getAttribute('data-theme') === 'light' ? lightColors : colors;
+}
+
 
 var step = 0;
 //color table indices for:
@@ -51,10 +66,12 @@ function updateGradient(dt)
   var el = document.querySelector('.gradient');
   if (!el) return;
 
-  var c0_0 = colors[colorIndices[0]];
-  var c0_1 = colors[colorIndices[1]];
-  var c1_0 = colors[colorIndices[2]];
-  var c1_1 = colors[colorIndices[3]];
+  // Picked per frame, so a theme toggle applies without a reload.
+  var palette = currentColors();
+  var c0_0 = palette[colorIndices[0]];
+  var c0_1 = palette[colorIndices[1]];
+  var c1_0 = palette[colorIndices[2]];
+  var c1_1 = palette[colorIndices[3]];
 
   var istep = 1 - step;
   var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
@@ -89,8 +106,12 @@ function updateGradient(dt)
 var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (reducedMotion) {
-  // Paint one static frame instead of looping forever.
+  // Paint one static frame instead of looping forever, and repaint it when
+  // the theme changes.
   updateGradient(0);
+  new MutationObserver(function () {
+    updateGradient(0);
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 } else {
   var lastTime = null;
   var tick = function (now) {
