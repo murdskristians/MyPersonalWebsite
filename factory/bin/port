@@ -1,0 +1,69 @@
+#!/usr/bin/env -S python3 -X utf8
+"""Find or stop the process listening on a TCP port, on Linux, macOS and Windows.
+
+Usage:
+  port pid <port>     print the PIDs listening on <port>, one per line
+  port stop <port>    stop them (and, on Windows, their child processes)
+
+Agents use this to stop only the dev server on their own port: other jobs run
+dev servers too, so never stop servers by process name. It exists because
+Windows has no `lsof`.
+"""
+
+import os
+import re
+import signal
+import subprocess
+import sys
+
+WINDOWS = os.name == "nt"
+
+
+def die(msg):
+    print(f"port: {msg}", file=sys.stderr)
+    sys.exit(1)
+
+
+def listening_pids(port):
+    if WINDOWS:
+        out = subprocess.run(["netstat", "-ano", "-p", "TCP"], capture_output=True, text=True).stdout
+        out += subprocess.run(["netstat", "-ano", "-p", "TCPv6"], capture_output=True, text=True).stdout
+        pids = set()
+        for line in out.splitlines():
+            cols = line.split()
+            # Proto  Local Address  Foreign Address  State  PID
+            if len(cols) == 5 and cols[3] == "LISTENING" and re.search(rf":{port}$", cols[1]):
+                pids.add(int(cols[4]))
+        return sorted(pids - {0})
+    res = subprocess.run(["lsof", f"-tiTCP:{port}", "-sTCP:LISTEN"], capture_output=True, text=True)
+    return sorted({int(p) for p in res.stdout.split()})
+
+
+def stop(pid):
+    if WINDOWS:
+        res = subprocess.run(["taskkill", "/F", "/T", "/PID", str(pid)], capture_output=True, text=True)
+        return res.returncode == 0
+    try:
+        os.kill(pid, signal.SIGTERM)
+        return True
+    except ProcessLookupError:
+        return False
+
+
+def main(argv):
+    if len(argv) != 2 or argv[0] not in {"pid", "stop"} or not argv[1].isdigit():
+        die(__doc__.strip())
+    action, port = argv[0], int(argv[1])
+    pids = listening_pids(port)
+    if action == "pid":
+        for pid in pids:
+            print(pid)
+        return
+    if not pids:
+        print(f"nothing listens on port {port}")
+    for pid in pids:
+        print(f"{'stopped' if stop(pid) else 'could not stop'} PID {pid} on port {port}")
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

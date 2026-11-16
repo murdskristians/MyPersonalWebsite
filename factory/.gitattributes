@@ -1,0 +1,6 @@
+# The factory's scripts must keep LF line endings in every checkout. Git for
+# Windows usually has core.autocrlf=true, which would turn the shebang into
+# `python3\r` and `set -euo pipefail` into `pipefail\r`, and both then fail
+# under Git Bash. Copy this file along with the rest of factory/.
+bin/* text eol=lf
+*.sh text eol=lf
