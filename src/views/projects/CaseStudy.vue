@@ -108,13 +108,14 @@ export default {
 <style lang="scss">
 @use "../../styles/_globals" as *;
 
-$cs-teal: #64ffda;
-$cs-teal-2: #1de9b6;
-$cs-panel: rgba(40, 48, 58, 0.72);
-$cs-panel-2: rgba(52, 62, 74, 0.6);
-$cs-line: rgba(255, 255, 255, 0.1);
-$cs-ink: #e9eef3;
-$cs-muted: #9aa7b4;
+// Theme-aware: the values live in styles/_theme.scss.
+$cs-teal: var(--c-accent);
+$cs-teal-2: var(--c-accent-2);
+$cs-panel: var(--c-panel);
+$cs-panel-2: var(--c-panel-2);
+$cs-line: var(--c-line);
+$cs-ink: var(--c-ink);
+$cs-muted: var(--c-muted);
 
 .caseStudy {
 	.backTop {
@@ -152,7 +153,7 @@ $cs-muted: #9aa7b4;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
 		color: $cs-teal;
-		border: 1px solid rgba(100, 255, 218, 0.35);
+		border: 1px solid rgba(var(--c-accent-rgb), 0.35);
 		border-radius: 999px;
 		padding: 0.28rem 0.7rem;
 	}
@@ -193,9 +194,9 @@ $cs-muted: #9aa7b4;
 		&:focus-visible { outline: 2px solid $cs-teal; outline-offset: 3px; }
 	}
 	.btn--primary {
-		border-color: rgba(100, 255, 218, 0.5);
+		border-color: rgba(var(--c-accent-rgb), 0.5);
 		color: $cs-teal;
-		&:hover { background: rgba(100, 255, 218, 0.12); }
+		&:hover { background: rgba(var(--c-accent-rgb), 0.12); }
 	}
 
 	.meta {
@@ -233,7 +234,7 @@ $cs-muted: #9aa7b4;
 	section > p {
 		max-width: 68ch;
 		margin: 0 0 1rem;
-		color: #cdd6df;
+		color: var(--c-ink-soft);
 		text-align: left;
 	}
 
@@ -309,7 +310,7 @@ $cs-muted: #9aa7b4;
 		font-size: 0.76rem;
 		background: $cs-panel-2;
 		border: 1px solid $cs-line;
-		color: #d4dde6;
+		color: var(--c-chip-ink);
 		border-radius: 999px;
 		padding: 0.32rem 0.72rem;
 	}

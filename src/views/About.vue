@@ -406,7 +406,7 @@ export default {
   #heroTitle,
   #heroSubTitle,
   #heroSummary {
-    text-shadow: 0 2px 18px rgba($black, 0.9), 0 0 4px rgba($black, 0.8);
+    text-shadow: 0 2px 18px rgba(var(--c-bg-rgb), 0.9), 0 0 4px rgba(var(--c-bg-rgb), 0.8);
   }
   #heroTitle {
     @include font-bold;
@@ -446,13 +446,13 @@ export default {
     gap: 0.5rem;
     padding: 0.85rem 1.9rem;
 
-    color: #64ffda;
+    color: var(--c-accent);
     font-size: 1rem;
     text-decoration: none;
     white-space: nowrap;
 
-    background: rgba(100, 255, 218, 0.08);
-    border: 1px solid rgba(100, 255, 218, 0.55);
+    background: rgba(var(--c-accent-rgb), 0.08);
+    border: 1px solid rgba(var(--c-accent-rgb), 0.55);
     border-radius: 999px;
 
     transition: background 0.2s ease, border-color 0.2s ease;
@@ -462,8 +462,8 @@ export default {
     // it — a flicker loop. Color-only hover avoids that.
     &:hover,
     &:focus-visible {
-      background: rgba(100, 255, 218, 0.18);
-      border-color: #64ffda;
+      background: rgba(var(--c-accent-rgb), 0.18);
+      border-color: var(--c-accent);
     }
   }
   .cvIcon {
@@ -497,20 +497,20 @@ export default {
 
     text-align: left;
     text-decoration: none;
-    color: #e9eef3;
+    color: var(--c-ink);
 
-    background: rgba(40, 48, 58, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--c-panel);
+    border: 1px solid var(--c-line);
     border-radius: 14px;
 
     transition: transform 0.18s ease, border-color 0.18s ease;
 
     &:hover {
       transform: translateY(-4px);
-      border-color: rgba(100, 255, 218, 0.5);
+      border-color: rgba(var(--c-accent-rgb), 0.5);
     }
     &:focus-visible {
-      outline: 2px solid #64ffda;
+      outline: 2px solid var(--c-accent);
       outline-offset: 3px;
     }
   }
@@ -524,8 +524,8 @@ export default {
     font-size: 0.62rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #64ffda;
-    border: 1px solid rgba(100, 255, 218, 0.35);
+    color: var(--c-accent);
+    border: 1px solid rgba(var(--c-accent-rgb), 0.35);
     border-radius: 999px;
     padding: 0.2rem 0.55rem;
   }
@@ -538,11 +538,11 @@ export default {
     flex-grow: 1;
     margin: 0.6rem 0 1.2rem;
     font-size: 0.92rem;
-    color: #9aa7b4;
+    color: var(--c-muted);
     text-align: left;
   }
   .featuredMore {
-    color: #64ffda;
+    color: var(--c-accent);
     font-size: 0.85rem;
   }
   .featuredAll {
@@ -550,13 +550,13 @@ export default {
     text-align: center;
   }
   .seeAll {
-    color: #9aa7b4;
+    color: var(--c-muted);
     text-decoration: none;
     cursor: pointer;
     font-size: 0.95rem;
 
     &:hover {
-      color: #64ffda;
+      color: var(--c-accent);
     }
   }
 
@@ -569,7 +569,7 @@ export default {
   .expItem {
     position: relative;
     padding: 0 0 2.4rem 1.8rem;
-    border-left: 2px solid rgba(100, 255, 218, 0.25);
+    border-left: 2px solid rgba(var(--c-accent-rgb), 0.25);
 
     &:last-child {
       padding-bottom: 0;
@@ -583,8 +583,8 @@ export default {
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #64ffda;
-      box-shadow: 0 0 12px rgba(100, 255, 218, 0.6);
+      background: var(--c-accent);
+      box-shadow: 0 0 12px rgba(var(--c-accent-rgb), 0.6);
     }
   }
   .expPeriod {
@@ -592,7 +592,7 @@ export default {
     font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #64ffda;
+    color: var(--c-accent);
   }
   .expRole {
     margin: 0;
@@ -600,7 +600,7 @@ export default {
     text-align: left;
   }
   .expCompany {
-    color: #9aa7b4;
+    color: var(--c-muted);
     font-weight: 400;
   }
   .expLoc {
@@ -608,7 +608,7 @@ export default {
     font-size: 0.78rem;
     // #7f8c9a scored 4.41:1 on this background — just under the 4.5:1 minimum
     // for text this size. Lifted to ~5.1:1.
-    color: #8a97a5;
+    color: var(--c-muted-2);
   }
   .contactLead {
     font-size: 1.5rem;
@@ -621,7 +621,7 @@ export default {
     > li {
       margin-bottom: 0.45rem;
       font-size: 0.95rem;
-      color: #cdd6df;
+      color: var(--c-ink-soft);
     }
   }
   .expTech {
@@ -629,7 +629,7 @@ export default {
     font-size: 0.8rem;
     font-style: italic;
     // Same contrast lift as .expLoc above.
-    color: #8a97a5;
+    color: var(--c-muted-2);
   }
 
   #backToTop {
@@ -664,7 +664,7 @@ export default {
 
       font-size: 1.5rem;
 
-      border-bottom: 2px solid $white;
+      border-bottom: 2px solid var(--c-text);
 
       @media only screen and (min-width: $breakpoint-m ) {
         font-size: 1.75rem;
@@ -717,8 +717,8 @@ export default {
     width: 100%;
     min-height: 200px;
 
-    background-color: rgba($black, 0.5);
-    border: 2px solid rgba($white, 0.5);
+    background-color: rgba(var(--c-bg-rgb), 0.5);
+    border: 2px solid rgba(var(--c-text-rgb), 0.5);
     border-radius: $border-radius;
   }
   #secondScroller {

@@ -67,7 +67,7 @@ h3,
 h4 {
   @include font-regular;
   margin: 0;
-  color: #f2f2f2;
+  color: var(--c-text);
   line-height: 1.2em;
   text-align: center;
 }
@@ -133,21 +133,21 @@ h4 {
   margin: 0 auto 22px;
   padding: 0.5rem 1.15rem;
 
-  color: #64ffda;
+  color: var(--c-accent);
   font-size: 0.85rem;
   text-decoration: none;
 
-  border: 1px solid rgba(100, 255, 218, 0.4);
+  border: 1px solid rgba(var(--c-accent-rgb), 0.4);
   border-radius: 6px;
 
   transition: background 0.18s ease, transform 0.18s ease;
 
   &:hover {
-    background: rgba(100, 255, 218, 0.12);
+    background: rgba(var(--c-accent-rgb), 0.12);
     transform: translateY(-1px);
   }
   &:focus-visible {
-    outline: 2px solid #64ffda;
+    outline: 2px solid var(--c-accent);
     outline-offset: 3px;
   }
 }

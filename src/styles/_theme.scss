@@ -1,0 +1,77 @@
+@use "globals" as *;
+
+/*
+  Site colours as CSS custom properties, switched at runtime by the
+  data-theme attribute on <html> (set before first paint by
+  public/js/theme-init.js, then by the theme toggle). New styles should use
+  these variables for anything that differs between themes. The "-rgb"
+  tokens are bare channels, for use as rgba(var(--c-bg-rgb), .5).
+*/
+
+/*#region Dark (the original look)*/
+:root,
+[data-theme="dark"] {
+	color-scheme: dark;
+
+	--c-bg: #{$black};
+	--c-bg-rgb: 38, 38, 38;
+	--c-text: #{$white};
+	--c-text-rgb: 242, 242, 242;
+	--c-canvas: #1a1724;
+
+	--c-scroll-track: rgba(32, 91, 157, 0.25);
+	--c-scroll-thumb: rgba(32, 91, 157, 0.75);
+
+	--c-accent: #64ffda;
+	--c-accent-rgb: 100, 255, 218;
+	--c-accent-2: #1de9b6;
+
+	--c-ink: #e9eef3;
+	--c-ink-soft: #cdd6df;
+	--c-chip-ink: #d4dde6;
+	--c-muted: #9aa7b4;
+	--c-muted-2: #8a97a5;
+	--c-faint: #7f8c9a;
+
+	--c-panel: rgba(40, 48, 58, 0.72);
+	--c-panel-2: rgba(52, 62, 74, 0.6);
+	--c-line: rgba(255, 255, 255, 0.1);
+
+	--c-badge-bg: #fff;
+	--c-toggle-bg: rgba(40, 48, 58, 0.85);
+}
+/*#endregion*/
+
+/*#region Light*/
+[data-theme="light"] {
+	color-scheme: light;
+
+	--c-bg: #eef1f4;
+	--c-bg-rgb: 238, 241, 244;
+	--c-text: #1f2328;
+	--c-text-rgb: 31, 35, 40;
+	--c-canvas: #dfe4ea;
+
+	--c-scroll-track: rgba(32, 91, 157, 0.15);
+	--c-scroll-thumb: rgba(32, 91, 157, 0.6);
+
+	// #64ffda is under 1.5:1 on light surfaces; this teal is ~5.8:1.
+	--c-accent: #00695c;
+	--c-accent-rgb: 0, 105, 92;
+	--c-accent-2: #00695c;
+
+	--c-ink: #1f2328;
+	--c-ink-soft: #2f3a45;
+	--c-chip-ink: #2f3a45;
+	--c-muted: #4a5663;
+	--c-muted-2: #4a5663;
+	--c-faint: #515d6a;
+
+	--c-panel: rgba(255, 255, 255, 0.72);
+	--c-panel-2: rgba(255, 255, 255, 0.55);
+	--c-line: rgba(0, 0, 0, 0.12);
+
+	--c-badge-bg: #dde3ea;
+	--c-toggle-bg: rgba(255, 255, 255, 0.85);
+}
+/*#endregion*/

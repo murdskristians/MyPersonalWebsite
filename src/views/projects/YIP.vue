@@ -460,7 +460,7 @@ $yip-blue: #278EB9;
 
 				text-align: center;
 
-				border: 1px solid $black;
+				border: 1px solid var(--c-bg);
 
 				@media only screen and (min-width: $breakpoint-m + $grid-gutters) {
 					width: calc((100% - 240px) / 31);
@@ -501,7 +501,7 @@ $yip-blue: #278EB9;
 				width: 25px;
 				height: 25px;
 
-				border: 1px solid $black;
+				border: 1px solid var(--c-bg);
 				
 				&[data-value="1"] {
 					background-color: $yip-red;
