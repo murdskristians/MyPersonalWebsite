@@ -9,7 +9,9 @@ plain JavaScript (no TypeScript) and SCSS, deployed to Netlify from `master`.
 - `src/views/` pages (About, Projects, ProjectDetails, Blog, case studies in `src/views/projects/`)
 - `src/components/page/` shared components (HexNav, SiteFooter, DynamicBackground, ...)
 - `src/styles/_globals.scss` global styles
+- `src/styles/_theme.scss` site colours as CSS custom properties (`--c-*`), switched by `data-theme="dark|light"` on `<html>`; new styles should use these variables for any colour that differs between themes
 - `public/js/` legacy global scripts for the animated 3D background (three.js), loaded from `index.html`; not linted
+- `public/js/theme-init.js` sets `data-theme` from the saved choice or the OS preference; it must stay a synchronous, self-hosted `<head>` script (the CSP allows no inline scripts, and `defer`/`async` would flash the wrong theme)
 - `netlify.toml` build settings, SPA redirect and security headers (Content-Security-Policy)
 
 ## Set up a fresh checkout
