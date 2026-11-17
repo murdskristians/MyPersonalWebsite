@@ -289,12 +289,12 @@ const COLUMNS = [
   { label: 'Spec', who: 'spec-writer · opus', stages: ['spec'] },
   { label: 'Build', who: 'builder · gate', stages: ['build', 'gate'] },
   { label: 'Review', who: 'routed reviewers', stages: ['review'] },
-  { label: 'Approve', who: 'approver · merge', stages: ['approve', 'merging'] },
+  { label: 'Approve', who: 'approver · recommends', stages: ['approve'] },
   { label: 'Needs human', who: 'you', stages: ['needs-human'], cls: 'human' },
   { label: 'Done', who: 'merged · rejected', stages: ['merged', 'rejected'], cls: 'merged-col' },
 ]
 const STAGES = new Set(COLUMNS.flatMap((c) => c.stages))
-const LIVE = new Set(['intake', 'spec', 'build', 'gate', 'review', 'approve', 'merging'])
+const LIVE = new Set(['intake', 'spec', 'build', 'gate', 'review', 'approve'])
 const SHORT = { code: 'code', ux: 'ux', ui: 'ui', security: 'sec' }
 
 const $ = (id) => document.getElementById(id)
@@ -400,7 +400,7 @@ function card(job, rounds) {
       <div class="links">${links(job)}</div>
       ${rounds.length ? `<div class="rounds">${rounds.join('')}</div>` : ''}
       <div class="meta">${meta}</div>
-      ${human ? `<div class="hint">${job.pr ? `merge PR #${job.pr} to approve<br>` : ''}or give feedback: /factory &lt;anything&gt;</div>` : ''}
+      ${human ? `<div class="hint">${job.pr ? `review PR #${job.pr}; you merge it<br>` : ''}or give feedback: /factory &lt;anything&gt;</div>` : ''}
     </article>`
 }
 
@@ -475,7 +475,7 @@ async function listFiles(dir) {
 }
 
 const ORDER = ['issue.md', 'intake.md', 'spec.md', 'build.md', 'decision.md', 'rejection.md']
-const ROUND_ORDER = ['checks', 'review-code', 'review-security', 'review-ux', 'review-ui', 'merge-checks']
+const ROUND_ORDER = ['checks', 'review-code', 'review-security', 'review-ux', 'review-ui']
 
 function fileRank(path) {
   if (ORDER.includes(path)) return [0, ORDER.indexOf(path), path]
@@ -492,7 +492,7 @@ function sortFiles(files) {
 }
 
 function tone(first) {
-  if (/^(VERDICT:\s*PASS|GATE:\s*PASS|APPROVE|STATUS:\s*READY|DECISION:\s*ACCEPT)$/.test(first)) return 'good'
+  if (/^(VERDICT:\s*PASS|GATE:\s*PASS|READY|APPROVE|STATUS:\s*READY|DECISION:\s*ACCEPT)$/.test(first)) return 'good'
   if (/^(VERDICT:\s*CHANGES|DECISION:\s*NEEDS-INFO)$/.test(first)) return 'warn'
   if (/^(ESCALATE|REJECTED|STATUS:\s*BLOCKED|GATE:\s*FAIL|DECISION:\s*REJECT)$/.test(first)) return 'stop'
   return null

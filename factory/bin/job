@@ -3,14 +3,17 @@
 
 Every stage change goes through `advance`, which checks the files that justify
 it and refuses anything else. GitHub side effects that belong to a transition
-(labels, comments, the worktree, the merge) happen here too, so the
-orchestrator never improvises them.
+(labels, comments, the worktree) happen here too, so the orchestrator never
+improvises them.
+
+The factory never merges. Every job that gets through review ends in
+needs-human with its PR ready; a person reviews and merges it on GitHub, and
+`job queue` then moves the job to merged.
 
 Usage:
   job queue                      what /factory run should do with each labeled issue
   job create <issue>             new job for an open `factory` issue; prints the job id
   job advance <job> <stage>      move a job to <stage>, or refuse
-  job merge <job>                APPROVE → sync with the base branch, gate, merge the PR
   job feedback <job>             needs-human → build, with your feedback (stdin) as feedback-<k>.md
   job reject <job>               needs-info or needs-human → rejected, with your reason (stdin) as rejection.md
   job agents <job> <json>        record the routed agent set (called by factory/bin/route)
@@ -49,13 +52,13 @@ TRANSITIONS = {
     "build": {"gate", "needs-human"},
     "gate": {"review", "build", "needs-human"},
     "review": {"approve", "build", "needs-human"},
-    "approve": {"merging", "needs-human"},
-    "merging": {"needs-human"},
+    # The approver only recommends: READY or ESCALATE, both hand the PR to a person.
+    "approve": {"needs-human"},
     "needs-human": {"build", "rejected"},
 }
 TERMINAL = {"merged", "rejected"}
-# Any unfinished job can move to merged once its PR is merged on GitHub,
-# whether the factory merged it or a person did mid-round.
+# Any unfinished job can move to merged once a person merges its PR on GitHub,
+# at any stage. Nothing in the factory merges.
 WAITING = {"needs-info", "needs-human"}
 CONCURRENCY = CONFIG["concurrency"]
 
@@ -306,7 +309,7 @@ def cost_usd(job):
     prices = CONFIG["prices_usd_per_mtok"]
     total = 0.0
     for path in transcripts_dir().glob("*/subagents/agent-*.jsonl"):
-        with path.open() as f:
+        with path.open(encoding="utf-8", errors="replace") as f:
             first = f.readline()
             if not first or needle not in norm_path(prompt_text(first)):
                 continue
@@ -354,7 +357,7 @@ def sync(job):
         rd = round_dir(job)
         gate = header(rd / "checks.md").get("GATE") if (rd / "checks.md").exists() else None
         job["gate"] = gate
-        if job["agents"] and job["stage"] in {"review", "approve", "merging", "merged", "needs-human"}:
+        if job["agents"] and job["stage"] in {"review", "approve", "merged", "needs-human"}:
             job["reviews"] = {}
             for r in reviewers(job):
                 line = first_line(rd / f"review-{r}.md")
@@ -510,10 +513,9 @@ def advance(job, stage):
             else:
                 next_round(job)
 
-    elif old == "approve":
-        want = "APPROVE" if stage == "merging" else "ESCALATE"
+    elif old == "approve":  # → needs-human, whatever the approver recommends
         line = first_line(d / "decision.md")
-        require(line == want, f"decision.md starts with {line!r}, not {want}")
+        require(line in {"READY", "ESCALATE"}, f"decision.md starts with {line!r}, not READY or ESCALATE")
 
     elif old == "needs-human":
         feedback = sorted(d.glob("feedback-*.md"))
@@ -524,7 +526,10 @@ def advance(job, stage):
         label("issue", job["issue"], remove=LABELS["needs_human"])
 
     if stage == "needs-human":
-        body = f"### Factory: needs a human\n\n{(d / 'decision.md').read_text().split(chr(10), 1)[1].strip()}"
+        verdict, rest = (d / "decision.md").read_text().split("\n", 1)
+        title = ("Factory: ready for your review (you merge)" if verdict.strip() == "READY"
+                 else "Factory: needs a human")
+        body = f"### {title}\n\n{rest.strip()}"
         if job["pr"]:
             if gh_json("pr", "view", str(job["pr"]), "--json", "isDraft")["isDraft"]:
                 gh("pr", "ready", str(job["pr"]))
@@ -645,44 +650,6 @@ def cmd_queue():
         print("\t".join(str(c) for c in row))
 
 
-def cmd_merge(job):
-    sync(job)
-    if job["stage"] == "approve":
-        save(advance(job, "merging"))
-    if job["stage"] != "merging":
-        die(f"{job['id']} is in {job['stage']}, not approve or merging")
-    if job["pr"] and pr_state(job) == "MERGED":
-        save(advance(sync(job), "merged"))
-        print(f"{job['id']}: merged PR #{job['pr']}")
-        return
-
-    def fail(why):
-        escalate(job, why)
-        save(advance(sync(job), "needs-human"))
-        print(f"{job['id']}: needs-human: {why.splitlines()[0]}")
-
-    git(job, "fetch", "origin", BASE)
-    merged = git(job, "merge", "--no-edit", f"origin/{BASE}", check=False)
-    if merged.returncode != 0:
-        git(job, "merge", "--abort", check=False)
-        return fail(f"The branch conflicts with {BASE}:\n\n```\n{merged.stdout.strip()}\n```")
-    gate = subprocess.run([*PYTHON, str(BIN / "gate"), job["id"], "--merge"], capture_output=True, text=True)
-    if gate.returncode != 0:
-        return fail(f"The gate failed after syncing with {BASE}. "
-                    f"See round-{job['round']}/merge-checks.md.\n\n{gate.stdout.strip()}")
-    try:
-        git(job, "push", "origin", job["branch"])
-        if gh_json("pr", "view", str(job["pr"]), "--json", "isDraft")["isDraft"]:
-            gh("pr", "ready", str(job["pr"]))
-        gh("pr", "merge", str(job["pr"]), f"--{CONFIG['merge_method']}")
-    except Refused as e:
-        return fail(f"The merge failed:\n\n```\n{e}\n```")
-    # GitHub may already have deleted the branch on merge.
-    run(["git", "push", "origin", "--delete", job["branch"]], check=False)
-    save(advance(sync(job), "merged"))
-    print(f"{job['id']}: merged PR #{job['pr']}")
-
-
 def cmd_feedback(job, text):
     if job["stage"] != "needs-human":
         die(f"{job['id']} is in {job['stage']}, not needs-human")
@@ -746,8 +713,6 @@ def main(argv):
             job = advance(sync(resolve(args[0])), args[1])
             save(sync(job))
             print(f"{job['id']}: {job['stage']} (round {job['round']})")
-        elif cmd == "merge" and len(args) == 1:
-            cmd_merge(resolve(args[0]))
         elif cmd == "feedback" and len(args) == 1:
             cmd_feedback(resolve(args[0]), sys.stdin.read())
         elif cmd == "reject" and len(args) == 1:
