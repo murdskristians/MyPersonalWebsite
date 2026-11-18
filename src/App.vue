@@ -7,6 +7,7 @@
         </section>
         <div id="app">
             <router-view id="page" class="st_fadeable" :class="{ fade : menuOpen }" />
+            <ThemeToggle />
             <HexNav />
         </div>
 	</div>
@@ -15,12 +16,13 @@
 <script>
 import { mapState, mapActions } from 'pinia'
 import { useUiStore } from '@/plugins/store'
-import { HexNav } from '@/components/page/'
+import { HexNav, ThemeToggle } from '@/components/page/'
 
 export default {
 	name: 'App',
 	components: {
-		HexNav
+		HexNav,
+		ThemeToggle
 	},
 	mounted: function() {
 		this.$st.App = this;
@@ -45,6 +47,7 @@ export default {
 
 <style lang="scss">
 @use "styles/_globals" as *;
+@use "styles/_themes";
 
 *:not(input):not(textarea) {
 	outline: none !important;
@@ -63,14 +66,14 @@ body {
 	padding: 0;
 	width: 100%;
 	min-height: 100vh;
-	color: $white;
-	background: $black;
+	color: var(--color-text);
+	background: var(--color-bg);
 }
 
 h1, h2, h3, h4 {
 	margin: 0;
 
-	color: $white;
+	color: var(--color-text);
 	@include font-regular();
 	line-height: 1.2em;
 	text-align: center;
@@ -90,7 +93,7 @@ h4 {
 p {
 	margin: 0;
 
-	color: $white;
+	color: var(--color-text);
 	@include font-regular();
 	font-size: 1.125rem;
 	line-height: 1.25em;
@@ -247,7 +250,7 @@ p {
 	width: 100%;
 	height: 100%;
 
-	background: rgba($black, 0.5);
+	background: var(--color-surface);
 
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -257,11 +260,11 @@ p {
 	width: 8px;
 }
 ::-webkit-scrollbar-track {
-	background-color: rgba($blue, .25);
+	background-color: rgba(var(--scrollbar-rgb), .25);
 	border-radius: $border-radius;
 }
 ::-webkit-scrollbar-thumb {
-	background-color: rgba($blue, .75);
+	background-color: rgba(var(--scrollbar-rgb), .75);
 	border-radius: $border-radius;
 }
 </style>

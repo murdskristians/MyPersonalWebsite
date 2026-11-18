@@ -5,6 +5,7 @@ import st from "./plugins/st";
 import VueScrollReveal from "./plugins/scroll-reveal";
 
 import App from "./App.vue";
+import { useThemeStore } from "./plugins/store";
 
 //Globally register components that are used almost everywhere so we don't have to keep importing them.
 import { GridContainer, GridRow, GridCol } from "./components/grid/";
@@ -12,6 +13,7 @@ import { GridContainer, GridRow, GridCol } from "./components/grid/";
 const app = createApp(App);
 
 app.use(createPinia());
+useThemeStore().init();
 app.use(router);
 app.use(st);
 app.use(VueScrollReveal, {

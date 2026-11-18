@@ -3,6 +3,22 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta name="color-scheme" content="dark light">
+	<!-- Apply the theme before first paint (no flash of the wrong theme). -->
+	<script>
+		(function () {
+			var theme;
+			try { theme = localStorage.getItem('theme'); } catch (e) {}
+			if (theme !== 'dark' && theme !== 'light') {
+				theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+			}
+			document.documentElement.setAttribute('data-theme', theme);
+		})();
+	</script>
+	<style>
+		html[data-theme="dark"] { background: #262626; }
+		html[data-theme="light"] { background: #eef2f6; }
+	</style>
 
 	<title>Kristiāns Murds — Full-Stack & AI Developer</title>
 	<meta name="description" content="Portfolio of Kristiāns Murds — full-stack developer building AI-powered web &amp; desktop apps with React, TypeScript, .NET, Python and LLMs (LangGraph, RAG, microservices).">
